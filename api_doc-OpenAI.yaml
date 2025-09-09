@@ -1,0 +1,119 @@
+components:
+    schemas:
+        Message:
+            description: Chat Message
+            properties:
+                content:
+                    description: The message content
+                    example: Hello, who are you?
+                    type: string
+                role:
+                    description: Role of the message sender
+                    example: user
+                    type: string
+            required:
+                - role
+                - content
+            title: Message
+            type: object
+        Messages:
+            description: Chat Messages
+            items:
+                $ref: '#/components/schemas/Message'
+            required:
+                - content
+                - role
+            title: Messages
+            type: array
+        Response:
+            description: Response from the server
+            properties:
+                choices:
+                    items:
+                        properties:
+                            finish_reason:
+                                enum:
+                                    - stop
+                                    - length
+                                    - function_call
+                                    - content_filter
+                                    - "null"
+                                type: string
+                            index:
+                                type: integer
+                            logprobs:
+                                nullable: true
+                            message:
+                                $ref: '#/components/schemas/Message'
+                        type: object
+                    type: array
+                code:
+                    type: integer
+                created:
+                    type: integer
+                error:
+                    type: string
+                id:
+                    type: string
+                model:
+                    type: string
+                object:
+                    enum:
+                        - chat.completion
+                    type: string
+                system_fingerprint:
+                    nullable: true
+                    type: string
+                usage:
+                    properties:
+                        completion_tokens:
+                            type: integer
+                        prompt_tokens:
+                            type: integer
+                        prompt_tokens_details:
+                            properties:
+                                cached_tokens:
+                                    type: integer
+                            type: object
+                        total_tokens:
+                            type: integer
+                    type: object
+            type: object
+info:
+    description: Quick create by AI provider
+    title: openai AI Service
+    version: beta
+openapi: 3.0.1
+paths:
+    /ac5900f8/chat/completions:
+        post:
+            description: This is a demo that shows you how to use a Chat API.
+            parameters:
+                - example: '{your_apipark_apikey}'
+                  in: header
+                  name: Authorization
+                  required: true
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            properties:
+                                messages:
+                                    $ref: '#/components/schemas/Messages'
+                                stream:
+                                    description: Whether to stream the response
+                                    title: stream
+                                    type: boolean
+                            required:
+                                - messages
+                            type: object
+                description: Request body
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                    description: Response from the server
+            summary: 'Demo AI API '

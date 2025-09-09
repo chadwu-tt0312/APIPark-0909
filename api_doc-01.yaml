@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: User Service API
+  version: 1.0.0
+  description: 使用者管理 API 文件
+
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  /users:
+    post:
+      summary: 新增使用者
+      description: 建立一個新的使用者帳號
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+            example:
+              username: "siuser"
+              email: "siuser@example.com"
+              password: "Pa$$w0rd"
+      responses:
+        '201':
+          description: 使用者建立成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: 請求參數錯誤
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/{id}:
+    get:
+      summary: 取得使用者資訊
+      description: 根據 ID 取得使用者詳細資料
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功取得使用者資訊
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          description: 找不到該使用者
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    UserCreateRequest:
+      type: object
+      required:
+        - username
+        - email
+        - password
+      properties:
+        username:
+          type: string
+          example: johndoe
+        email:
+          type: string
+          format: email
+          example: johndoe@example.com
+        password:
+          type: string
+          format: password
+          example: Pa$$w0rd
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 101
+        username:
+          type: string
+          example: johndoe
+        email:
+          type: string
+          example: johndoe@example.com
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 4001
+        message:
+          type: string
+          example: "Invalid request"

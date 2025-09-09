@@ -1,0 +1,60 @@
+{
+  "version": "1.9-beta",
+  "releaseDate": "2025-07-24",
+  "description": "This is the latest release of the application.",
+  "downloads": {
+    "program": {
+      "apipark": {
+        "version": "v1.9.3-beta",
+        "docker": "apipark/apipark",
+        "tar": "apipark.tar.gz",
+        "url": "https://public.eolinker.com/apipark/images/apipark.${VERSION}.${ARCH}.tar.gz"
+      },
+      "apinto": {
+        "version": "0.22.11",
+        "docker": "eolinker/apinto-gateway",
+        "tar": "apinto.tar.gz",
+        "url": "https://public.eolinker.com/apinto/images/apinto-gateway.${VERSION}.${ARCH}.tar.gz"
+      }
+    },
+    "dependencies": {
+      "mysql": {
+        "version": "8.0.37",
+        "docker": "mysql",
+        "tar": "mysql.tar.gz",
+        "url": "https://public.eolinker.com/basic/images/mysql.${VERSION}.${ARCH}.tar.gz"
+      },
+      "redis":
+      {
+        "version": "7.2.4",
+        "docker": "redis",
+        "tar": "redis.tar.gz",
+        "url": "https://public.eolinker.com/basic/images/redis.${VERSION}.${ARCH}.tar.gz"
+      },
+      "influxdb": {
+        "version": "2.6",
+        "docker": "influxdb",
+        "tar": "influxdb.tar.gz",
+        "url": "https://public.eolinker.com/basic/images/influxdb.${VERSION}.${ARCH}.tar.gz"
+      },
+      "loki": {
+        "version": "3.2.1",
+        "docker": "grafana/loki",
+        "tar": "loki.tar.gz",
+        "url": "https://public.eolinker.com/basic/images/loki.${VERSION}.${ARCH}.tar.gz"
+      },
+      "grafana": {
+        "version": "11.3.2",
+        "docker": "grafana/grafana",
+        "tar": "grafana.tar.gz",
+        "url": "https://public.eolinker.com/basic/images/grafana.${VERSION}.${ARCH}.tar.gz"
+      },
+      "nsq": {
+        "version": "v1.3.0",
+        "docker": "nsqio/nsq",
+        "tar": "nsq.tar.gz",
+        "url": "https://public.eolinker.com/basic/images/nsq.${VERSION}.${ARCH}.tar.gz"
+      }
+    }
+  }
+}

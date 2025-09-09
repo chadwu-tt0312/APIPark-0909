@@ -1,0 +1,216 @@
+version: "3"
+services:
+    apipark-mysql:
+        image: mysql:8.0.37
+        privileged: true
+        restart: always
+        container_name: apipark-mysql
+        hostname: apipark-mysql
+        command:
+            - "--character-set-server=utf8mb4"
+            - "--collation-server=utf8mb4_unicode_ci"
+        ports:
+            - "33306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD={MYSQL_PWD}
+            - MYSQL_DATABASE=apipark
+        volumes:
+            - /var/lib/apipark/mysql:/var/lib/mysql
+        networks:
+            - apipark
+    apipark:
+        image: apipark/apipark:v1.9.3-beta
+        container_name: apipark
+        privileged: true
+        restart: always
+        networks:
+            - apipark
+        ports:
+            - "18288:8288"
+        depends_on:
+            - apipark-mysql
+            - apipark-redis
+            - apipark-influxdb
+        environment:
+            - MYSQL_USER_NAME=root
+            - MYSQL_PWD={MYSQL_PWD}
+            - MYSQL_IP=apipark-mysql
+            - MYSQL_PORT=3306 # mysql埠
+            - MYSQL_DB="apipark"
+            - ERROR_DIR=work/logs # 日誌放置目錄
+            - ERROR_FILE_NAME=error.log # 錯誤日誌檔名
+            - ERROR_LOG_LEVEL=info # 錯誤日誌等級,可選:panic,fatal,error,warning,info,debug,trace 不填或者非法則為info
+            - ERROR_EXPIRE=7d # 錯誤日誌過期時間，預設單位為天，d|天，h|小時, 不合法配置預設為7d
+            - ERROR_PERIOD=day # 錯誤日誌切割週期，僅支援day、hour
+            - REDIS_ADDR=apipark-redis:6379 # Redis叢集地址 多個用,隔開
+            - REDIS_PWD={REDIS_PWD} # Redis密碼
+            - ADMIN_PASSWORD={ADMIN_PASSWORD}
+            - Init=true
+            - InfluxdbToken={INFLUXDB_TOKEN}
+    apipark-influxdb:
+        image: influxdb:2.6
+        privileged: true
+        restart: always
+        container_name: apipark-influxdb
+        hostname: apipark-influxdb
+        ports:
+            - "8086:8086"
+        volumes:
+            - /var/lib/apipark/influxdb:/var/lib/influxdb
+        environment:
+            - DOCKER_INFLUXDB_INIT_USERNAME=admin
+            - DOCKER_INFLUXDB_INIT_PASSWORD=Key123qaz
+            - DOCKER_INFLUXDB_INIT_ORG=apipark
+            - DOCKER_INFLUXDB_INIT_BUCKET=apinto
+            - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN={INFLUXDB_TOKEN}
+            - DOCKER_INFLUXDB_INIT_MODE=setup
+        networks:
+            - apipark
+    apipark-redis:
+        container_name: apipark-redis
+        image: redis:7.2.4
+        hostname: apipark-redis
+        privileged: true
+        restart: always
+        ports:
+            - 6379:6379
+        command:
+            - bash
+            - -c
+            - "redis-server --protected-mode yes --logfile redis.log --appendonly no --port 6379 --requirepass {REDIS_PWD}"
+        networks:
+            - apipark
+    apipark-loki:
+        container_name: apipark-loki
+        image: grafana/loki:3.2.1
+        hostname: apipark-loki
+        privileged: true
+        user: root
+        restart: always
+        ports:
+            - 3100:3100
+        volumes:
+            - /var/lib/apipark/loki:/tmp/loki
+        entrypoint:
+            - sh
+            - -euc
+            - |
+                mkdir -p /mnt/config
+                cat <<EOF > /mnt/config/loki-config.yaml
+                ---
+                auth_enabled: false
+
+                server:
+                  http_listen_port: 3100
+                  grpc_listen_port: 9096
+
+                common:
+                  instance_addr: 127.0.0.1
+                  path_prefix: /tmp/loki
+                  storage:
+                    filesystem:
+                      chunks_directory: /tmp/loki/chunks
+                      rules_directory: /tmp/loki/rules
+                  replication_factor: 1
+                  ring:
+                    kvstore:
+                      store: inmemory
+
+                query_range:
+                  results_cache:
+                    cache:
+                      embedded_cache:
+                        enabled: true
+                        max_size_mb: 100
+
+                schema_config:
+                  configs:
+                    - from: 2020-10-24
+                      store: tsdb
+                      object_store: filesystem
+                      schema: v13
+                      index:
+                        prefix: index_
+                        period: 24h
+                limits_config:
+                  max_query_length: 90d # 設定最大查詢時長為 30 天
+                ruler:
+                  alertmanager_url: http://localhost:9093
+
+                # By default, Loki will send anonymous, but uniquely-identifiable usage and configuration
+                # analytics to Grafana Labs. These statistics are sent to https://stats.grafana.org/
+                #
+                # Statistics help us better understand how Loki is used, and they show us performance
+                # levels for most users. This helps us prioritize features and documentation.
+                # For more information on what's sent, look at
+                # https://github.com/grafana/loki/blob/main/pkg/analytics/stats.go
+                # Refer to the buildReport method to see what goes into a report.
+                #
+                # If you would like to disable reporting, uncomment the following lines:
+                #analytics:
+                #  reporting_enabled: false
+                table_manager:
+                  retention_period: 90d
+                EOF
+                /usr/bin/loki -config.file=/mnt/config/loki-config.yaml
+        networks:
+            - apipark
+    apipark-grafana:
+        container_name: apipark-grafana
+        image: grafana/grafana:11.3.2
+        hostname: apipark-grafana
+        privileged: true
+        restart: always
+        environment:
+            - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+            - GF_AUTH_ANONYMOUS_ENABLED=true
+            - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+        depends_on:
+            - apipark-loki
+        entrypoint:
+            - sh
+            - -euc
+            - |
+                mkdir -p /etc/grafana/provisioning/datasources
+                cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+                apiVersion: 1
+                datasources:
+                  - name: Loki
+                    type: loki
+                    access: proxy
+                    url: http://apipark-loki:3100
+                EOF
+                /run.sh
+        ports:
+            - "3000:3000"
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1",
+                ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            - apipark
+    apipark-nsq:
+        container_name: apipark-nsq
+        image: nsqio/nsq:v1.3.0
+        hostname: apipark-nsq
+        privileged: true
+        restart: always
+        command:
+            - /nsqd
+        ports:
+            - 4150:4150
+            - 4151:4151
+        networks:
+            - apipark
+networks:
+    apipark:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.100.0.0/24

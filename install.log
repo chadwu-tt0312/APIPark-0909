@@ -1,0 +1,697 @@
+curl -sSO https://download.apipark.com/install/quick-start.sh; sudo bash quick-start.sh
+[sudo] password for chad: 
+cp: cannot stat '/etc/selinux/config': No such file or directory
+quick-start.sh: line 189: setenforce: command not found
+grep: /etc/selinux/config: No such file or directory
+✔ Passed: SELinux has been set to disabled. Please reboot the system for the changes to take effect.
+cat: /etc/redhat-release: No such file or directory
+ℹ Info: Download version file from https://public.eolinker.com/apipark/version.json...
+
+
+────────────────────────────────────────────────────────────
+? Question: Hello, Welcome to use APIPark! What do you want to do?
+➜ Point: 1. Install APIPark
+➜ Point: 2. Print system information
+➜ Point: 3. Uninstall APIPark
+➜ Point: 4. Exit
+2
+
+░█████╗░██████╗░██╗██████╗░░█████╗░██████╗░██╗░░██╗
+██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗██╔══██╗██║░██╔╝
+███████║██████╔╝██║██████╔╝███████║██████╔╝█████═╝░
+██╔══██║██╔═══╝░██║██╔═══╝░██╔══██║██╔══██╗██╔═██╗░
+██║░░██║██║░░░░░██║██║░░░░░██║░░██║██║░░██║██║░╚██╗
+╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝
+✘ Error: InfluxDB is not installed.
+✘ Error: APIPark is not installed. Please install APIPark first.
+
+
+────────────────────────────────────────────────────────────
+? Question: Hello, Welcome to use APIPark! What do you want to do?
+➜ Point: 1. Install APIPark
+➜ Point: 2. Print system information
+➜ Point: 3. Uninstall APIPark
+➜ Point: 4. Exit
+1
+cat: /etc/motd: No such file or directory
+Hit:1 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu noble InRelease                                                   
+Get:3 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]                                
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1083 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1370 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [271 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [175 kB]  
+Get:10 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1126 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [187 kB]
+Get:12 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21.6 kB]         
+Get:13 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [881 kB]            
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [288 kB]             
+Get:15 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [195 kB]               
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [378 kB]                    
+Get:17 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1773 kB]                         
+Get:18 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.2 kB]      
+Get:19 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1631 kB]          
+Get:20 http://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [395 kB]      
+Get:21 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]                
+Get:22 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]                
+Get:23 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7084 B]  
+Get:24 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [19.2 kB]                
+Get:25 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]                 
+Get:26 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [361 kB] 
+Get:27 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+Get:28 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+Get:29 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Fetched 10.6 MB in 4s (2708 kB/s)                                 
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+bash is already the newest version (5.2.21-2ubuntu4).
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 12 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+software-properties-common is already the newest version (0.99.49.3).
+software-properties-common set to manually installed.
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 12 not upgraded.
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index of /</title>
+</head>
+<body>
+<h1>Index of /</h1>
+<hr>
+<pre>
+<a href="linux">linux/</a>
+<a href="mac">mac/</a>
+<a href="win">win/</a>
+</pre><hr></body></html>
+Detected Ubuntu.
+Architecture: amd64
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
+Repository: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable'
+Description:
+Archive for codename: noble components: stable
+More info: https://download.docker.com/linux/ubuntu
+Adding repository.
+Found existing deb entry in /etc/apt/sources.list.d/docker.list
+Updating existing entry instead of using /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-noble.list
+Adding disabled deb-src entry to /etc/apt/sources.list.d/docker.list
+Hit:1 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease                                       
+Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease                                                 
+Hit:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Reading package lists... Done
+Hit:1 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease                                         
+Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease                                                   
+Hit:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libqrencode4
+The following NEW packages will be installed:
+  libqrencode4 qrencode
+0 upgraded, 2 newly installed, 0 to remove and 12 not upgraded.
+Need to get 51.1 kB of archives.
+After this operation, 139 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble/universe amd64 libqrencode4 amd64 4.1.1-1build2 [25.0 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/universe amd64 qrencode amd64 4.1.1-1build2 [26.1 kB]
+Fetched 51.1 kB in 1s (39.8 kB/s)  
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package libqrencode4:amd64.
+(Reading database ... 49143 files and directories currently installed.)
+Preparing to unpack .../libqrencode4_4.1.1-1build2_amd64.deb ...
+Unpacking libqrencode4:amd64 (4.1.1-1build2) ...
+Selecting previously unselected package qrencode.
+Preparing to unpack .../qrencode_4.1.1-1build2_amd64.deb ...
+Unpacking qrencode (4.1.1-1build2) ...
+Setting up libqrencode4:amd64 (4.1.1-1build2) ...
+Setting up qrencode (4.1.1-1build2) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libjq1 libonig5
+The following NEW packages will be installed:
+  jq libjq1 libonig5
+0 upgraded, 3 newly installed, 0 to remove and 12 not upgraded.
+Need to get 379 kB of archives.
+After this operation, 1125 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 libonig5 amd64 6.9.9-1build1 [172 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libjq1 amd64 1.7.1-3ubuntu0.24.04.1 [141 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 jq amd64 1.7.1-3ubuntu0.24.04.1 [65.7 kB]
+Fetched 379 kB in 2s (198 kB/s)
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package libonig5:amd64.
+(Reading database ... 49156 files and directories currently installed.)
+Preparing to unpack .../libonig5_6.9.9-1build1_amd64.deb ...
+Unpacking libonig5:amd64 (6.9.9-1build1) ...
+Selecting previously unselected package libjq1:amd64.
+Preparing to unpack .../libjq1_1.7.1-3ubuntu0.24.04.1_amd64.deb ...
+Unpacking libjq1:amd64 (1.7.1-3ubuntu0.24.04.1) ...
+Selecting previously unselected package jq.
+Preparing to unpack .../jq_1.7.1-3ubuntu0.24.04.1_amd64.deb ...
+Unpacking jq (1.7.1-3ubuntu0.24.04.1) ...
+Setting up libonig5:amd64 (6.9.9-1build1) ...
+Setting up libjq1:amd64 (1.7.1-3ubuntu0.24.04.1) ...
+Setting up jq (1.7.1-3ubuntu0.24.04.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+Suggested packages:
+  zip
+The following NEW packages will be installed:
+  unzip
+0 upgraded, 1 newly installed, 0 to remove and 12 not upgraded.
+Need to get 174 kB of archives.
+After this operation, 384 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 unzip amd64 6.0-28ubuntu4.1 [174 kB]
+Fetched 174 kB in 2s (99.9 kB/s)
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package unzip.
+(Reading database ... 49174 files and directories currently installed.)
+Preparing to unpack .../unzip_6.0-28ubuntu4.1_amd64.deb ...
+Unpacking unzip (6.0-28ubuntu4.1) ...
+Setting up unzip (6.0-28ubuntu4.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  bind9-dnsutils bind9-host bind9-libs liblmdb0 libmaxminddb0 libuv1t64
+Suggested packages:
+  mmdb-bin
+The following NEW packages will be installed:
+  bind9-dnsutils bind9-host bind9-libs dnsutils liblmdb0 libmaxminddb0 libuv1t64
+0 upgraded, 7 newly installed, 0 to remove and 12 not upgraded.
+Need to get 1632 kB of archives.
+After this operation, 4683 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 libuv1t64 amd64 1.48.0-1.1build1 [97.3 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 liblmdb0 amd64 0.9.31-1build1 [48.1 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libmaxminddb0 amd64 1.9.1-1build1 [24.4 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bind9-libs amd64 1:9.18.30-0ubuntu0.24.04.2 [1253 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bind9-host amd64 1:9.18.30-0ubuntu0.24.04.2 [50.4 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bind9-dnsutils amd64 1:9.18.30-0ubuntu0.24.04.2 [155 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 dnsutils all 1:9.18.30-0ubuntu0.24.04.2 [3682 B]
+Fetched 1632 kB in 3s (573 kB/s)   
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package libuv1t64:amd64.
+(Reading database ... 49192 files and directories currently installed.)
+Preparing to unpack .../0-libuv1t64_1.48.0-1.1build1_amd64.deb ...
+Unpacking libuv1t64:amd64 (1.48.0-1.1build1) ...
+Selecting previously unselected package liblmdb0:amd64.
+Preparing to unpack .../1-liblmdb0_0.9.31-1build1_amd64.deb ...
+Unpacking liblmdb0:amd64 (0.9.31-1build1) ...
+Selecting previously unselected package libmaxminddb0:amd64.
+Preparing to unpack .../2-libmaxminddb0_1.9.1-1build1_amd64.deb ...
+Unpacking libmaxminddb0:amd64 (1.9.1-1build1) ...
+Selecting previously unselected package bind9-libs:amd64.
+Preparing to unpack .../3-bind9-libs_1%3a9.18.30-0ubuntu0.24.04.2_amd64.deb ...
+Unpacking bind9-libs:amd64 (1:9.18.30-0ubuntu0.24.04.2) ...
+Selecting previously unselected package bind9-host.
+Preparing to unpack .../4-bind9-host_1%3a9.18.30-0ubuntu0.24.04.2_amd64.deb ...
+Unpacking bind9-host (1:9.18.30-0ubuntu0.24.04.2) ...
+Selecting previously unselected package bind9-dnsutils.
+Preparing to unpack .../5-bind9-dnsutils_1%3a9.18.30-0ubuntu0.24.04.2_amd64.deb ...
+Unpacking bind9-dnsutils (1:9.18.30-0ubuntu0.24.04.2) ...
+Selecting previously unselected package dnsutils.
+Preparing to unpack .../6-dnsutils_1%3a9.18.30-0ubuntu0.24.04.2_all.deb ...
+Unpacking dnsutils (1:9.18.30-0ubuntu0.24.04.2) ...
+Setting up liblmdb0:amd64 (0.9.31-1build1) ...
+Setting up libmaxminddb0:amd64 (1.9.1-1build1) ...
+Setting up libuv1t64:amd64 (1.48.0-1.1build1) ...
+Setting up bind9-libs:amd64 (1:9.18.30-0ubuntu0.24.04.2) ...
+Setting up bind9-host (1:9.18.30-0ubuntu0.24.04.2) ...
+Setting up bind9-dnsutils (1:9.18.30-0ubuntu0.24.04.2) ...
+Setting up dnsutils (1:9.18.30-0ubuntu0.24.04.2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  ibverbs-providers libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libibverbs1 libltdl7 libncurses6 libnl-3-200 libnl-route-3-200 libpcap0.8t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  pwgen
+0 upgraded, 1 newly installed, 0 to remove and 12 not upgraded.
+Need to get 17.2 kB of archives.
+After this operation, 52.2 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble/universe amd64 pwgen amd64 2.08-2build2 [17.2 kB]
+Fetched 17.2 kB in 1s (20.5 kB/s)
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+Selecting previously unselected package pwgen.
+(Reading database ... 49246 files and directories currently installed.)
+Preparing to unpack .../pwgen_2.08-2build2_amd64.deb ...
+Unpacking pwgen (2.08-2build2) ...
+Setting up pwgen (2.08-2build2) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+ℹ Info: Writing LAN_IP=172.21.122.231 to /var/lib/apipark/quickstart/environment/LAN_IP
+ℹ Info: Writing EXTERNAL_IP=114.33.48.242 to /var/lib/apipark/quickstart/environment/EXTERNAL_IP
+ℹ Info: checking docker network...
+✔ Passed: finish checking docker network...
+ℹ Info: init docker network...
+create network apipark-net with subnet 172.100.0.0/24 and gateway 172.100.0.1
+ec08ab4bce0702fec720a722c14e90d5a5562f56f18d42d34868d8ca04b0b9f6
+✔ Passed: init docker network success
+
+
+────────────────────────────────────────────────────────────
+? Question: Please select the program you want to install:
+➜ Point: 1. APIPark Dashboard and Node (API Gateway)
+➜ Point: 2. Only APIPark Dashboard
+➜ Point: 3. Only APIPark Node (API Gateway)
+1
+ℹ Info: Download package from https://public.eolinker.com/basic/images/mysql.8.0.37.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/basic/images/mysql.8.0.37.amd64.tar.gz -O mysql.tar.gz
+--2025-08-27 18:20:17--  https://public.eolinker.com/basic/images/mysql.8.0.37.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.134, 122.228.86.133, 122.228.86.132, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.134|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 582834176 (556M) [application/x-compressed]
+Saving to: ‘mysql.tar.gz’
+
+mysql.tar.gz                                    100%[====================================================================================================>] 555.83M  8.73MB/s    in 64s     
+
+2025-08-27 18:21:15 (8.70 MB/s) - ‘mysql.tar.gz’ saved [582834176/582834176]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from mysql.tar.gz...
+ℹ Info: Loaded image: docker.eolinker.com/basic/mysql:8.0.37
+ℹ Info: Tagging image docker.eolinker.com/basic/mysql:8.0.37 as mysql:8.0.37...
+✔ Passed: Successfully tagged image as mysql:8.0.37.
+✔ Passed: Load package success
+a791185159e28b679cc8d3be33ebe27eb3c1b04d8c0f788eba9279aeef6cb09f
+docker exec -i apipark-mysql mysqladmin -u root -p123456 ping
+⏳ Waiting: Waiting for MySQL to start...
+mysqladmin: [Warning] Using a password on the command line interface can be insecure.
+mysqladmin: connect to server at 'localhost' failed
+error: 'Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)'
+Check that mysqld is running and that the socket: '/var/run/mysqld/mysqld.sock' exists!
+mysqladmin: [Warning] Using a password on the command line interface can be insecure.
+mysqladmin: connect to server at 'localhost' failed
+error: 'Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)'
+Check that mysqld is running and that the socket: '/var/run/mysqld/mysqld.sock' exists!
+mysqladmin: [Warning] Using a password on the command line interface can be insecure.
+mysqladmin: connect to server at 'localhost' failed
+error: 'Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)'
+Check that mysqld is running and that the socket: '/var/run/mysqld/mysqld.sock' exists!
+mysqladmin: [Warning] Using a password on the command line interface can be insecure.
+mysqladmin: connect to server at 'localhost' failed
+error: 'Access denied for user 'root'@'localhost' (using password: YES)'
+✔ Passed: MySQL has been installed successfully
+ℹ Info: Writing MYSQL_HOST=apipark-mysql to /var/lib/apipark/quickstart/environment/MYSQL_HOST
+ℹ Info: Writing MYSQL_PORT=3306 to /var/lib/apipark/quickstart/environment/MYSQL_PORT
+ℹ Info: Writing MYSQL_DATABASE=apipark to /var/lib/apipark/quickstart/environment/MYSQL_DATABASE
+ℹ Info: Writing MYSQL_USER=root to /var/lib/apipark/quickstart/environment/MYSQL_USER
+ℹ Info: Writing MYSQL_PASSWORD=123456 to /var/lib/apipark/quickstart/environment/MYSQL_PASSWORD
+ℹ Info: Writing MYSQL_EXPOSED_PORT=33306 to /var/lib/apipark/quickstart/environment/MYSQL_EXPOSED_PORT
+ℹ Info: Writing MYSQL_DATA_MOUNT=/var/lib/apipark/mysql to /var/lib/apipark/quickstart/environment/MYSQL_DATA_MOUNT
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Download package from https://public.eolinker.com/basic/images/redis.7.2.4.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/basic/images/redis.7.2.4.amd64.tar.gz -O redis.tar.gz
+--2025-08-27 18:21:28--  https://public.eolinker.com/basic/images/redis.7.2.4.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.133, 122.228.86.130, 122.228.86.134, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 119673344 (114M) [application/x-compressed]
+Saving to: ‘redis.tar.gz’
+
+redis.tar.gz                                    100%[====================================================================================================>] 114.13M  8.70MB/s    in 13s     
+
+2025-08-27 18:21:41 (8.78 MB/s) - ‘redis.tar.gz’ saved [119673344/119673344]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from redis.tar.gz...
+ℹ Info: Loaded image: docker.eolinker.com/basic/redis:7.2.4
+ℹ Info: Tagging image docker.eolinker.com/basic/redis:7.2.4 as redis:7.2.4...
+✔ Passed: Successfully tagged image as redis:7.2.4.
+✔ Passed: Load package success
+f5d76ab2a438636b5c9b61917de30fc70c7728ccabdfd908b4f087f32e72a6f5
+docker exec -i apipark-redis redis-cli ping
+⏳ Waiting: Waiting for Redis to start...
+NOAUTH Authentication required.
+
+✔ Passed: Redis has been installed successfully
+ℹ Info: Writing REDIS_HOST=apipark-redis to /var/lib/apipark/quickstart/environment/REDIS_HOST
+ℹ Info: Writing REDIS_PORT=6379 to /var/lib/apipark/quickstart/environment/REDIS_PORT
+ℹ Info: Writing REDIS_PASSWORD=123456 to /var/lib/apipark/quickstart/environment/REDIS_PASSWORD
+ℹ Info: Writing REDIS_EXPOSED_PORT=6379 to /var/lib/apipark/quickstart/environment/REDIS_EXPOSED_PORT
+ℹ Info: Writing REDIS_DATA_MOUNT= to /var/lib/apipark/quickstart/environment/REDIS_DATA_MOUNT
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Check hardware conditions...
+✔ Passed: Server configuration meets requirements. Proceeding with program execution.
+ℹ Info: Download package from https://public.eolinker.com/basic/images/influxdb.2.6.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/basic/images/influxdb.2.6.amd64.tar.gz -O influxdb.tar.gz
+--2025-08-27 18:21:42--  https://public.eolinker.com/basic/images/influxdb.2.6.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.134, 122.228.86.131, 122.228.86.132, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.134|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 236739584 (226M) [application/x-compressed]
+Saving to: ‘influxdb.tar.gz’
+
+influxdb.tar.gz                                 100%[====================================================================================================>] 225.77M  8.68MB/s    in 26s     
+
+2025-08-27 18:22:04 (8.72 MB/s) - ‘influxdb.tar.gz’ saved [236739584/236739584]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from influxdb.tar.gz...
+ℹ Info: Loaded image: docker.eolinker.com/basic/influxdb:2.6
+ℹ Info: Tagging image docker.eolinker.com/basic/influxdb:2.6 as influxdb:2.6...
+✔ Passed: Successfully tagged image as influxdb:2.6.
+✔ Passed: Load package success
+ℹ Info: Installing InfluxDB...
+ℹ Info: Running InfluxDB container...
+docker run -dt --name apipark-influxdb --restart=always --privileged=true    --network=apipark-net -p 8086:8086 -v /var/lib/apipark/influxdb:/var/lib/influxdb -m 8192m    -e DOCKER_INFLUXDB_INIT_USERNAME=admin -e DOCKER_INFLUXDB_INIT_PASSWORD=Key123qaz    -e DOCKER_INFLUXDB_INIT_ORG=apipark -e DOCKER_INFLUXDB_INIT_BUCKET=apinto -e DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=dQ9>fK6&gJ    -e DOCKER_INFLUXDB_INIT_MODE=setup    influxdb:2.6
+316ab314546a43bd8f4861d840275e15fff2a809d75209eecf4513a8e1f9d17d
+docker exec -i apipark-influxdb curl -s -o /dev/null http://localhost:8086/
+⏳ Waiting: Waiting for InfluxDB to start...
+✔ Passed: InfluxDB has been installed successfully
+ℹ Info: Writing INFLUXDB_HOST=apipark-influxdb to /var/lib/apipark/quickstart/environment/INFLUXDB_HOST
+ℹ Info: Writing INFLUXDB_PORT=8086 to /var/lib/apipark/quickstart/environment/INFLUXDB_PORT
+ℹ Info: Writing INFLUXDB_EXPOSED_PORT=8086 to /var/lib/apipark/quickstart/environment/INFLUXDB_EXPOSED_PORT
+ℹ Info: Writing INFLUXDB_ADMIN_USER=admin to /var/lib/apipark/quickstart/environment/INFLUXDB_ADMIN_USER
+ℹ Info: Writing INFLUXDB_ADMIN_PASSWORD=Key123qaz to /var/lib/apipark/quickstart/environment/INFLUXDB_ADMIN_PASSWORD
+ℹ Info: Writing INFLUXDB_ADMIN_TOKEN=dQ9>fK6&gJ to /var/lib/apipark/quickstart/environment/INFLUXDB_ADMIN_TOKEN
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Download package from https://public.eolinker.com/basic/images/loki.3.2.1.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/basic/images/loki.3.2.1.amd64.tar.gz -O loki.tar.gz
+--2025-08-27 18:22:11--  https://public.eolinker.com/basic/images/loki.3.2.1.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.134, 122.228.86.132, 122.228.86.131, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.134|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 117006848 (112M) [application/x-compressed]
+Saving to: ‘loki.tar.gz’
+
+loki.tar.gz                                     100%[====================================================================================================>] 111.59M  8.73MB/s    in 13s     
+
+2025-08-27 18:22:17 (8.78 MB/s) - ‘loki.tar.gz’ saved [117006848/117006848]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from loki.tar.gz...
+ℹ Info: Loaded image: grafana/loki:3.2.1
+ℹ Info: Tagging image grafana/loki:3.2.1 as grafana/loki:3.2.1...
+✔ Passed: Successfully tagged image as grafana/loki:3.2.1.
+✔ Passed: Load package success
+docker run -dt --name apipark-loki --restart=always --privileged=true   --network=apipark-net -p 3100:3100 -v /home/chad/apipark/loki/:/mnt/config grafana/loki:3.2.1 -config.file=/mnt/config/loki-config.yml
+85e92aef8904c290a53905e11a23e048ab755329f56bf06f47dca85ec2195433
+docker exec -i apipark-loki loki --version
+⏳ Waiting: Waiting for Loki to start...
+loki, version 3.2.1 (branch: HEAD, revision: 3c386cc5d1)
+  build user:       root@9ae540a0f47e
+  build date:       2024-10-17T20:23:47Z
+  go version:       go1.22.8
+  platform:         linux/amd64
+  tags:             netgo
+✔ Passed: Loki has been installed successfully
+ℹ Info: Writing LOKI_HOST=apipark-loki to /var/lib/apipark/quickstart/environment/LOKI_HOST
+ℹ Info: Writing LOKI_PORT=3100 to /var/lib/apipark/quickstart/environment/LOKI_PORT
+ℹ Info: Writing LOKI_EXPOSED_PORT=3100 to /var/lib/apipark/quickstart/environment/LOKI_EXPOSED_PORT
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Download package from https://public.eolinker.com/basic/images/grafana.11.3.2.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/basic/images/grafana.11.3.2.amd64.tar.gz -O grafana.tar.gz
+--2025-08-27 18:22:19--  https://public.eolinker.com/basic/images/grafana.11.3.2.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.132, 122.228.86.131, 122.228.86.133, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.132|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 492937728 (470M) [application/x-compressed]
+Saving to: ‘grafana.tar.gz’
+
+grafana.tar.gz                                  100%[====================================================================================================>] 470.10M  8.94MB/s    in 54s     
+
+2025-08-27 18:23:14 (8.71 MB/s) - ‘grafana.tar.gz’ saved [492937728/492937728]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from grafana.tar.gz...
+ℹ Info: Loaded image: grafana/grafana:11.3.2
+ℹ Info: Tagging image grafana/grafana:11.3.2 as grafana/grafana:11.3.2...
+✔ Passed: Successfully tagged image as grafana/grafana:11.3.2.
+✔ Passed: Load package success
+mkdir: missing operand
+Try 'mkdir --help' for more information.
+ℹ Info: Installing Grafana...
+docker run -dt --name apipark-grafana --restart=always --privileged=true   --env GF_PATHS_PROVISIONING=/etc/grafana/provisioning   --env GF_AUTH_ANONYMOUS_ENABLED=true   --env GF_AUTH_ANONYMOUS_ORG_ROLE=Admin   --network=apipark-net -p 3000:3000  -v /home/chad/apipark/loki/ds.yaml:/etc/grafana/provisioning/datasources/ds.yaml   grafana/grafana:11.3.2 /run.sh
+21338b86b9230cc24b88bbd8dcb6ce39e890611fe228f0ea2139ff4dac6b177a
+docker exec -i apipark-grafana grafana cli --version
+⏳ Waiting: Waiting for Grafana to start...
+grafana version 11.3.2
+✔ Passed: Grafana has been installed successfully
+ℹ Info: Writing GRAFANA_DATA_MOUNT= to /var/lib/apipark/quickstart/environment/GRAFANA_DATA_MOUNT
+ℹ Info: Writing GRAFANA_EXPOSED_PORT=3000 to /var/lib/apipark/quickstart/environment/GRAFANA_EXPOSED_PORT
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Download package from https://public.eolinker.com/basic/images/nsq.v1.3.0.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/basic/images/nsq.v1.3.0.amd64.tar.gz -O nsq.tar.gz
+--2025-08-27 18:23:19--  https://public.eolinker.com/basic/images/nsq.v1.3.0.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.132, 122.228.86.131, 122.228.86.130, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.132|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 61958656 (59M) [application/x-compressed]
+Saving to: ‘nsq.tar.gz’
+
+nsq.tar.gz                                      100%[====================================================================================================>]  59.09M  8.71MB/s    in 6.7s    
+
+2025-08-27 18:23:26 (8.87 MB/s) - ‘nsq.tar.gz’ saved [61958656/61958656]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from nsq.tar.gz...
+ℹ Info: Loaded image: nsqio/nsq:v1.3.0
+ℹ Info: Tagging image nsqio/nsq:v1.3.0 as nsqio/nsq:v1.3.0...
+✔ Passed: Successfully tagged image as nsqio/nsq:v1.3.0.
+✔ Passed: Load package success
+ℹ Info: Installing NSQ...
+82b5c81918bcb973acea33136ee3a2e42008c87992676b9246c13b196b132d8b
+docker exec -i apipark-nsq nsqd --version
+⏳ Waiting: Waiting for NSQ to start...
+nsqd v1.3.0 (built w/go1.21.5)
+✔ Passed: NSQ has been installed successfully
+ℹ Info: Writing NSQ_PORT=4150 to /var/lib/apipark/quickstart/environment/NSQ_PORT
+ℹ Info: Writing NSQ_HTTP_PORT=4151 to /var/lib/apipark/quickstart/environment/NSQ_HTTP_PORT
+ℹ Info: Writing NSQ_DATA_MOUNT=/var/lib/apipark/nsq to /var/lib/apipark/quickstart/environment/NSQ_DATA_MOUNT
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Download package from https://public.eolinker.com/apipark/images/apipark.v1.9.3-beta.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/apipark/images/apipark.v1.9.3-beta.amd64.tar.gz -O apipark.tar.gz
+--2025-08-27 18:23:27--  https://public.eolinker.com/apipark/images/apipark.v1.9.3-beta.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.131, 122.228.86.132, 122.228.86.134, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.131|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 94494208 (90M) [application/x-compressed]
+Saving to: ‘apipark.tar.gz’
+
+apipark.tar.gz                                  100%[====================================================================================================>]  90.12M  8.69MB/s    in 10s     
+
+2025-08-27 18:23:37 (8.81 MB/s) - ‘apipark.tar.gz’ saved [94494208/94494208]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from apipark.tar.gz...
+ℹ Info: Loaded image: apipark/apipark:v1.9.3-beta
+ℹ Info: Tagging image apipark/apipark:v1.9.3-beta as apipark/apipark:v1.9.3-beta...
+✔ Passed: Successfully tagged image as apipark/apipark:v1.9.3-beta.
+✔ Passed: Load package success
+2f916079d551e5e4179d83f8c805f7ceb4db768a308cf4d593be5fe590608736
+ℹ Info: Writing APIPARK_CONSOLE_PORT=8288 to /var/lib/apipark/quickstart/environment/APIPARK_CONSOLE_PORT
+ℹ Info: Writing APIPARK_CONSOLE_EXPOSED_PORT=18288 to /var/lib/apipark/quickstart/environment/APIPARK_CONSOLE_EXPOSED_PORT
+ℹ Info: Writing APIPARK_CONSOLE_SUPPER_USER=admin to /var/lib/apipark/quickstart/environment/APIPARK_CONSOLE_SUPPER_USER
+ℹ Info: Writing APIPARK_CONSOLE_SUPPER_PASSWORD=aToh0eag to /var/lib/apipark/quickstart/environment/APIPARK_CONSOLE_SUPPER_PASSWORD
+ℹ Info: Writing APIPARK_MOUNT= to /var/lib/apipark/quickstart/environment/APIPARK_MOUNT
+docker exec -i apipark curl -s -o /dev/null http://127.0.0.1:8288/api/v1/account/login
+⏳ Waiting: Waiting for APIPark to start...
+✔ Passed: APIPark has been installed successfully
+✔ Passed: Install APIPark Dashboard success
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Download package from https://public.eolinker.com/apinto/images/apinto-gateway.0.22.11.amd64.tar.gz...
+ℹ Info:  wget https://public.eolinker.com/apinto/images/apinto-gateway.0.22.11.amd64.tar.gz -O apinto.tar.gz
+--2025-08-27 18:23:45--  https://public.eolinker.com/apinto/images/apinto-gateway.0.22.11.amd64.tar.gz
+Resolving public.eolinker.com (public.eolinker.com)... 122.228.86.133, 122.228.86.130, 122.228.86.132, ...
+Connecting to public.eolinker.com (public.eolinker.com)|122.228.86.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 107807744 (103M) [application/x-compressed]
+Saving to: ‘apinto.tar.gz’
+
+apinto.tar.gz                                   100%[====================================================================================================>] 102.81M  8.70MB/s    in 12s     
+
+2025-08-27 18:23:56 (8.79 MB/s) - ‘apinto.tar.gz’ saved [107807744/107807744]
+
+✔ Passed: Download package success
+ℹ Info: Loading Docker image from apinto.tar.gz...
+ℹ Info: Loaded image: eolinker/apinto-gateway:0.22.11
+ℹ Info: Tagging image eolinker/apinto-gateway:0.22.11 as eolinker/apinto-gateway:0.22.11...
+✔ Passed: Successfully tagged image as eolinker/apinto-gateway:0.22.11.
+✔ Passed: Load package success
+ℹ Info: Installing APIPark Node (API Gateway)...
+185cea434ff10ea000c72695e75888feb3ab076352e9fe0229fda66d5392413d
+docker exec -i apipark-apinto curl -s -o /dev/null http://localhost:9400/api/router
+⏳ Waiting: Waiting for Apinto to start...
+✔ Passed: Apinto has been installed successfully
+ℹ Info: Writing APINTO_ADMIN_PORT=9400 to /var/lib/apipark/quickstart/environment/APINTO_ADMIN_PORT
+ℹ Info: Writing APINTO_PROXY_PORT=8099 to /var/lib/apipark/quickstart/environment/APINTO_PROXY_PORT
+ℹ Info: Writing APINTO_PEER_PORT=9401 to /var/lib/apipark/quickstart/environment/APINTO_PEER_PORT
+ℹ Info: Writing APINTO_DATA_MOUNT=/var/lib/apipark/apinto to /var/lib/apipark/quickstart/environment/APINTO_DATA_MOUNT
+ℹ Info: Writing APINTO_LOG_MOUNT=/var/log/apipark/apinto to /var/lib/apipark/quickstart/environment/APINTO_LOG_MOUNT
+✔ Passed: Install APIPark Node (API Gateway) success
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Executing: curl -X POST -s -i -H "Content-Type: application/json" -d '{"name":"admin","password":"aToh0eag"}' "172.21.122.231:18288/api/v1/account/login/username"
+✔ Passed: login success
+ℹ Info: Executing: curl -X GET -s -i -H "Content-Type: application/json" -H "Cookie: session=74e43171-1480-47eb-8efc-e4a08eef3358" -d '' "172.21.122.231:18288/api/v1/system/general"
+✔ Passed: No apipark openapi address set
+ℹ Info: Executing: curl -X PUT -s -i -H "Content-Type: application/json" -H "Cookie: session=74e43171-1480-47eb-8efc-e4a08eef3358" -d '{"manager_address":"172.21.122.231:9400"}' "172.21.122.231:18288/api/v1/cluster/reset"
+✔ Passed: Set cluster successfully
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Executing: curl -X POST -s -i -H "Content-Type: application/json" -H "Cookie: session=74e43171-1480-47eb-8efc-e4a08eef3358" -d '{"driver":"influxdb-v2","config":{"addr":"http://172.21.122.231:8086","org":"apipark","token":"dQ9>fK6&gJ"}}' "172.21.122.231:18288/api/v1/monitor/config"
+✔ Passed: Update influxdb config successfully
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Executing: curl -X POST -s -i -H "Content-Type: application/json" -H "Cookie: session=74e43171-1480-47eb-8efc-e4a08eef3358" -d '{"config":{"url":"http://172.21.122.231:3100"}}' "172.21.122.231:18288/api/v1/log/loki"
+✔ Passed: Set loki successfully
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Executing: curl -i -X POST -H "Content-Type: application/json" "172.21.122.231:9400/api/output/ai_event" -d '{
+          "address": [
+              "172.21.122.231:4150"
+          ],
+          "description": "auto init nsqd config",
+          "driver": "nsqd",
+          "formatter": {
+              "ai": [
+                  "$ai_provider",
+                  "$ai_model",
+                  "$ai_model_input_token",
+                  "$ai_model_output_token",
+                  "$ai_model_total_token",
+                  "$ai_model_cost",
+                  "$ai_provider_statuses"
+              ],
+              "fields": [
+                  "$time_iso8601",
+                  "$request_id",
+                  "$api",
+                  "$provider",
+                  "@ai"
+              ]
+          },
+          "scopes": [
+              "access_log"
+          ],
+          "topic": "apipark_ai_event",
+          "type": "json"
+      }'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1375  100   549  100   826   207k   311k --:--:-- --:--:-- --:--:--  671k
+ℹ Info: HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Wed, 27 Aug 2025 10:24:13 GMT
+Content-Length: 549
+Connection: close
+
+{"address":["172.21.122.231:4150"],"create":"2025-08-27 18:24:13","description":"auto init nsqd config","driver":"nsqd","formatter":{"ai":["$ai_provider","$ai_model","$ai_model_input_token","$ai_model_output_token","$ai_model_total_token","$ai_model_cost","$ai_provider_statuses"],"fields":["$time_iso8601","$request_id","$api","$provider","@ai"]},"id":"ai_event@output","matches":null,"name":"ai_event","profession":"output","scopes":["access_log"],"topic":"apipark_ai_event","type":"json","update":"2025-08-27 18:24:13","version":"20250827182413"}
+Status code: 200
+✔ Passed: Update nsq successfully
+
+
+────────────────────────────────────────────────────────────
+ℹ Info: Executing: curl -X POST -s -i -H "Content-Type: application/json" -H "Cookie: session=74e43171-1480-47eb-8efc-e4a08eef3358" -d '{"site_prefix":"http://114.33.48.242:18288"}' "172.21.122.231:18288/api/v1/system/general"
+✔ Passed: Update apipark openapi address successfully
+
+
+────────────────────────────────────────────────────────────
+apipark
+docker exec -i apipark curl -s -o /dev/null http://127.0.0.1:8288/api/v1/account/login
+⏳ Waiting: Waiting for APIPark to start...
+✔ Passed: APIPark has been installed successfully
+
+░█████╗░██████╗░██╗██████╗░░█████╗░██████╗░██╗░░██╗
+██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗██╔══██╗██║░██╔╝
+███████║██████╔╝██║██████╔╝███████║██████╔╝█████═╝░
+██╔══██║██╔═══╝░██║██╔═══╝░██╔══██║██╔══██╗██╔═██╗░
+██║░░██║██║░░░░░██║██║░░░░░██║░░██║██║░░██║██║░╚██╗
+╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝
+✔ Passed: InfluxDB has run successfully.
+ℹ Info: The access information is as follows:
+ℹ Info: Internal network access address: http://172.21.122.231:8086
+ℹ Info: External network access address: http://114.33.48.242:8086
+ℹ Info: Username: admin
+ℹ Info: Password: Key123qaz
+ℹ Info: Token: dQ9>fK6&gJ
+
+✔ Passed: APIPark Dashboard has run successfully.
+ℹ Info: The access information is as follows:
+ℹ Info: Internal network access address: http://172.21.122.231:18288
+ℹ Info: External network access address: http://114.33.48.242:18288
+ℹ Info: Username: admin
+ℹ Info: Password: aToh0eag
+
+✔ Passed: APIPark Node (API Gateway) has run successfully. The access information is as follows:
+ℹ Info: Admin API address: http://172.21.122.231:9400
+ℹ Info: Proxy API Internal address: http://172.21.122.231:8099
+ℹ Info: Proxy API External address: http://114.33.48.242:8099
+ℹ Info: Peer API Internal address: http://172.21.122.231:9401
+ℹ Info: Peer API External address: http://114.33.48.242:9401
+
+✔ Passed: APIPark Node (API Gateway) has run successfully. The access information is as follows:
+ℹ Info: Admin API address: http://172.21.122.231:9400
+ℹ Info: Proxy API Internal address: http://172.21.122.231:8099
+ℹ Info: Proxy API External address: http://114.33.48.242:8099
+ℹ Info: Peer API Internal address: http://172.21.122.231:9401
+ℹ Info: Peer API External address: http://114.33.48.242:9401
