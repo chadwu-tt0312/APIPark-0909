@@ -1,3 +1,11 @@
 packages:
-  - "packages/*"
-  
+  - packages/*
+
+onlyBuiltDependencies:
+  - '@scarf/scarf'
+  - '@tree-sitter-grammars/tree-sitter-yaml'
+  - core-js-pure
+  - esbuild
+  - nx
+  - tree-sitter
+  - tree-sitter-json

@@ -1,0 +1,379 @@
+$ ./scripts/docker_build.sh 
+./scripts/build.sh 'cmd all amd64'
+fatal: No names found, cannot describe anything.
+727d12b
+\033[32m[INFO] Checking environment... \033[0m
+Go is installed.
+Go version is greater than 1.21.
+Node.js is installed.
+Npm is installed.
+\033[32m[INFO] All required tools are installed. \033[0m
+\033[32m[INFO] Install dependencies... \033[0m
+Scope: all 7 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+packages/core postinstall$ node scripts/moveTinymce.js
+└─ Done in 379ms
+Done in 1.3s using pnpm v10.15.1
+\033[32m[INFO] Build frontend... \033[0m
+
+> frontend@1.0.0 build E:\APIPark-0909\frontend
+> set NODE_OPTIONS=--max-old-space-size=8192  && lerna run build --scope=core --stream  --verbose  "--verbose"
+
+lerna notice cli v8.2.3
+lerna verb packageConfigs Explicit "packages" configuration found in lerna.json. Resolving packages using the configured glob(s): ["packages/*"]
+lerna verb rootPath E:\APIPark-0909\frontend
+lerna info versioning independent
+lerna notice filter including "core"
+lerna info filter [ 'core' ]
+lerna verb run Nx target configuration was not found. Task dependencies will not be automatically included.
+
+> core:build
+
+core: > core@0.0.0 build E:\APIPark-0909\frontend\packages\core
+core: > vite build  --mode open
+core: vite v5.4.20 building for open...
+core: 
+core: (!) outDir E:\APIPark-0909\frontend\dist is not inside project root and will not be emptied.
+core: Use --emptyOutDir to override.
+core:
+core: transforming...
+core: ✓ 13100 modules transformed.
+core: rendering chunks...
+core: computing gzip size...
+core: ../../dist/index.html                                                 1.69 kB │ gzip:     0.65 kB
+core: ../../dist/assets/restAPI-C9Yn2fQ2.svg                                4.25 kB │ gzip:     3.20 kB
+core: ../../dist/assets/onlineAI-C6Y_F4Lx.svg                               4.66 kB │ gzip:     3.55 kB
+core: ../../dist/assets/feishu-Ci6GS3h6.png                                 6.66 kB
+core: ../../dist/assets/default-avatar-BcFQYB_C.png                        15.28 kB
+core: ../../dist/assets/codicon-Hscy-R9e.ttf                               77.40 kB
+core: ../../dist/assets/editor.worker-CJLW9uMi.js                         209.35 kB
+core: ../../dist/assets/json.worker-yQsGTR_a.js                           337.63 kB
+core: ../../dist/assets/html.worker-BxyOynPE.js                           642.97 kB
+core: ../../dist/assets/css.worker-Cr_HA5WP.js                            982.57 kB
+core: ../../dist/assets/ts.worker-BSmHfluG.js                           4,840.87 kB
+core: ../../dist/assets/default-B5eUVdjS.css                                1.15 kB │ gzip:     0.55 kB
+core: ../../dist/assets/TimeRangeSelector-CHh8cdad.css                     39.88 kB │ gzip:     7.01 kB
+core: ../../dist/assets/ApiDocument-C0zeeTw1.css                          153.51 kB │ gzip:    23.95 kB
+core: ../../dist/assets/index-D4b8-16R.css                                187.25 kB │ gzip:    31.69 kB
+core: ../../dist/assets/eo-isObjectLike-nLWjQ9zq.js                         0.07 kB │ gzip:     0.09 kB
+core: ../../dist/assets/eo-__federation_shared_react-CnMsDeVf.js            0.07 kB │ gzip:     0.08 kB
+core: ../../dist/assets/eo-__federation_shared_react-dom-Dr_9dIrx.js        0.07 kB │ gzip:     0.08 kB
+core: ../../dist/assets/eo-cloneDeep-D6Vgw5ap.js                            0.11 kB │ gzip:     0.12 kB
+core: ../../dist/assets/eo-AiServiceLogsContainer-DaBVbHUD.js               0.16 kB │ gzip:     0.15 kB
+core: ../../dist/assets/eo-RestServiceLogsContainer-DzQQKe7-.js             0.16 kB │ gzip:     0.15 kB
+core: ../../dist/assets/eo-AiServiceContainer-CqfunhO8.js                   0.16 kB │ gzip:     0.15 kB
+core: ../../dist/assets/eo-_baseFor-mOzdmxoL.js                             0.19 kB │ gzip:     0.16 kB
+core: ../../dist/assets/eo-RestServiceContainer-DlRbtm3Q.js                 0.19 kB │ gzip:     0.17 kB
+core: ../../dist/assets/eo-GlobalPolicyLayout-DWqoDtxd.js                   0.25 kB │ gzip:     0.21 kB
+core: ../../dist/assets/eo-useBubbleLock-BMhLMmTP.js                        0.27 kB │ gzip:     0.20 kB
+core: ../../dist/assets/eo-dataTransfer-BwFTSTsM.js                         0.28 kB │ gzip:     0.21 kB
+core: ../../dist/assets/eo-aiApisLayout-C_uP0rVq.js                         0.30 kB │ gzip:     0.25 kB
+core: ../../dist/assets/eo-loadBalancingLayout-I8eVVX06.js                  0.31 kB │ gzip:     0.26 kB
+core: ../../dist/assets/eo-servicePolicy-Cc7_PCNG.js                        0.41 kB │ gzip:     0.34 kB
+core: ../../dist/assets/eo-styleChecker-Clhwhiv1.js                         0.42 kB │ gzip:     0.26 kB
+core: ../../dist/assets/eo-DateSelectFilter-C8b9hZFl.js                     0.42 kB │ gzip:     0.31 kB
+core: ../../dist/assets/eo-MoreOutlined-DRV4Z8tF.js                         0.45 kB │ gzip:     0.30 kB
+core: ../../dist/assets/eo-ManagementAppSetting-kQUyLsfk.js                 0.53 kB │ gzip:     0.37 kB
+core: ../../dist/assets/eo-const-Chrrm8sB.js                                0.57 kB │ gzip:     0.38 kB
+core: ../../dist/assets/eo-globalPolicy-CC54ockr.js                         0.61 kB │ gzip:     0.58 kB
+core: ../../dist/assets/eo-McpServiceContainer-D0BMd5_N.js                  0.63 kB │ gzip:     0.60 kB
+core: ../../dist/assets/eo-ExclamationCircleOutlined-Bd2sPqqT.js            0.67 kB │ gzip:     0.44 kB
+core: ../../dist/assets/eo-toNumber-CDgApaam.js                             0.68 kB │ gzip:     0.43 kB
+core: ../../dist/assets/eo-SystemInsidePublish-Cyjw8BJq.js                  0.71 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-AiServiceInsidePublish-BueZ1C8I.js               0.71 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-SystemInsideApproval-FPQ-_z7Z.js                 0.71 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-AiServiceInsideApproval-DncmcnpJ.js              0.71 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-validate-DuVK3E3Q.js                             0.76 kB │ gzip:     0.48 kB
+core: ../../dist/assets/eo-const-CLeM41WZ.js                                0.76 kB │ gzip:     0.47 kB
+core: ../../dist/assets/eo-index-BZi_iJ7l.js                                0.78 kB │ gzip:     0.38 kB
+core: ../../dist/assets/eo-index-Bd2aN5Tl.js                                0.80 kB │ gzip:     0.51 kB
+core: ../../dist/assets/eo-mcpContent-C-jrjxwR.js                           0.80 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-v4-CtRu48qb.js                                   0.81 kB │ gzip:     0.43 kB
+core: ../../dist/assets/eo-const--VGhd1Im.js                                0.87 kB │ gzip:     0.43 kB
+core: ../../dist/assets/eo-copy-XJGiNnZ3.js                                 0.89 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-ScrollableSection-DIAoQQKC.js                    0.89 kB │ gzip:     0.50 kB
+core: ../../dist/assets/eo-UserProfile-DVaT3RYT.js                          0.95 kB │ gzip:     0.62 kB
+core: ../../dist/assets/eo-TreeWithMore-BwMHSY-I.js                         0.98 kB │ gzip:     0.59 kB
+core: ../../dist/assets/eo-DrawerWithFooter-CkXzJZ_0.js                     1.05 kB │ gzip:     0.67 kB
+core: ../../dist/assets/eo-AiServiceInsideApiDocument-CrEHspPA.js           1.05 kB │ gzip:     0.63 kB
+core: ../../dist/assets/eo-debounce-UxYlwVsz.js                             1.07 kB │ gzip:     0.58 kB
+core: ../../dist/assets/eo-azcli-BPy9tPO_.js                                1.09 kB │ gzip:     0.46 kB
+core: ../../dist/assets/eo-javascript-DsF5tT_M.js                           1.16 kB │ gzip:     0.61 kB
+core: ../../dist/assets/eo-tslib.es6-39zn6SMF.js                            1.18 kB │ gzip:     0.62 kB
+core: ../../dist/assets/eo-ResourceSettings-67E4J4h8.js                     1.24 kB │ gzip:     0.79 kB
+core: ../../dist/assets/eo-ini-bfKW7yAs.js                                  1.35 kB │ gzip:     0.68 kB
+core: ../../dist/assets/eo-const-DP-npuqu.js                                1.37 kB │ gzip:     0.68 kB
+core: ../../dist/assets/eo-EditableTable-Dt5njFEX.js                        1.37 kB │ gzip:     0.82 kB
+core: ../../dist/assets/eo-ChangePsw-CQY4zpPK.js                            1.37 kB │ gzip:     0.80 kB
+core: ../../dist/assets/eo-ApiOutlined-XisivQ8C.js                          1.39 kB │ gzip:     0.73 kB
+core: ../../dist/assets/eo-index-1420QcDZ.js                                1.46 kB │ gzip:     0.76 kB
+core: ../../dist/assets/eo-index-F3rcHvsD.js                                1.50 kB │ gzip:     0.90 kB
+core: ../../dist/assets/eo-dashboard-CIs3wCPd.js                            1.51 kB │ gzip:     0.60 kB
+core: ../../dist/assets/eo-LogSettings-BmAmMquY.js                          1.52 kB │ gzip:     1.02 kB
+core: ../../dist/assets/eo-TableBtnWithPermission-Cdax8J4F.js               1.60 kB │ gzip:     0.89 kB
+core: ../../dist/assets/eo-csp-C2dP3GFv.js                                  1.67 kB │ gzip:     0.67 kB
+core: ../../dist/assets/eo-CloseCircleOutlined-CckFQqIM.js                  1.80 kB │ gzip:     0.81 kB
+core: ../../dist/assets/eo-SubscribeApprovalModalContent-CQ3m0TG8.js        1.80 kB │ gzip:     1.03 kB
+core: ../../dist/assets/eo-pla-CjQQiOJm.js                                  1.93 kB │ gzip:     0.79 kB
+core: ../../dist/assets/eo-scheme-CLt6TZUf.js                               2.01 kB │ gzip:     0.96 kB
+core: ../../dist/assets/eo-TimeRangeSelector-B6hRdcEd.js                    2.01 kB │ gzip:     1.02 kB
+core: ../../dist/assets/eo-flow9-C5jFnEuB.js                                2.06 kB │ gzip:     1.00 kB
+core: ../../dist/assets/eo-sb-Bn2Vf2CV.js                                   2.08 kB │ gzip:     0.97 kB
+core: ../../dist/assets/eo-bat-C2kkMZXD.js                                  2.09 kB │ gzip:     1.01 kB
+core: ../../dist/assets/eo-dockerfile-DU9BjHlP.js                           2.12 kB │ gzip:     0.82 kB
+core: ../../dist/assets/eo-EditableTableWithModal-BzafCiN2.js               2.12 kB │ gzip:     1.24 kB
+core: ../../dist/assets/eo-TeamInsidePage-CQ3PP4V4.js                       2.13 kB │ gzip:     1.19 kB
+core: ../../dist/assets/eo-index-D4wElMpp.js                                2.22 kB │ gzip:     1.07 kB
+core: ../../dist/assets/eo-pascaligo-Y4zGRFv3.js                            2.25 kB │ gzip:     1.05 kB
+core: ../../dist/assets/eo-RoleList-DEsRGQMR.js                             2.27 kB │ gzip:     1.19 kB
+core: ../../dist/assets/eo-lua-D4wIloCQ.js                                  2.37 kB │ gzip:     1.07 kB
+core: ../../dist/assets/eo-cameligo-D88lnp7m.js                             2.43 kB │ gzip:     1.10 kB
+core: ../../dist/assets/eo-graphql-DeqjH8oo.js                              2.51 kB │ gzip:     1.17 kB
+core: ../../dist/assets/eo-objective-c-B7y1xvNi.js                          2.65 kB │ gzip:     1.20 kB
+core: ../../dist/assets/eo-Auth-BTmtG_dz.js                                 2.66 kB │ gzip:     1.38 kB
+core: ../../dist/assets/eo-xml-DS4tuTYY.js                                  2.67 kB │ gzip:     1.11 kB
+core: ../../dist/assets/eo-lexon-Bgb1VazO.js                                2.68 kB │ gzip:     1.07 kB
+core: ../../dist/assets/eo-SystemInsideDocument-C7azkUQL.js                 2.77 kB │ gzip:     1.44 kB
+core: ../../dist/assets/eo-bicep-STK2XETz.js                                2.78 kB │ gzip:     1.11 kB
+core: ../../dist/assets/eo-AiServiceInsideDocument-D8Hy4JgY.js              2.78 kB │ gzip:     1.45 kB
+core: ../../dist/assets/eo-sparql-C3G7U7Rs.js                               2.80 kB │ gzip:     1.30 kB
+core: ../../dist/assets/eo-mips-DDY3B9Me.js                                 2.83 kB │ gzip:     1.22 kB
+core: ../../dist/assets/eo-ManagementInsidePage-CiBcWCr8.js                 2.89 kB │ gzip:     1.67 kB
+core: ../../dist/assets/eo-go-BJDrqb1l.js                                   2.90 kB │ gzip:     1.29 kB
+core: ../../dist/assets/eo-_arrayFilter-Cdrlbzum.js                         2.99 kB │ gzip:     1.34 kB
+core: ../../dist/assets/eo-sophia-BXWm5v_b.js                               3.01 kB │ gzip:     1.35 kB
+core: ../../dist/assets/eo-SystemInsideRouterList-BTI5cEg0.js               3.06 kB │ gzip:     1.64 kB
+core: ../../dist/assets/eo-m3-CIXVZ5K0.js                                   3.06 kB │ gzip:     1.47 kB
+core: ../../dist/assets/eo-AiServiceInsideRouterList-v0x_GCj3.js            3.07 kB │ gzip:     1.65 kB
+core: ../../dist/assets/eo-qsharp-BCyDeG3W.js                               3.18 kB │ gzip:     1.51 kB
+core: ../../dist/assets/eo-TeamList-D1Z3iaTU.js                             3.22 kB │ gzip:     1.91 kB
+core: ../../dist/assets/eo-fsharp-CCzPE5Ie.js                               3.23 kB │ gzip:     1.47 kB
+core: ../../dist/assets/eo-pascal-6_Qmrcj5.js                               3.24 kB │ gzip:     1.55 kB
+core: ../../dist/assets/eo-shell-Bb53obFu.js                                3.32 kB │ gzip:     1.35 kB
+core: ../../dist/assets/eo-r-D_s1dKTl.js                                    3.38 kB │ gzip:     1.42 kB
+core: ../../dist/assets/eo-java-89tSEgoR.js                                 3.47 kB │ gzip:     1.55 kB
+core: ../../dist/assets/eo-empty-DEFPWzo0.js                                3.50 kB │ gzip:     1.23 kB
+core: ../../dist/assets/eo-Dashboard-DEqwTYH_.js                            3.51 kB │ gzip:     1.75 kB
+core: ../../dist/assets/eo-powershell-CIHf91ML.js                           3.52 kB │ gzip:     1.53 kB
+core: ../../dist/assets/eo-SystemInsideApiDocument-BBhNLh-b.js              3.52 kB │ gzip:     1.43 kB
+core: ../../dist/assets/eo-index-gNjg6mbE.js                                3.53 kB │ gzip:     1.26 kB
+core: ../../dist/assets/eo-const-C39xPqWM.js                                3.57 kB │ gzip:     1.18 kB
+core: ../../dist/assets/eo-AiServiceInsidePage-C0yde6h0.js                  3.60 kB │ gzip:     1.67 kB
+core: ../../dist/assets/eo-SystemInsidePage-ClCVzxpI.js                     3.62 kB │ gzip:     1.64 kB
+core: ../../dist/assets/eo-cypher-CvujjWtm.js                               3.63 kB │ gzip:     1.58 kB
+core: ../../dist/assets/eo-kotlin-bF-WLz8W.js                               3.69 kB │ gzip:     1.63 kB
+core: ../../dist/assets/eo-McpKeyContainer-B6KmO280.js                      3.69 kB │ gzip:     1.79 kB
+core: ../../dist/assets/eo-SystemInsideApprovalList-NLgHdDTC.js             3.78 kB │ gzip:     1.84 kB
+core: ../../dist/assets/eo-AiServiceInsideApprovalList-C2J5bCf7.js          3.78 kB │ gzip:     1.84 kB
+core: ../../dist/assets/eo-TeamConfig-Cox4uJ5F.js                           3.80 kB │ gzip:     1.93 kB
+core: ../../dist/assets/eo-redis-we8ROkDz.js                                3.80 kB │ gzip:     1.64 kB
+core: ../../dist/assets/eo-tcl-Bf9L4G3H.js                                  3.82 kB │ gzip:     1.52 kB
+core: ../../dist/assets/eo-coffee-BRG4GrUX.js                               3.84 kB │ gzip:     1.45 kB
+core: ../../dist/assets/eo-hcl-fhYSe8Ik.js                                  3.84 kB │ gzip:     1.64 kB
+core: ../../dist/assets/eo-RoleConfig-zU0GEX42.js                           3.84 kB │ gzip:     1.81 kB
+core: ../../dist/assets/eo-python-BafJ1hbH.js                               3.88 kB │ gzip:     1.73 kB
+core: ../../dist/assets/eo-SystemInsideSubscriber-aNYzYVMi.js               3.94 kB │ gzip:     2.01 kB
+core: ../../dist/assets/eo-AiServiceInsideSubscriber-BrwJ-Ejh.js            3.95 kB │ gzip:     2.02 kB
+core: ../../dist/assets/eo-ManagementConfig-CH6Gwu5w.js                     3.95 kB │ gzip:     1.85 kB
+core: ../../dist/assets/eo-ServiceDeployMentFooter-BDqRJ6jQ.js              4.01 kB │ gzip:     1.76 kB
+core: ../../dist/assets/eo-markdown-C2pIiAgT.js                             4.03 kB │ gzip:     1.54 kB
+core: ../../dist/assets/eo-SystemList-Cw2xKrKc.js                           4.09 kB │ gzip:     2.44 kB
+core: ../../dist/assets/eo-restructuredtext-DoYentzJ.js                     4.14 kB │ gzip:     1.52 kB
+core: ../../dist/assets/eo-less-BcX_owYs.js                                 4.14 kB │ gzip:     1.57 kB
+core: ../../dist/assets/eo-index-z27d99LB.js                                4.19 kB │ gzip:     1.78 kB
+core: ../../dist/assets/eo-apex-CbmXAvAW.js                                 4.20 kB │ gzip:     1.91 kB
+core: ../../dist/assets/eo-liquid-RrxgeE2s.js                               4.22 kB │ gzip:     1.81 kB
+core: ../../dist/assets/eo-yaml-BgQAVuOW.js                                 4.27 kB │ gzip:     1.67 kB
+core: ../../dist/assets/eo-serviceInfoCard-DKfEuksi.js                      4.32 kB │ gzip:     2.17 kB
+core: ../../dist/assets/eo-rust-D5UdS7wL.js                                 4.41 kB │ gzip:     1.97 kB
+core: ../../dist/assets/eo-dart-BE_rHeGz.js                                 4.50 kB │ gzip:     1.80 kB
+core: ../../dist/assets/eo-index-Dv7m4O6d.js                                4.50 kB │ gzip:     2.31 kB
+core: ../../dist/assets/eo-SystemInsideUpstreamContent-Baw3LvP_.js          4.68 kB │ gzip:     2.06 kB
+core: ../../dist/assets/eo-css-1NjUY7wv.js                                  4.76 kB │ gzip:     1.53 kB
+core: ../../dist/assets/eo-csharp-DWSjX1vK.js                               4.77 kB │ gzip:     1.87 kB
+core: ../../dist/assets/eo-pug-CIrW4JuG.js                                  5.07 kB │ gzip:     1.80 kB
+core: ../../dist/assets/eo-mdx-BjxkXPTb.js                                  5.12 kB │ gzip:     1.59 kB
+core: ../../dist/assets/eo-msdax-BVGHujNV.js                                5.16 kB │ gzip:     2.11 kB
+core: ../../dist/assets/eo-PartitionInsideCluster-D2BSBdks.js               5.16 kB │ gzip:     2.41 kB
+core: ../../dist/assets/eo-html-0uBcpOPk.js                                 5.27 kB │ gzip:     1.54 kB
+core: ../../dist/assets/eo-swift-CEFhrl9k.js                                5.42 kB │ gzip:     2.22 kB
+core: ../../dist/assets/eo-index-CS2riN8p.js                                5.47 kB │ gzip:     2.50 kB
+core: ../../dist/assets/eo-ecl-hUW-QHbE.js                                  5.59 kB │ gzip:     2.38 kB
+core: ../../dist/assets/eo-typescript-Be_DlrgP.js                           5.67 kB │ gzip:     2.32 kB
+core: ../../dist/assets/eo-cpp-DeB58NaV.js                                  5.72 kB │ gzip:     2.29 kB
+core: ../../dist/assets/eo-const-DPqQbY0e.js                                5.84 kB │ gzip:     2.25 kB
+core: ../../dist/assets/eo-index-AG0z2Jvf.js                                6.01 kB │ gzip:     2.51 kB
+core:
+core: (!) Some chunks are larger than 50 kB after minification. Consider:
+core: - Using dynamic import() to code-split the application
+core: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+core: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+core: ../../dist/assets/eo-vb-CzTmPDQx.js                                   6.04 kB │ gzip:     2.21 kB
+core: ../../dist/assets/eo-ManagementInsideService-CqX5M5_e.js              6.18 kB │ gzip:     2.68 kB
+core: ../../dist/assets/eo-twig-DdbCxuaz.js                                 6.22 kB │ gzip:     1.68 kB
+core: ../../dist/assets/eo-index-XB9o38Aa.js                                6.35 kB │ gzip:     2.74 kB
+core: ../../dist/assets/eo-index-Cm8JRbEm.js                                6.39 kB │ gzip:     2.69 kB
+core: ../../dist/assets/eo-DashboardTotal-CrS5cbfP.js                       6.57 kB │ gzip:     2.26 kB
+core: ../../dist/assets/eo-PublishApprovalModalContent-CTfIFO8L.js          6.60 kB │ gzip:     2.30 kB
+core: ../../dist/assets/eo-index-o_u-4gaC.js                                6.63 kB │ gzip:     2.97 kB
+core: ../../dist/assets/eo-scss-Cn8qbFRi.js                                 6.66 kB │ gzip:     1.90 kB
+core: ../../dist/assets/eo-index-_YSrDeYv.js                                7.01 kB │ gzip:     3.23 kB
+core: ../../dist/assets/eo-handlebars-CNj9MOos.js                           7.03 kB │ gzip:     1.76 kB
+core: ../../dist/assets/eo-ServiceHubManagement-Dg0dbi8t.js                 7.11 kB │ gzip:     3.45 kB
+core: ../../dist/assets/eo-SystemInsideRouterCreate-OSjbx6Ao.js             7.17 kB │ gzip:     2.97 kB
+core: ../../dist/assets/eo-julia-CULLjdBi.js                                7.34 kB │ gzip:     2.81 kB
+core: ../../dist/assets/eo-ServiceLogs-0w_etMsF.js                          7.35 kB │ gzip:     2.95 kB
+core: ../../dist/assets/eo-index-8efoLrLe.js                                7.42 kB │ gzip:     2.93 kB
+core: ../../dist/assets/eo-serviceOverview-D527cpCa.js                      7.42 kB │ gzip:     2.45 kB
+core: ../../dist/assets/eo-scala-D-F3YBtN.js                                7.56 kB │ gzip:     2.25 kB
+core: ../../dist/assets/eo-wgsl-Cj8fX7AI.js                                 7.58 kB │ gzip:     2.88 kB
+core: ../../dist/assets/eo-st-Brb-FAmL.js                                   7.64 kB │ gzip:     2.39 kB
+core: ../../dist/assets/eo-CommonPage-CTXwty_9.js                           7.82 kB │ gzip:     3.12 kB
+core: ../../dist/assets/eo-PartitionInsideDashboardSetting-R15wV7-b.js      7.83 kB │ gzip:     2.64 kB
+core: ../../dist/assets/eo-systemverilog-BJexHUqq.js                        7.85 kB │ gzip:     2.91 kB
+core: ../../dist/assets/eo-postiats-B_GcsHt8.js                             8.10 kB │ gzip:     2.59 kB
+core: ../../dist/assets/eo-php-BIcBwoxY.js                                  8.27 kB │ gzip:     2.22 kB
+core: ../../dist/assets/eo-perl-BvZxJ37z.js                                 8.50 kB │ gzip:     3.29 kB
+core: ../../dist/assets/eo-ruby-hSrJXfwP.js                                 8.75 kB │ gzip:     2.73 kB
+core: ../../dist/assets/eo-TeamInsideMember-DeTcvMyT.js                     8.95 kB │ gzip:     4.21 kB
+core: ../../dist/assets/eo-razor-Bm_KyhR-.js                                9.04 kB │ gzip:     2.44 kB
+core: ../../dist/assets/eo-ServiceHubList-DqjZjWY3.js                       9.07 kB │ gzip:     3.50 kB
+core: ../../dist/assets/eo-protobuf-COTbE6tN.js                             9.29 kB │ gzip:     2.23 kB
+core: ../../dist/assets/eo-utils-DAEOiNho.js                                9.40 kB │ gzip:     3.23 kB
+core: ../../dist/assets/eo-PartitionInsideCert-B2TT3zSl.js                  9.44 kB │ gzip:     4.22 kB
+core: ../../dist/assets/eo-iconUtil-Byru9hTI.js                             9.66 kB │ gzip:     3.28 kB
+core: ../../dist/assets/eo-_baseClone-BA6fzaXt.js                           9.71 kB │ gzip:     3.63 kB
+core: ../../dist/assets/eo-index-CO8nfK4D.js                                9.80 kB │ gzip:     3.02 kB
+core: ../../dist/assets/eo-ManagementInsideAuth-EuFjbZCP.js                 9.88 kB │ gzip:     3.71 kB
+core: ../../dist/assets/eo-clojure-BVXjUq6W.js                              9.89 kB │ gzip:     3.77 kB
+core: ../../dist/assets/eo-MemberPage-CCvMiSgo.js                          10.05 kB │ gzip:     3.51 kB
+core: ../../dist/assets/eo-elixir-BAkJxX25.js                              10.50 kB │ gzip:     2.68 kB
+core: ../../dist/assets/eo-sql-D_PatrnJ.js                                 10.54 kB │ gzip:     4.01 kB
+core: ../../dist/assets/eo-SystemInsidePublishList-7J-AE4a1.js             10.57 kB │ gzip:     3.96 kB
+core: ../../dist/assets/eo-AiServiceInsidePublishList-CRbyOFPO.js          10.58 kB │ gzip:     3.97 kB
+core: ../../dist/assets/eo-index-BalIC7r3.js                               10.62 kB │ gzip:     3.67 kB
+core: ../../dist/assets/eo-policyTabContainer-Cm31jQ5g.js                  10.87 kB │ gzip:     4.44 kB
+core: ../../dist/assets/eo-SystemConfig-5WEPvDl8.js                        10.99 kB │ gzip:     4.65 kB
+core: ../../dist/assets/eo-mysql-wocE9kcw.js                               11.52 kB │ gzip:     4.22 kB
+core: ../../dist/assets/eo-redshift-DQMg6JSq.js                            12.05 kB │ gzip:     4.49 kB
+core: ../../dist/assets/eo-MemberList-DCyPUJtD.js                          12.20 kB │ gzip:     4.63 kB
+core: ../../dist/assets/eo-pgsql-CHFmffvM.js                               13.71 kB │ gzip:     4.65 kB
+core: ../../dist/assets/eo-abap-HeDQy6fh.js                                14.41 kB │ gzip:     5.46 kB
+core: ../../dist/assets/eo-DataMaskingConfig-WW3c6XA9.js                   15.34 kB │ gzip:     5.72 kB
+core: ../../dist/assets/eo-TreeSelect-DLwHFY08.js                          16.09 kB │ gzip:     6.51 kB
+core: ../../dist/assets/eo-freemarker2-Bi65dmTk.js                         16.36 kB │ gzip:     4.31 kB
+core: ../../dist/assets/eo-AiSettingList-CmYe0Tw-.js                       16.40 kB │ gzip:     5.84 kB
+core: ../../dist/assets/eo-powerquery-y2EyZOlv.js                          17.19 kB │ gzip:     5.00 kB
+core: ../../dist/assets/eo-Paragraph-D6o5_Bd9.js                           18.65 kB │ gzip:     7.39 kB
+core: ../../dist/assets/eo-solidity-CNXlEMqq.js                            18.84 kB │ gzip:     4.62 kB
+core: ../../dist/assets/eo-tsMode-j5jg1SFq.js                              22.80 kB │ gzip:     6.48 kB
+core: ../../dist/assets/eo-DashboardDetail-DYOZfY4e.js                     24.10 kB │ gzip:     5.85 kB
+core: ../../dist/assets/eo-debounce-DHoi-GGn.js                            27.63 kB │ gzip:    11.17 kB
+core: ../../dist/assets/eo-ServiceHubDetail-CATb-z4g.js                    30.31 kB │ gzip:    12.49 kB
+core: ../../dist/assets/eo-index-DKz0O-18.js                               32.44 kB │ gzip:     9.71 kB
+core: ../../dist/assets/eo-cssMode-BmrZ_B2T.js                             33.43 kB │ gzip:     8.86 kB
+core: ../../dist/assets/eo-htmlMode-Cw7_iWWa.js                            33.98 kB │ gzip:     8.98 kB
+core: ../../dist/assets/eo-Tree-eJdM2lC2.js                                38.21 kB │ gzip:    12.68 kB
+core: ../../dist/assets/eo-jsonMode-HwhdswwD.js                            39.42 kB │ gzip:    11.01 kB
+core: ../../dist/assets/eo-index-DVFTmQ59.js                               45.34 kB │ gzip:    16.57 kB
+core: ../../dist/assets/eo-PageList-DUOf45K4.js                            51.69 kB │ gzip:    18.41 kB
+core: ../../dist/assets/eo-Steps-B1K17WhQ.js                               65.42 kB │ gzip:    23.74 kB
+core: ../../dist/assets/eo-index-HyXLdy5g.js                               65.78 kB │ gzip:    23.08 kB
+core: ../../dist/assets/eo-SinglePicker-CIOhKKeM.js                        75.80 kB │ gzip:    25.94 kB
+core: ../../dist/assets/eo-Table-c6JxA3cS.js                               80.25 kB │ gzip:    24.28 kB
+core: ../../dist/assets/eo-main-DhQu8xLS.js                               117.24 kB │ gzip:    34.48 kB
+core: ../../dist/assets/eo-index-Co2UaTBz.js                              134.35 kB │ gzip:    43.31 kB
+core: ../../dist/assets/eo-AiServiceInsideRouterCreate-B9RVfwHQ.js        252.82 kB │ gzip:    82.60 kB
+core: ../../dist/assets/eo-IntelligentPluginList-CIBd0ssd.js              340.00 kB │ gzip:    88.61 kB
+core: ../../dist/assets/eo-Table-BQZBMCeG.js                              441.12 kB │ gzip:   132.12 kB
+core: ../../dist/assets/eo-index-BgVIIWVB.js                              732.51 kB │ gzip:   240.99 kB
+core: ../../dist/assets/eo-default-CwBxZAzQ.js                            953.82 kB │ gzip:   316.03 kB
+core: ../../dist/assets/eo-DashboardList-C8-bwzcJ.js                      955.94 kB │ gzip:   275.85 kB
+core: ../../dist/assets/eo-ApiDocument-Cyc598fg.js                      1,214.14 kB │ gzip:   344.67 kB
+core: ../../dist/assets/eo-McpToolsContainer-CIoTSDqP.js                1,418.67 kB │ gzip:   402.27 kB
+core: ../../dist/assets/index-l964Yq6j.js                               5,032.99 kB │ gzip: 1,476.80 kB
+core: ✓ built in 1m 30s
+
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+ Lerna (powered by Nx)   Successfully ran target build for project core
+
+
+\033[32m[INFO] Build backend... \033[0m
+go mod tidy
+/d/_Code/_GitHub/APIPark-0909
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build  -ldflags "-w -s -X 'github.com/APIParkLab/APIPark/common/version.Version=727d12b'
+  -X 'github.com/APIParkLab/APIPark/common/version.goversion=go version go1.25.1 windows/amd64'
+  -X 'github.com/APIParkLab/APIPark/common/version.gitcommit=727d12b8f563bdcdf2358c23affae433d60e6f65'
+  -X 'github.com/APIParkLab/APIPark/common/version.BuildTime=2025-09-10T09:01:13Z'
+  -X 'github.com/APIParkLab/APIPark/common/version.builduser=chad'" -o "cmd/apipark"
+Build backend successfully...
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags "-w -s" -o "cmd/apipark_ai_event_listen" ./app/ai-event-handler
+\033[32m[INFO] Package... \033[0m
+mkdir -p cmd/apipark_727d12b
+cp -a ./scripts/resource/* cmd/apipark_727d12b
+cp cmd/apipark cmd/apipark_727d12b
+cp cmd/apipark_ai_event_listen cmd/apipark_727d12b
+tar -czvf cmd/apipark_727d12b_linux_amd64.tar.gz -C cmd/apipark_727d12b/ ./
+./
+./apipark
+./apipark_ai_event_listen
+./config.yml.tpl
+./docker_run.sh
+./docker_run_new.sh
+./docker_run_old.sh
+./init_config.sh
+./install.sh
+./run.sh
+\033[32m[INFO] Package successfully... \033[0m
+SYS_ARCH: x86_64
+ARCH: amd64
+Untagged: localhost/eolinker/apipark:1.9.5-beta-0910
+Deleted: 554c25719a6799e9dc494ff836999ee98bcf28ff1341f2efe9f62ad0fc5968dd
+Deleted: e984f2904f435b3babd137a955138c90cae655c994c18a24db5b6e7001275d10
+Deleted: 1f086a69649a96c7907d5e78b363006f4c9a726d05d942733afe3f684856788a
+Deleted: feed2e9bbe0ecec3b6957fb2d5cd477b71e0ba93f5e7d60fad83d9395b328925
+Deleted: 7cd04aa108e88735171483878ce712cda8c21fa75af8c7f47737af7e30bcf202
+Deleted: 7e70d854222d7d464786fc4bcbb188089a0378507d32cb30cd2ede07c93ea70a
+docker build  -t eolinker/apipark:1.9.5-beta-0910 --build-arg VERSION=1.9.5-beta-0910 --build-arg APP=apipark  -f ./scripts/Dockerfile ./scripts/
+STEP 1/15: FROM alpine:latest
+STEP 2/15: RUN apk update     && apk add --no-cache curl tzdata bind-tools
+--> Using cache 8ac1f6327a4edddc8cc7bfc2865b56ad949d6d56016151d2692798c012578b30
+--> 8ac1f6327a4e
+STEP 3/15: ENV TZ=Asia/Shanghai
+--> Using cache 827324991cb3793339bfc6bd6f63b4c8637621469f9d334cf037290400a61ce2
+--> 827324991cb3
+STEP 4/15: RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime     && echo "Asia/Shanghai" > /etc/timezone
+--> Using cache 86f2c54d27f03bfc0300256bc8bc44ac7e96c9f01a5e2407217b0312b6f581e2
+--> 86f2c54d27f0
+STEP 5/15: ARG APP
+--> Using cache c73aa34c2104870561728d2a9d0e18f28c7c6c04a006c131c4be7189e361b28d
+--> c73aa34c2104
+STEP 6/15: ENV NSQ_ADDR=${APP}-nsq:4150
+--> Using cache 8ea24b5364a71e51a2fb721c2ab9c5b737697f62f3bf1109523ba0d2de186a86
+--> 8ea24b5364a7
+STEP 7/15: ENV NSQ_TOPIC_PREFIX=${APP}
+--> Using cache 889a4f441d9e2508e7de74119d971f3dd5bef93172d2266670da1bd5f812ddab
+--> 889a4f441d9e
+STEP 8/15: RUN mkdir -p /${APP}
+--> Using cache e8f3dc62adc86be7868e68bd59e6b250a38cda460c859835612a187c0a230ea4
+--> e8f3dc62adc8
+STEP 9/15: COPY cmd/* /${APP}/
+--> 52551d31d0da
+STEP 10/15: COPY resource/* /${APP}/
+--> 82aabd2864e2
+STEP 11/15: WORKDIR /$APP
+--> b272d2b42541
+STEP 12/15: ENV ADMIN_PASSWORD=12345678
+--> ac5d95f585c4
+STEP 13/15: RUN chmod +x ./apipark*
+--> ba5cf47a7c13
+STEP 14/15: RUN chmod +x ./*.sh
+--> e76f99e1175b
+STEP 15/15: CMD ./docker_run.sh
+COMMIT eolinker/apipark:1.9.5-beta-0910
+--> 37a6d820ba4c
+[Warning] one or more build args were not consumed: [VERSION]
+Successfully tagged localhost/eolinker/apipark:1.9.5-beta-0910
+37a6d820ba4cb876584975a38db7c215c5ce2c4c7312256366a04d47da909400
