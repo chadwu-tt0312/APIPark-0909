@@ -5,10 +5,10 @@ info:
   description: 健康檢查 API 文件
 
 servers:
-  - url: http://192.168.31.180:5678/api/v1/health # VAR2(轉發上游路徑): 從 servers[0].url 提取的 path, VAR3(上游地址): 從 servers[0].url 提取 host:port
+  - url: http://192.168.31.180:5678 # VAR3(上游地址): 從 servers[0].url 提取 host:port
 
 paths:
-  /health:
+  /api/v1/health: # VAR2(轉發上游路徑): 從 first.paths 提取的 path
     get:
       summary: health # VAR1(請求路徑): /{prefix}/{summary}
       description: 取得健康檢查資訊

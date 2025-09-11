@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -54,6 +55,7 @@ import (
 	"github.com/APIParkLab/APIPark/module/service"
 	service_dto "github.com/APIParkLab/APIPark/module/service/dto"
 	"github.com/APIParkLab/APIPark/module/upstream"
+	upstream_dto "github.com/APIParkLab/APIPark/module/upstream/dto"
 	"github.com/eolinker/go-common/store"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -309,6 +311,95 @@ func (i *imlServiceController) QuickCreateAIService(ctx *gin.Context, input *ser
 	})
 }
 
+// OpenAPIConfig 從 OpenAPI YAML 文件中解析的配置資訊
+type OpenAPIConfig struct {
+	ServiceName    string // info.title
+	FirstPath      string // 第一個 path 的 key
+	FirstSummary   string // 第一個 path 的 summary
+	ServerURL      string // servers[0].url
+	ServerHost     string // 從 server URL 提取的 host:port
+	ServerPath     string // 從 server URL 提取的 path
+}
+
+// parseOpenAPIConfig 解析 OpenAPI YAML 文件並提取所需配置
+func parseOpenAPIConfig(content []byte) (*OpenAPIConfig, error) {
+	// 使用現有的 openapi3 loader 解析文件
+	doc, err := loader.LoadFromData(content)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse OpenAPI document: %w", err)
+	}
+
+	config := &OpenAPIConfig{}
+
+	// 提取服務名稱 (info.title)
+	if doc.Info == nil || doc.Info.Title == "" {
+		return nil, fmt.Errorf("OpenAPI document missing required field: info.title")
+	}
+	config.ServiceName = doc.Info.Title
+
+	// 提取第一個 path 和其 summary
+	if doc.Paths == nil || len(doc.Paths.Map()) == 0 {
+		return nil, fmt.Errorf("OpenAPI document missing required field: paths")
+	}
+	
+	// 取得第一個 path
+	for pathKey, pathItem := range doc.Paths.Map() {
+		config.FirstPath = pathKey
+		
+		// 取得第一個 operation 的 summary
+		if pathItem.Get != nil && pathItem.Get.Summary != "" {
+			config.FirstSummary = pathItem.Get.Summary
+			break
+		}
+		if pathItem.Post != nil && pathItem.Post.Summary != "" {
+			config.FirstSummary = pathItem.Post.Summary
+			break
+		}
+		if pathItem.Put != nil && pathItem.Put.Summary != "" {
+			config.FirstSummary = pathItem.Put.Summary
+			break
+		}
+		if pathItem.Delete != nil && pathItem.Delete.Summary != "" {
+			config.FirstSummary = pathItem.Delete.Summary
+			break
+		}
+		if pathItem.Patch != nil && pathItem.Patch.Summary != "" {
+			config.FirstSummary = pathItem.Patch.Summary
+			break
+		}
+		// 如果沒有找到 summary，使用 path 作為預設值
+		if config.FirstSummary == "" {
+			config.FirstSummary = strings.TrimPrefix(pathKey, "/")
+		}
+		break
+	}
+
+	// 提取 server URL
+	if doc.Servers == nil || len(doc.Servers) == 0 {
+		return nil, fmt.Errorf("OpenAPI document missing required field: servers")
+	}
+	config.ServerURL = doc.Servers[0].URL
+
+	// 解析 server URL 提取 host:port 和 path
+	parsedURL, err := url.Parse(config.ServerURL)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse server URL: %w", err)
+	}
+	
+	config.ServerHost = parsedURL.Host
+	config.ServerPath = parsedURL.Path
+
+	// 驗證必要欄位
+	if config.ServerHost == "" {
+		return nil, fmt.Errorf("server URL missing host:port information")
+	}
+	if config.ServerPath == "" {
+		return nil, fmt.Errorf("server URL missing path information")
+	}
+
+	return config, nil
+}
+
 func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error {
 	fileHeader, err := ctx.FormFile("file")
 	if err != nil {
@@ -329,6 +420,12 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 		return fmt.Errorf("type %s not support", typ)
 	}
 
+	// 解析 OpenAPI 配置
+	openAPIConfig, err := parseOpenAPIConfig(content)
+	if err != nil {
+		return fmt.Errorf("failed to parse OpenAPI configuration: %w", err)
+	}
+
 	return i.transaction.Transaction(ctx, func(txCtx context.Context) error {
 		teamId := ctx.PostForm("team")
 		id := uuid.NewString()
@@ -337,9 +434,11 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 		if err != nil {
 			return err
 		}
+
+		// 使用動態服務名稱
 		s, err := i.module.Create(ctx, teamId, &service_dto.CreateService{
 			Id:           uuid.NewString(),
-			Name:         "Restful Service By Swagger",
+			Name:         openAPIConfig.ServiceName, // VAR5: 從 info.title 讀取
 			Prefix:       prefix,
 			Description:  "Auto create by upload swagger",
 			ServiceType:  "public",
@@ -347,10 +446,40 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 			Catalogue:    catalogueInfo.Id,
 			ApprovalType: "auto",
 			Kind:         "rest",
+			EnableMCP:    true, // VAR6: 預設值=1 (true)
 		})
 		if err != nil {
 			return err
 		}
+
+		// 建立上游配置
+		upstreamConfig := &upstream_dto.Upstream{
+			Type:            "http",
+			Balance:         "round-robin",
+			Timeout:         30000,
+			Retry:           0,
+			Remark:          fmt.Sprintf("Auto create for service %s", s.Id),
+			LimitPeerSecond: 0,
+			ProxyHeaders:    []*upstream_dto.ProxyHeader{},
+			Scheme:          "http",
+			PassHost:        "pass", // VAR4: 透傳客戶端請求Host
+			UpstreamHost:    "",
+			Nodes: []*upstream_dto.NodeConfig{
+				{
+					Address: openAPIConfig.ServerHost, // VAR3: 從 servers[0].url 提取 host:port
+					Weight:  100,
+				},
+			},
+			Discover: &upstream_dto.DiscoverConfig{
+				Discover: "",
+				Service:  "",
+			},
+		}
+		_, err = i.upstreamModule.Save(ctx, s.Id, upstreamConfig)
+		if err != nil {
+			return err
+		}
+
 		_, err = i.apiDocModule.UpdateDoc(ctx, s.Id, &api_doc_dto.UpdateDoc{
 			Id:      s.Id,
 			Content: string(content),
@@ -358,16 +487,23 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 		if err != nil {
 			return err
 		}
-		path := prefix + "/"
+
+		// 使用動態路徑配置
+		// VAR1: 請求路徑 = /{prefix}/{summary}
+		requestPath := fmt.Sprintf("/%s/%s", strings.TrimPrefix(prefix, "/"), openAPIConfig.FirstSummary)
+		// VAR2: 轉發上游路徑 = 從 servers[0].url 提取的 path
+		proxyPath := openAPIConfig.ServerPath
+
 		_, err = i.routerModule.Create(ctx, s.Id, &router_dto.Create{
 			Id:          uuid.NewString(),
 			Name:        "",
-			Path:        path + "*",
+			Path:        requestPath, // VAR1: /{prefix}/{summary}
 			Methods:     []string{http.MethodGet, http.MethodPost, http.MethodPut, http.MethodDelete, http.MethodPatch, http.MethodOptions},
 			Description: "auto create by create service",
 			Protocols:   []string{"http", "https"},
+			Upstream:    s.Id, // 使用服務 ID 作為上游引用
 			Proxy: &router_dto.InputProxy{
-				Path:    path,
+				Path:    proxyPath, // VAR2: 從 servers[0].url 提取的 path
 				Timeout: 30000,
 				Retry:   0,
 			},
@@ -381,7 +517,7 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 			return err
 		}
 		for _, app := range apps {
-			i.subscribeModule.AddSubscriber(ctx, id, &subscribe_dto.AddSubscriber{
+			i.subscribeModule.AddSubscriber(ctx, s.Id, &subscribe_dto.AddSubscriber{
 				Application: app.Id,
 			})
 		}
