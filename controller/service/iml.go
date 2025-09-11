@@ -51,6 +51,10 @@ import (
 	"github.com/APIParkLab/APIPark/module/ai"
 	ai_api "github.com/APIParkLab/APIPark/module/ai-api"
 	ai_api_dto "github.com/APIParkLab/APIPark/module/ai-api/dto"
+	"github.com/APIParkLab/APIPark/module/publish"
+	publish_dto "github.com/APIParkLab/APIPark/module/publish/dto"
+	"github.com/APIParkLab/APIPark/module/release"
+	release_dto "github.com/APIParkLab/APIPark/module/release/dto"
 	"github.com/APIParkLab/APIPark/module/router"
 	"github.com/APIParkLab/APIPark/module/service"
 	service_dto "github.com/APIParkLab/APIPark/module/service/dto"
@@ -83,6 +87,8 @@ type imlServiceController struct {
 	catalogueModule     catalogue.ICatalogueModule      `autowired:""`
 	monitorModule       monitor.IMonitorStatisticModule `autowired:""`
 	monitorConfigModule monitor.IMonitorConfigModule    `autowired:""`
+	publishModule       publish.IPublishModule          `autowired:""`
+	releaseModule       release.IReleaseModule          `autowired:""`
 	transaction         store.ITransaction              `autowired:""`
 }
 
@@ -313,12 +319,13 @@ func (i *imlServiceController) QuickCreateAIService(ctx *gin.Context, input *ser
 
 // OpenAPIConfig 從 OpenAPI YAML 文件中解析的配置資訊
 type OpenAPIConfig struct {
-	ServiceName    string // info.title
-	FirstPath      string // 第一個 path 的 key
-	FirstSummary   string // 第一個 path 的 summary
-	ServerURL      string // servers[0].url
-	ServerHost     string // 從 server URL 提取的 host:port
-	ServerPath     string // 從 server URL 提取的 path
+	ServiceName  string // info.title
+	FirstPath    string // 第一個 path 的 key
+	FirstSummary string // 第一個 path 的 summary
+	ServerURL    string // servers[0].url
+	ServerHost   string // 從 server URL 提取的 host:port
+	// ServerPath     string // 從 server URL 提取的 path
+	ProxyPath string // VAR2: 從 first.paths 提取的 path
 }
 
 // parseOpenAPIConfig 解析 OpenAPI YAML 文件並提取所需配置
@@ -341,11 +348,12 @@ func parseOpenAPIConfig(content []byte) (*OpenAPIConfig, error) {
 	if doc.Paths == nil || len(doc.Paths.Map()) == 0 {
 		return nil, fmt.Errorf("OpenAPI document missing required field: paths")
 	}
-	
+
 	// 取得第一個 path
 	for pathKey, pathItem := range doc.Paths.Map() {
 		config.FirstPath = pathKey
-		
+		config.ProxyPath = pathKey // VAR2: 從 first.paths 提取的 path
+
 		// 取得第一個 operation 的 summary
 		if pathItem.Get != nil && pathItem.Get.Summary != "" {
 			config.FirstSummary = pathItem.Get.Summary
@@ -370,6 +378,7 @@ func parseOpenAPIConfig(content []byte) (*OpenAPIConfig, error) {
 		// 如果沒有找到 summary，使用 path 作為預設值
 		if config.FirstSummary == "" {
 			config.FirstSummary = strings.TrimPrefix(pathKey, "/")
+			config.FirstSummary = strings.ReplaceAll(config.FirstSummary, "/", "_")
 		}
 		break
 	}
@@ -385,19 +394,61 @@ func parseOpenAPIConfig(content []byte) (*OpenAPIConfig, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse server URL: %w", err)
 	}
-	
+
 	config.ServerHost = parsedURL.Host
-	config.ServerPath = parsedURL.Path
+	// config.ServerPath = parsedURL.Path
 
 	// 驗證必要欄位
 	if config.ServerHost == "" {
 		return nil, fmt.Errorf("server URL missing host:port information")
 	}
-	if config.ServerPath == "" {
-		return nil, fmt.Errorf("server URL missing path information")
-	}
+	// if config.ServerPath == "" {
+	// 	return nil, fmt.Errorf("server URL missing path information")
+	// }
 
 	return config, nil
+}
+
+// modifyOpenAPIContent 修改 OpenAPI content，將第一個 path 替換為 summary
+func modifyOpenAPIContent(content []byte, config *OpenAPIConfig) ([]byte, error) {
+	// 解析 OpenAPI 文檔
+	doc, err := loader.LoadFromData(content)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse OpenAPI document: %w", err)
+	}
+
+	// 如果沒有找到 summary 或 path 相同，則不需要修改
+	if config.FirstSummary == "" || config.FirstPath == config.FirstSummary {
+		return content, nil
+	}
+
+	// 創建新的 paths map
+	newPaths := make(map[string]*openapi3.PathItem)
+	
+	// 遍歷所有 paths
+	for pathKey, pathItem := range doc.Paths.Map() {
+		if pathKey == config.FirstPath {
+			// 將第一個 path 替換為 summary
+			newPaths[config.FirstSummary] = pathItem
+		} else {
+			// 其他 paths 保持不變
+			newPaths[pathKey] = pathItem
+		}
+	}
+
+	// 更新文檔的 paths
+	doc.Paths = &openapi3.Paths{}
+	for path, item := range newPaths {
+		doc.Paths.Set(path, item)
+	}
+
+	// 將修改後的文檔轉換為 JSON
+	modifiedContent, err := doc.MarshalJSON()
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal modified OpenAPI document: %w", err)
+	}
+
+	return modifiedContent, nil
 }
 
 func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error {
@@ -424,6 +475,12 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 	openAPIConfig, err := parseOpenAPIConfig(content)
 	if err != nil {
 		return fmt.Errorf("failed to parse OpenAPI configuration: %w", err)
+	}
+
+	// 修改 OpenAPI content，將第一個 path 替換為 summary
+	modifiedContent, err := modifyOpenAPIContent(content, openAPIConfig)
+	if err != nil {
+		return fmt.Errorf("failed to modify OpenAPI content: %w", err)
 	}
 
 	return i.transaction.Transaction(ctx, func(txCtx context.Context) error {
@@ -482,7 +539,7 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 
 		_, err = i.apiDocModule.UpdateDoc(ctx, s.Id, &api_doc_dto.UpdateDoc{
 			Id:      s.Id,
-			Content: string(content),
+			Content: string(modifiedContent),
 		})
 		if err != nil {
 			return err
@@ -491,8 +548,8 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 		// 使用動態路徑配置
 		// VAR1: 請求路徑 = /{prefix}/{summary}
 		requestPath := fmt.Sprintf("/%s/%s", strings.TrimPrefix(prefix, "/"), openAPIConfig.FirstSummary)
-		// VAR2: 轉發上游路徑 = 從 servers[0].url 提取的 path
-		proxyPath := openAPIConfig.ServerPath
+		// VAR2: 轉發上游路徑 = 從 first.paths 提取的 path
+		proxyPath := openAPIConfig.ProxyPath
 
 		_, err = i.routerModule.Create(ctx, s.Id, &router_dto.Create{
 			Id:          uuid.NewString(),
@@ -503,7 +560,7 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 			Protocols:   []string{"http", "https"},
 			Upstream:    s.Id, // 使用服務 ID 作為上游引用
 			Proxy: &router_dto.InputProxy{
-				Path:    proxyPath, // VAR2: 從 servers[0].url 提取的 path
+				Path:    proxyPath, // VAR2: 從 first.paths 提取的 path
 				Timeout: 30000,
 				Retry:   0,
 			},
@@ -520,6 +577,36 @@ func (i *imlServiceController) QuickCreateRestfulService(ctx *gin.Context) error
 			i.subscribeModule.AddSubscriber(ctx, s.Id, &subscribe_dto.AddSubscriber{
 				Application: app.Id,
 			})
+		}
+
+		// 自動建立 v1 發布
+		releaseId, err := i.releaseModule.Create(ctx, s.Id, &release_dto.CreateInput{
+			Version: "v1",
+			Remark:  "Auto create v1 release for quick create service",
+		})
+		if err != nil {
+			return fmt.Errorf("failed to create v1 release: %w", err)
+		}
+
+		// 申請發布
+		publishResult, err := i.publishModule.Apply(ctx, s.Id, &publish_dto.ApplyInput{
+			Release: releaseId,
+			Remark:  "Auto apply v1 release",
+		})
+		if err != nil {
+			return fmt.Errorf("failed to apply v1 release: %w", err)
+		}
+
+		// 接受發布
+		err = i.publishModule.Accept(ctx, s.Id, publishResult.Id, "")
+		if err != nil {
+			return fmt.Errorf("failed to accept v1 release: %w", err)
+		}
+
+		// 執行發布
+		err = i.publishModule.Publish(ctx, s.Id, publishResult.Id)
+		if err != nil {
+			return fmt.Errorf("failed to publish v1 release: %w", err)
 		}
 
 		return nil
