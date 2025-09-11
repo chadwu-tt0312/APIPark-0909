@@ -16,8 +16,7 @@ if [[ "${ARCH}" == "" ]];then
 fi
 
 # 编译可执行文件
-echo "./scripts/build.sh 'cmd ${BuildMode} ${ARCH}'"
-./scripts/build.sh "cmd" "" "${BuildMode}" ${ARCH}
+./scripts/build.sh "cmd" "-" "${BuildMode}" ${ARCH}
 
 source ./scripts/common.sh
 APP="apipark"
@@ -26,7 +25,7 @@ APP="apipark"
 mkdir -p scripts/cmd/ && cp cmd/${APP} scripts/cmd/ && cp cmd/apipark_ai_event_listen scripts/cmd/
 
 # VERSION=$(gen_version)
-VERSION="1.9.5-beta-0910"
+VERSION="v1.9.5-beta-0911"
 
 
 SYS_ARCH=$(arch)
@@ -39,16 +38,15 @@ elif [[ (${SYS_ARCH}  == "amd64" || ${SYS_ARCH} == "x86_64") && $ARCH == "arm64"
 fi
 
 if [[ "${User}" == "" ]];then
-  User="eolinker"
+  # User="eolinker"
+  User="${APP}"
 fi
 
 # imageName=${User}/${APP}:${VERSION}-${ARCH}
 imageName=${User}/${APP}:${VERSION}
-# docker rmi -f ${imageName}
-podman rmi -f ${imageName}
+docker rmi -f ${imageName}
 
 echo "docker build ${OPTIONS} -t ${imageName} --build-arg VERSION=${VERSION} --build-arg APP=${APP}  -f ./scripts/Dockerfile ./scripts/"
-# docker build ${OPTIONS} -t ${imageName} --build-arg VERSION=${VERSION} --build-arg APP=${APP}  -f ./scripts/Dockerfile ./scripts/
-podman build ${OPTIONS} -t ${imageName} --build-arg VERSION=${VERSION} --build-arg APP=${APP}  -f ./scripts/Dockerfile ./scripts/
+docker build ${OPTIONS} -t ${imageName} --build-arg VERSION=${VERSION} --build-arg APP=${APP}  -f ./scripts/Dockerfile ./scripts/
 
 

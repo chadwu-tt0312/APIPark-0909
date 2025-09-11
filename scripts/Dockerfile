@@ -23,8 +23,5 @@ COPY cmd/* /${APP}/
 COPY resource/* /${APP}/
 
 WORKDIR /$APP
-ENV ADMIN_PASSWORD=12345678
-
-RUN chmod +x ./apipark*
-RUN chmod +x ./*.sh
-CMD ./docker_run.sh
+# ENV ADMIN_PASSWORD=12345678
+CMD ["./docker_run.sh"] 

@@ -1,0 +1,74 @@
+###
+curl http://192.168.31.180:5678/api/v1/health
+
+### ApiPark Dashboard
+curl http://172.21.122.231:18288/
+
+### ApiPark(status) ("status": 404)
+curl http://172.21.122.231:9400/status
+
+### ApiPark (internal) (X)
+curl http://127.0.0.1:8288/api/v1/account/login
+
+### ApiPark (Open API 文件-openai AI Service)
+curl http://172.21.122.231:18288/api/v1/service/apidoc/ac57f97a-6fb0-45c3-be08-9d466129a889
+
+### ApiPark (Open API 文件-test-health)
+curl http://172.21.122.231:18288/api/v1/service/apidoc/fb1cfee0-0105-4460-86ca-e8fa234e93e7
+
+### ApiPark (服務/openai AI Service)
+curl -X POST http://172.21.122.231:8099/ac5900f8/chat/completions
+-H "Content-Type: application/json"
+-H "Authorization: e4431991-9c47-4596-bf35-c7d21e3ea22b"
+-d '
+{
+  "messages": [
+    {
+      "content": "Hello, who are you?",
+      "role": "user"
+    }
+  ],
+  "stream": false
+}
+'
+### ApiPark (服務/test-health Service)
+curl -X GET http://172.21.122.231:8099/fb1cfee0/health
+-H "Authorization: e4431991-9c47-4596-bf35-c7d21e3ea22b"
+
+### ApiPark (401)
+curl -X POST "http://172.21.122.231:18288/api/v1/system/general"
+-H "Content-Type: application/json" 
+-H "Authorization: e4431991-9c47-4596-bf35-c7d21e3ea22b"
+-d '{"site_prefix":"http://114.33.48.242:18288"}'
+
+### ApiPark MCP (404)
+curl http://172.21.122.231:18288/openapi/v1/mcp/service/ac57f97a-6fb0-45c3-be08-9d466129a889/sse?apikey=e4431991-9c47-4596-bf35-c7d21e3ea22b
+
+### ------------- 25-09-08 NEW setting 
+
+### Demo Application (504 API 沒有啟動)
+#@USER_KEY = 716e0e9e-10eb-4378-ae25-997810c88cac
+#curl -X GET http://172.21.122.231:8099/e72569cf/health
+#curl http://172.21.122.231:18288/api/v1/service/apidoc/307eb7d6-17d7-4106-8b08-801d09baea37
+@USER_KEY = 79821a66-7e1f-4d94-9a3a-8662eb2dfd54
+curl http://172.21.122.231:8099/2b6df069/health22
+-X GET
+-H "Authorization: {{USER_KEY}}"
+
+###
+curl http://172.21.122.231:18288/api/v1/service/apidoc/7166e372-aa80-4809-b155-0aa05fa09805
+### test-user
+curl -X GET http://172.21.122.231:8099/21844f24/health
+-H "Authorization: b1403c34-aa10-450d-9ca7-b51861903be2"
+
+### test-02 (403 Forbidden) 沒有訂閱API的消費者的KEY
+curl -X GET http://172.21.122.231:8099/21844f24/health
+-H "Authorization: d7866f7e-88f9-40d3-a0f3-d6a478b8a2ea"
+
+### PEI Knowledge Base RAG
+curl http://172.21.122.231:18288/api/v1/service/apidoc/9f33f9d4-5fdb-4744-bcbc-edf7e44bc521
+
+###
+curl http://172.21.122.231:8099/36ffbb2d/Pei_Knnowledge_Rag
+-X GET 
+-H "Authorization: {{USER_KEY}}"
