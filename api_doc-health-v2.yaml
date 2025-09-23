@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Health Restful Service # VAR5(服務名稱): 從 info.title 讀取
+  title: Health2 Restful Service # VAR5(服務名稱): 從 info.title 讀取
   version: 1.0.0
   description: 健康檢查 API 文件
 
@@ -10,7 +10,7 @@ servers:
 paths:
   /api/v1/health: # VAR2(轉發上游路徑): 從 first.paths 提取的 path
     get:
-      summary: health # VAR1(請求路徑): /{prefix}/{summary}
+      summary: health2 # VAR1(請求路徑): /{prefix}/{summary}
       description: 取得健康檢查資訊
       tags:
         - health

@@ -1,0 +1,22 @@
+{{- if .Values.mysql.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "apipark.mysql.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: mysql
+spec:
+  type: {{ .Values.mysql.service.type }}
+  ports:
+    - port: {{ .Values.mysql.service.port }}
+      targetPort: mysql
+      protocol: TCP
+      name: mysql
+      {{- if eq .Values.mysql.service.type "NodePort" }}
+      nodePort: {{ .Values.mysql.service.nodePort }}
+      {{- end }}
+  selector:
+    {{- include "apipark.selectorLabels" . | nindent 4 }}
+    component: mysql
+{{- end }}

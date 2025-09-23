@@ -1,0 +1,18 @@
+{{- if and .Values.grafana.enabled .Values.grafana.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "apipark.grafana.fullname" . }}-pvc
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: grafana
+spec:
+  accessModes:
+    - {{ .Values.grafana.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.grafana.persistence.size }}
+  {{- if .Values.grafana.persistence.storageClass }}
+  storageClassName: {{ .Values.grafana.persistence.storageClass }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,84 @@
+{{- if .Values.apinto.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "apipark.apinto.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: apinto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      component: apinto
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        component: apinto
+    spec:
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: apinto
+          image: "{{ .Values.apinto.image.repository }}:{{ .Values.apinto.image.tag }}"
+          imagePullPolicy: {{ .Values.apinto.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8099
+              protocol: TCP
+            - name: admin
+              containerPort: 9400
+              protocol: TCP
+            - name: metrics
+              containerPort: 9401
+              protocol: TCP
+          volumeMounts:
+            - name: apinto-data
+              mountPath: /var/lib/apinto
+            - name: apinto-log
+              mountPath: /var/log/apinto
+            - name: apinto-config
+              mountPath: /etc/apinto
+          {{- with .Values.apinto.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: admin
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            tcpSocket:
+              port: admin
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 5
+      volumes:
+        - name: apinto-data
+          {{- if .Values.apinto.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "apipark.apinto.fullname" . }}-data-pvc
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: apinto-log
+          {{- if .Values.apinto.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "apipark.apinto.fullname" . }}-log-pvc
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: apinto-config
+          configMap:
+            name: {{ include "apipark.fullname" . }}-shared-config
+{{- end }}

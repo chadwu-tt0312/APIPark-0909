@@ -1,0 +1,85 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "apipark.grafana.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      component: grafana
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        component: grafana
+    spec:
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: grafana
+          image: "{{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}"
+          imagePullPolicy: {{ .Values.grafana.image.pullPolicy }}
+          command:
+            - sh
+            - -euc
+            - |
+              mkdir -p /etc/grafana/provisioning/datasources
+              cp /etc/grafana-config/grafana-datasource.yaml /etc/grafana/provisioning/datasources/ds.yaml
+              /run.sh
+          ports:
+            - name: grafana
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: GF_PATHS_PROVISIONING
+              value: "/etc/grafana/provisioning"
+            - name: GF_AUTH_ANONYMOUS_ENABLED
+              value: {{ .Values.grafana.auth.anonymousEnabled | quote }}
+            - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+              value: {{ .Values.grafana.auth.anonymousOrgRole | quote }}
+          volumeMounts:
+            - name: grafana-data
+              mountPath: /var/lib/grafana
+            - name: grafana-config
+              mountPath: /etc/grafana-config
+          {{- with .Values.grafana.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: grafana
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: grafana
+            initialDelaySeconds: 5
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: grafana-data
+          {{- if .Values.grafana.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "apipark.grafana.fullname" . }}-pvc
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: grafana-config
+          configMap:
+            name: {{ include "apipark.fullname" . }}-shared-config
+{{- end }}

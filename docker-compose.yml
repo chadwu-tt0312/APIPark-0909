@@ -19,7 +19,7 @@ services:
     networks:
       - apipark
   apipark:
-    image: apipark/apipark:v1.9.5-beta  # 1.9.3-beta (0827) -> 1.9.5-beta (0904)
+    image: apipark/apipark:v1.9.5-beta-0911 # 1.9.3-beta (0827) -> 1.9.5-beta (0904)
     container_name: apipark
     privileged: true
     restart: always
@@ -85,7 +85,7 @@ services:
       - apipark
   apipark-loki:
     container_name: apipark-loki
-    image:  grafana/loki:3.2.1
+    image: grafana/loki:3.2.1
     hostname: apipark-loki
     privileged: true
     user: root
@@ -159,7 +159,7 @@ services:
     networks:
       - apipark
   apipark-grafana:
-    image:  grafana/grafana:11.3.2
+    image: grafana/grafana:11.3.2
     container_name: apipark-grafana
     hostname: apipark-grafana
     privileged: true
@@ -204,10 +204,10 @@ services:
     ports:
       - 4150:4150
       - 4151:4151
-      - 4160:4160 # HTTP介面 (add)
-      - 4161:4161 # 叢集通訊介面 (add)
-      - 4170:4170 # 監控介面 (add)
-      - 4171:4171 # 監控介面 (add)
+      # - 4160:4160 # HTTP介面 (add)
+      # - 4161:4161 # 叢集通訊介面 (add)
+      # - 4170:4170 # 監控介面 (add)
+      # - 4171:4171 # 監控介面 (add)
     networks:
       - apipark
   apipark-apinto:

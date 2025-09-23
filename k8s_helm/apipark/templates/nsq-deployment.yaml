@@ -1,0 +1,60 @@
+{{- if .Values.nsq.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "apipark.nsq.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: nsq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      component: nsq
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        component: nsq
+    spec:
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: nsq
+          image: "{{ .Values.nsq.image.repository }}:{{ .Values.nsq.image.tag }}"
+          imagePullPolicy: {{ .Values.nsq.image.pullPolicy }}
+          command:
+            - /nsqd
+          ports:
+            - name: tcp
+              containerPort: 4150
+              protocol: TCP
+            - name: http
+              containerPort: 4151
+              protocol: TCP
+          {{- with .Values.nsq.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+{{- end }}

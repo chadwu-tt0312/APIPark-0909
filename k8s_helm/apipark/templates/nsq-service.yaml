@@ -1,0 +1,23 @@
+{{- if .Values.nsq.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "apipark.nsq.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: nsq
+spec:
+  type: {{ .Values.nsq.service.type }}
+  ports:
+    - name: tcp
+      port: 4150
+      targetPort: tcp
+      protocol: TCP
+    - name: http
+      port: 4151
+      targetPort: http
+      protocol: TCP
+  selector:
+    {{- include "apipark.selectorLabels" . | nindent 4 }}
+    component: nsq
+{{- end }}

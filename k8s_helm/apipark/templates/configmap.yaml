@@ -1,0 +1,97 @@
+# 共享配置 ConfigMap - 包含跨組件共享的配置
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "apipark.fullname" . }}-shared-config
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: shared
+data:
+  # Loki Configuration
+  loki-config.yaml: |
+    auth_enabled: false
+
+    server:
+      http_listen_port: 3100
+      grpc_listen_port: 9096
+
+    common:
+      instance_addr: 127.0.0.1
+      path_prefix: /tmp/loki
+      storage:
+        filesystem:
+          chunks_directory: /tmp/loki/chunks
+          rules_directory: /tmp/loki/rules
+      replication_factor: 1
+      ring:
+        kvstore:
+          store: inmemory
+
+    query_range:
+      results_cache:
+        cache:
+          embedded_cache:
+            enabled: true
+            max_size_mb: 100
+
+    schema_config:
+      configs:
+        - from: 2020-10-24
+          store: tsdb
+          object_store: filesystem
+          schema: v13
+          index:
+            prefix: index_
+            period: 24h
+
+    limits_config:
+      max_query_length: 90d
+
+    ruler:
+      alertmanager_url: http://localhost:9093
+
+    table_manager:
+      retention_period: 90d
+
+  # Grafana Datasource Configuration
+  grafana-datasource.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://{{ include "apipark.fullname" . }}-loki:3100
+
+  # Apinto Gateway Configuration
+  apinto-config.yml: |
+    version: 2
+    client:
+      advertise_urls: # open api 服务的广播地址
+        - http://0.0.0.0:9400
+      listen_urls: # open api 服务的监听地址
+        - http://0.0.0.0:9400
+    gateway:
+      advertise_urls: # 转发服务的广播地址
+        - http://0.0.0.0:8099
+      listen_urls: # 转发服务的监听地址
+        - http://0.0.0.0:8099
+    peer: # 集群间节点通信配置信息
+      listen_urls: # 节点监听地址
+        - http://0.0.0.0:9401
+      advertise_urls: # 节点通信广播地址
+        - http://0.0.0.0:9401
+
+  # MySQL Initialization Script
+  mysql-init.sql: |
+    -- 確保資料庫存在
+    CREATE DATABASE IF NOT EXISTS {{ .Values.mysql.auth.database }};
+    
+    -- 確保 root 用戶有正確的權限
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '{{ .Values.mysql.auth.rootPassword }}';
+    ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '{{ .Values.mysql.auth.rootPassword }}';
+    
+    -- 刷新權限
+    FLUSH PRIVILEGES;
+    
+    -- 顯示資料庫狀態
+    SHOW DATABASES;

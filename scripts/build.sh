@@ -71,7 +71,8 @@ build_frontend() {
   # 打包前端
   if [[ "$1" == "all" || ! -d "./frontend/dist" ]]; then
     echo_info "Install dependencies..."
-    pnpm install --registry https://registry.npmmirror.com --dir ./frontend
+    # pnpm install --registry https://registry.npmmirror.com --dir ./frontend
+    pnpm install --dir ./frontend
     echo_info "Build frontend..."
     cd ./frontend && pnpm run build --verbose
     cd ..

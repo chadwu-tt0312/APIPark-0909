@@ -1,0 +1,22 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "apipark.grafana.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: grafana
+spec:
+  type: {{ .Values.grafana.service.type }}
+  ports:
+    - port: {{ .Values.grafana.service.port }}
+      targetPort: grafana
+      protocol: TCP
+      name: grafana
+      {{- if eq .Values.grafana.service.type "NodePort" }}
+      nodePort: {{ .Values.grafana.service.nodePort }}
+      {{- end }}
+  selector:
+    {{- include "apipark.selectorLabels" . | nindent 4 }}
+    component: grafana
+{{- end }}

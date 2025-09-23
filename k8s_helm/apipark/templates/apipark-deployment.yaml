@@ -1,0 +1,99 @@
+{{- if .Values.apipark.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "apipark.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: apipark
+spec:
+  replicas: {{ .Values.apipark.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      component: apipark
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        component: apipark
+    spec:
+      serviceAccountName: {{ include "apipark.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: apipark
+          image: "{{ .Values.apipark.image.repository }}:{{ .Values.apipark.image.tag }}"
+          imagePullPolicy: {{ .Values.apipark.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8288
+              protocol: TCP
+          env:
+            - name: MYSQL_USER_NAME
+              value: {{ .Values.apipark.env.MYSQL_USER_NAME | quote }}
+            - name: MYSQL_PWD
+              value: {{ .Values.apipark.env.MYSQL_PWD | quote }}
+            - name: MYSQL_IP
+              value: {{ .Values.apipark.env.MYSQL_IP | quote }}
+            - name: MYSQL_PORT
+              value: {{ .Values.apipark.env.MYSQL_PORT | quote }}
+            - name: MYSQL_DB
+              value: {{ .Values.apipark.env.MYSQL_DB | quote }}
+            - name: ERROR_DIR
+              value: {{ .Values.apipark.env.ERROR_DIR | quote }}
+            - name: ERROR_FILE_NAME
+              value: {{ .Values.apipark.env.ERROR_FILE_NAME | quote }}
+            - name: ERROR_LOG_LEVEL
+              value: {{ .Values.apipark.env.ERROR_LOG_LEVEL | quote }}
+            - name: ERROR_EXPIRE
+              value: {{ .Values.apipark.env.ERROR_EXPIRE | quote }}
+            - name: ERROR_PERIOD
+              value: {{ .Values.apipark.env.ERROR_PERIOD | quote }}
+            - name: REDIS_ADDR
+              value: {{ .Values.apipark.env.REDIS_ADDR | quote }}
+            - name: REDIS_PWD
+              value: {{ .Values.apipark.env.REDIS_PWD | quote }}
+            - name: ADMIN_PASSWORD
+              value: {{ .Values.apipark.env.ADMIN_PASSWORD | quote }}
+            - name: Init
+              value: {{ .Values.apipark.env.Init | quote }}
+            - name: InfluxdbToken
+              value: {{ .Values.apipark.env.InfluxdbToken | quote }}
+          {{- with .Values.apipark.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

@@ -1,0 +1,27 @@
+{{- if .Values.apinto.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "apipark.apinto.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    component: apinto
+spec:
+  type: {{ .Values.apinto.service.type }}
+  ports:
+    - name: http
+      port: 8099
+      targetPort: http
+      protocol: TCP
+    - name: admin
+      port: 9400
+      targetPort: admin
+      protocol: TCP
+    - name: metrics
+      port: 9401
+      targetPort: metrics
+      protocol: TCP
+  selector:
+    {{- include "apipark.selectorLabels" . | nindent 4 }}
+    component: apinto
+{{- end }}
