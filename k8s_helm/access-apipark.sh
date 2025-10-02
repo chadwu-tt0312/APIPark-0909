@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# APIPark 訪問腳本
+echo "=== APIPark 服務訪問資訊 ==="
+echo ""
+echo "🌐 APIPark 主應用程式："
+echo "   URL: http://172.18.0.2:31288"
+echo "   說明：APIPark 管理界面"
+echo ""
+echo "🚪 Apinto Gateway："
+echo "   URL: http://172.18.0.2:31899"
+echo "   說明：API 網關管理界面"
+echo ""
+echo "🗄️ MySQL 資料庫："
+echo "   Host: 172.18.0.2"
+echo "   Port: 31306"
+echo "   用戶名: root"
+echo "   密碼: 123456"
+echo ""
+echo "📊 其他服務："
+echo "   InfluxDB: 172.18.0.2:8086 (內部服務)"
+echo "   Redis: 172.18.0.2:6379 (內部服務)"
+echo ""
+echo "💡 提示："
+echo "   - 請使用 172.18.0.2 而不是 localhost"
+echo "   - 如果無法訪問，請檢查防火牆設定"
+echo "   - 預設管理員密碼：aToh0eag"
+echo ""
+
+# 檢查服務狀態
+echo "=== 服務狀態檢查 ==="
+kubectl get pods | grep -E "(apipark|mysql|redis|influxdb)"

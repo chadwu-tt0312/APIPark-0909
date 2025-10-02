@@ -45,7 +45,7 @@ ERROR 1049 (42000): Unknown database '1'
 
 1. **檢查初始化腳本：**
    ```bash
-   kubectl get configmap apipark-shared-config -o yaml | grep -A 20 "mysql-init.sql"
+   kubectl get configmap apipark-config -o yaml | grep -A 20 "mysql-init.sql"
    ```
 
 2. **重新部署 MySQL：**
@@ -67,7 +67,7 @@ Warning  BackOff    9s (x8 over 102s)    kubelet  Back-off restarting failed con
 
 1. **檢查 Apinto 配置：**
    ```bash
-   kubectl get configmap apipark-shared-config -o yaml
+   kubectl get configmap apipark-config -o yaml
    ```
 
 2. **檢查 Apinto Pod 日誌：**
@@ -112,7 +112,7 @@ Exit Code:      1
 
 2. **檢查 Loki 配置：**
    ```bash
-   kubectl get configmap apipark-shared-config -o yaml
+   kubectl get configmap apipark-config -o yaml
    ```
 
 3. **檢查配置檔案格式：**
@@ -141,7 +141,7 @@ Error: failed to load config: yaml: unmarshal errors
 
 1. **檢查 YAML 格式：**
    ```bash
-   kubectl get configmap apipark-shared-config -o yaml | grep -A 50 "loki-config.yaml"
+   kubectl get configmap apipark-config -o yaml | grep -A 50 "loki-config.yaml"
    ```
 
 2. **驗證配置：**

@@ -5,31 +5,44 @@ metadata:
   name: {{ include "apipark.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: apipark
+    app.kubernetes.io/component: apipark
 spec:
   replicas: {{ .Values.apipark.replicaCount }}
   selector:
     matchLabels:
       {{- include "apipark.selectorLabels" . | nindent 6 }}
-      component: apipark
+      app.kubernetes.io/component: apipark
   template:
     metadata:
       labels:
         {{- include "apipark.selectorLabels" . | nindent 8 }}
-        component: apipark
+        app.kubernetes.io/component: apipark
     spec:
-      serviceAccountName: {{ include "apipark.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
-      securityContext:
+      # initContainers:
+      #   - name: wait-mysql
+      #     image: "{{ .Values.global.imageRegistry }}busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-mysql 3306; do echo waiting for mysql; sleep 2; done;']
+      #   - name: wait-redis
+      #     image: "{{ .Values.global.imageRegistry }}busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-redis 6379; do echo waiting for redis; sleep 2; done;']
+      #   - name: wait-influxdb
+      #     image: "{{ .Values.global.imageRegistry }}busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-influxdb 8086; do echo waiting for redis; sleep 2; done;']
+      #   - name: wait-apinto
+      #     image: "{{ .Values.global.imageRegistry }}busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-apinto 9400; do echo waiting for redis; sleep 2; done;']
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      # serviceAccountName: {{ include "apipark.serviceAccountName" . }}
       containers:
         - name: apipark
-          image: "{{ .Values.apipark.image.repository }}:{{ .Values.apipark.image.tag }}"
+          image: "{{ .Values.global.imageRegistry }}{{ .Values.apipark.image.repository }}:{{ .Values.apipark.image.tag }}"
           imagePullPolicy: {{ .Values.apipark.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8288
+              containerPort: {{ .Values.apipark.service.port }}
               protocol: TCP
           env:
             - name: MYSQL_USER_NAME
@@ -66,24 +79,6 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: http
-            initialDelaySeconds: 5
-            periodSeconds: 2
-            timeoutSeconds: 1
-            successThreshold: 1
-            failureThreshold: 3
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

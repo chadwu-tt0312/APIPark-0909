@@ -5,15 +5,15 @@ metadata:
   name: {{ include "apipark.apinto.fullname" . }}-data-pvc
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: apinto
+    app.kubernetes.io/component: apinto
 spec:
   accessModes:
-    - {{ .Values.apinto.persistence.accessMode }}
+    - {{ .Values.global.persistence.accessMode }}
   resources:
     requests:
       storage: {{ .Values.apinto.persistence.size }}
-  {{- if .Values.apinto.persistence.storageClass }}
-  storageClassName: {{ .Values.apinto.persistence.storageClass }}
+  {{- if .Values.global.persistence.storageClass }}
+  storageClassName: {{ .Values.global.persistence.storageClass }}
   {{- end }}
 ---
 apiVersion: v1
@@ -22,14 +22,14 @@ metadata:
   name: {{ include "apipark.apinto.fullname" . }}-log-pvc
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: apinto
+    app.kubernetes.io/component: apinto
 spec:
   accessModes:
-    - {{ .Values.apinto.persistence.accessMode }}
+    - {{ .Values.global.persistence.accessMode }}
   resources:
     requests:
       storage: {{ .Values.apinto.persistence.size }}
-  {{- if .Values.apinto.persistence.storageClass }}
-  storageClassName: {{ .Values.apinto.persistence.storageClass }}
+  {{- if .Values.global.persistence.storageClass }}
+  storageClassName: {{ .Values.global.persistence.storageClass }}
   {{- end }}
 {{- end }}

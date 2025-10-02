@@ -5,12 +5,14 @@ metadata:
   name: {{ include "apipark.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: apipark
+    app.kubernetes.io/component: apipark
 spec:
   type: {{ .Values.apipark.service.type }}
   ports:
     - port: {{ .Values.apipark.service.port }}
-      targetPort: http
+      {{- if .Values.apipark.service.targetPort }}
+      targetPort: {{ .Values.apipark.service.targetPort }}
+      {{- end }}
       protocol: TCP
       name: http
       {{- if eq .Values.apipark.service.type "NodePort" }}
@@ -18,5 +20,5 @@ spec:
       {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: apipark
+    app.kubernetes.io/component: apipark
 {{- end }}

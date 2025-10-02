@@ -1,0 +1,68 @@
+{{- if .Values.mysql.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "apipark.mysql.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mysql
+spec:
+  serviceName: {{ include "apipark.mysql.fullname" . }}
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: mysql
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: mysql
+    spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: mysql
+          image: "{{ .Values.global.imageRegistry }}{{ .Values.mysql.image.repository }}:{{ .Values.mysql.image.tag }}"
+          imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
+          args:
+            - "--character-set-server=utf8mb4"
+            - "--collation-server=utf8mb4_unicode_ci"
+          ports:
+            - name: mysql
+              containerPort: {{ .Values.mysql.service.port }}
+              protocol: TCP
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "apipark.fullname" . }}-secret
+                  key: mysql-root-password
+            - name: MYSQL_DATABASE
+              value: {{ .Values.mysql.auth.database | quote }}
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            # - name: mysql-init
+            #   mountPath: /docker-entrypoint-initdb.d
+          {{- with .Values.mysql.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}          
+      # volumes:
+      #   - name: mysql-init
+      #     configMap:
+      #       name: {{ include "apipark.fullname" . }}-config
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-data
+      spec:
+        accessModes: 
+        - {{ .Values.global.persistence.accessMode }}
+        storageClassName: {{ .Values.global.persistence.storageClass }}
+        resources:
+          requests:
+            storage: {{ .Values.mysql.persistence.size }}
+{{- end }}

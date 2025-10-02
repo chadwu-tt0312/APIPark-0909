@@ -1,0 +1,60 @@
+{{- if .Values.loki.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "apipark.loki.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    app.kubernetes.io/component: loki
+spec:
+  serviceName: {{ include "apipark.loki.fullname" . }}
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: loki
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: loki
+    spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: loki
+          image: "{{ .Values.global.imageRegistry }}{{ .Values.loki.image.repository }}:{{ .Values.loki.image.tag }}"
+          imagePullPolicy: {{ .Values.loki.image.pullPolicy }}
+          command:
+            - /usr/bin/loki
+            - -config.file=/etc/loki/loki-config.yaml
+          ports:
+            - name: loki
+              containerPort: {{ .Values.loki.service.port }}
+              protocol: TCP
+          volumeMounts:
+            - name: loki-data
+              mountPath: /tmp/loki
+            - name: loki-config
+              mountPath: /etc/loki
+          {{- with .Values.loki.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: loki-config
+          configMap:
+            name: {{ include "apipark.fullname" . }}-config
+  volumeClaimTemplates:
+    - metadata:
+        name: loki-data
+      spec:
+        accessModes: 
+        - {{ .Values.global.persistence.accessMode }}
+        storageClassName: {{ .Values.global.persistence.storageClass }}
+        resources:
+          requests:
+            storage: {{ .Values.loki.persistence.size }}
+{{- end }}

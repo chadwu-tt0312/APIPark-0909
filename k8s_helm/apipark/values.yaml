@@ -1,31 +1,35 @@
 # Default values for apipark
-# This is a YAML-formatted file.
 
 # Global settings
 global:
+  # imageRegistry: "10.11.233.138/rpa/"
   imageRegistry: ""
+  #imagePullSecrets:
+  #  - name: rpasecret
   imagePullSecrets: []
-  storageClass: ""
+  persistence:
+    #storageClass: "rpa-sc-nfs"
+    storageClass: "rpa-local-storage"
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    # subPath: "chad/apipark" # 沒作用
 
 # MySQL Configuration
 mysql:
   enabled: true
   image:
     repository: mysql
-    tag: "8.0.37"
+    # tag: "8.0.37"
+    tag: "8.0"
     pullPolicy: IfNotPresent
   service:
-    type: NodePort # 改為 NodePort 以支援外部連接
+    type: NodePort
     port: 3306
-    nodePort: 31306 # 對應 docker-compose 的端口映射
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessMode: ReadWriteOnce
-    size: 20Gi
+    targetPort: 3306
+    nodePort: 31306
   auth:
-    rootPassword: "123456"
     database: "apipark"
+    rootPassword: "123456"
     username: "root"
     password: "123456"
   resources:
@@ -35,6 +39,8 @@ mysql:
     requests:
       memory: 512Mi
       cpu: 250m
+  persistence:
+    size: 10Gi
 
 # Redis Configuration
 redis:
@@ -46,11 +52,6 @@ redis:
   service:
     type: ClusterIP
     port: 6379
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessMode: ReadWriteOnce
-    size: 5Gi
   auth:
     password: "123456"
   resources:
@@ -60,22 +61,21 @@ redis:
     requests:
       memory: 256Mi
       cpu: 100m
+  persistence:
+    enabled: true
+    size: 5Gi
 
 # InfluxDB Configuration
 influxdb:
   enabled: true
   image:
     repository: influxdb
-    tag: "2.6"
+    # tag: "2.6"
+    tag: "2.7.1"
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
     port: 8086
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessMode: ReadWriteOnce
-    size: 10Gi
   auth:
     username: "admin"
     password: "Key123qaz"
@@ -89,22 +89,20 @@ influxdb:
     requests:
       memory: 512Mi
       cpu: 250m
+  persistence:
+    size: 20Gi
 
 # Loki Configuration
 loki:
-  enabled: true
+  enabled: false
   image:
     repository: grafana/loki
+    # repository: loki
     tag: "3.2.1"
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
     port: 3100
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessMode: ReadWriteOnce
-    size: 10Gi
   resources:
     limits:
       memory: 1Gi
@@ -112,23 +110,20 @@ loki:
     requests:
       memory: 512Mi
       cpu: 250m
+  persistence:
+    size: 20Gi
 
 # Grafana Configuration
 grafana:
-  enabled: true
+  enabled: false
   image:
     repository: grafana/grafana
+    # repository: grafana
     tag: "11.3.2"
     pullPolicy: IfNotPresent
   service:
-    type: NodePort # 改為 NodePort 以支援外部連接
+    type: ClusterIP
     port: 3000
-    nodePort: 31300 # 新增 NodePort 配置
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessMode: ReadWriteOnce
-    size: 5Gi
   auth:
     anonymousEnabled: true
     anonymousOrgRole: "Admin"
@@ -139,20 +134,24 @@ grafana:
     requests:
       memory: 512Mi
       cpu: 250m
+  persistence:
+    enabled: true
+    size: 5Gi
 
 # NSQ Configuration
 nsq:
   enabled: true
   image:
     repository: nsqio/nsq
+    # repository: nsq
     tag: "v1.3.0"
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
     ports:
-      - name: tcp
+      tcp:
         port: 4150
-      - name: http
+      http:
         port: 4151
   resources:
     limits:
@@ -167,23 +166,20 @@ apinto:
   enabled: true
   image:
     repository: eolinker/apinto-gateway
+    # repository: apinto-gateway
     tag: "0.22.11"
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
-    port: 8099 # 主要 HTTP 端口
+    # type: ClusterIP
+    type: NodePort
+    port: 8099 # 主要 HTTP 端口 (http)
+    targetPort: 8099
+    nodePort: 31899
     ports:
-      - name: http
-        port: 8099
-      - name: admin
+      admin:
         port: 9400
-      - name: metrics
+      metrics:
         port: 9401
-  persistence:
-    enabled: true
-    storageClass: ""
-    accessMode: ReadWriteOnce
-    size: 5Gi
   resources:
     limits:
       memory: 1Gi
@@ -191,19 +187,24 @@ apinto:
     requests:
       memory: 512Mi
       cpu: 250m
+  persistence:
+    enabled: true
+    size: 5Gi
 
 # APIPark Main Application Configuration
 apipark:
   enabled: true
   image:
     repository: apipark/apipark
+    # repository: apipark
     # tag: "v1.9.5-beta-0911"
-    tag: "v1.9.5-beta"
+    tag: "v1.9.3-beta"
     pullPolicy: IfNotPresent
   service:
-    type: NodePort # 改為 NodePort 以支援外部連接
+    type: NodePort
     port: 8288
-    nodePort: 31288 # 對應 docker-compose 的端口映射
+    targetPort: 8288
+    nodePort: 31288
   replicaCount: 1
   env:
     MYSQL_USER_NAME: "root"
@@ -219,11 +220,11 @@ apipark:
     REDIS_ADDR: "apipark-redis:6379"
     REDIS_PWD: "123456"
     ADMIN_PASSWORD: "aToh0eag"
-    Init: "true"
+    Init: "true" # pod 啟動關鍵參數
     InfluxdbToken: "dQ9>fK6&gJ"
   resources:
     limits:
-      memory: 2Gi
+      memory: 4Gi
       cpu: 1000m
     requests:
       memory: 1Gi
@@ -236,17 +237,18 @@ serviceAccount:
   name: ""
 
 # Pod Security Context
-podSecurityContext:
-  fsGroup: 2000
+# podSecurityContext:
+#   fsGroup: 1000
 
 # Security Context
-securityContext:
-  capabilities:
-    drop:
-      - ALL
-  readOnlyRootFilesystem: false
-  runAsNonRoot: false
-  runAsUser: 0
+# securityContext:
+#   capabilities:
+#     drop:
+#       - ALL
+#   # readOnlyRootFilesystem: false
+#   runAsNonRoot: true
+#   runAsUser: 1000
+#   runAsGroup: 1000
 
 # Node Selector
 nodeSelector: {}

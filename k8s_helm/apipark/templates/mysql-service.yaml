@@ -5,12 +5,14 @@ metadata:
   name: {{ include "apipark.mysql.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: mysql
+    app.kubernetes.io/component: mysql
 spec:
   type: {{ .Values.mysql.service.type }}
   ports:
     - port: {{ .Values.mysql.service.port }}
-      targetPort: mysql
+      {{- if .Values.mysql.service.targetPort }}
+      targetPort: {{ .Values.mysql.service.targetPort }}
+      {{- end }}
       protocol: TCP
       name: mysql
       {{- if eq .Values.mysql.service.type "NodePort" }}
@@ -18,5 +20,5 @@ spec:
       {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: mysql
+    app.kubernetes.io/component: mysql
 {{- end }}

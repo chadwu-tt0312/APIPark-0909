@@ -5,14 +5,14 @@ metadata:
   name: {{ include "apipark.grafana.fullname" . }}-pvc
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: grafana
+    app.kubernetes.io/component: grafana
 spec:
   accessModes:
-    - {{ .Values.grafana.persistence.accessMode }}
+    - {{ .Values.global.persistence.accessMode }}
   resources:
     requests:
       storage: {{ .Values.grafana.persistence.size }}
-  {{- if .Values.grafana.persistence.storageClass }}
-  storageClassName: {{ .Values.grafana.persistence.storageClass }}
+  {{- if .Values.global.persistence.storageClass }}
+  storageClassName: {{ .Values.global.persistence.storageClass }}
   {{- end }}
 {{- end }}

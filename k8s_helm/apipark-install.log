@@ -1,0 +1,1096 @@
+NAME: apipark
+LAST DEPLOYED: Thu Oct  2 17:11:05 2025
+NAMESPACE: default
+STATUS: pending-install
+REVISION: 1
+TEST SUITE: None
+USER-SUPPLIED VALUES:
+{}
+
+COMPUTED VALUES:
+affinity: {}
+apinto:
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: eolinker/apinto-gateway
+    tag: 0.22.11
+  persistence:
+    enabled: true
+    size: 5Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+  service:
+    nodePort: 31899
+    port: 8099
+    ports:
+      admin:
+        port: 9400
+      metrics:
+        port: 9401
+    targetPort: 8099
+    type: NodePort
+apipark:
+  enabled: true
+  env:
+    ADMIN_PASSWORD: aToh0eag
+    ERROR_DIR: work/logs
+    ERROR_EXPIRE: 7d
+    ERROR_FILE_NAME: error.log
+    ERROR_LOG_LEVEL: info
+    ERROR_PERIOD: day
+    InfluxdbToken: dQ9>fK6&gJ
+    Init: "true"
+    MYSQL_DB: apipark
+    MYSQL_IP: apipark-mysql
+    MYSQL_PORT: "3306"
+    MYSQL_PWD: "123456"
+    MYSQL_USER_NAME: root
+    REDIS_ADDR: apipark-redis:6379
+    REDIS_PWD: "123456"
+  image:
+    pullPolicy: IfNotPresent
+    repository: apipark/apipark
+    tag: v1.9.3-beta
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  service:
+    nodePort: 31288
+    port: 8288
+    targetPort: 8288
+    type: NodePort
+global:
+  imagePullSecrets: []
+  imageRegistry: ""
+  persistence:
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    storageClass: rpa-local-storage
+grafana:
+  auth:
+    anonymousEnabled: true
+    anonymousOrgRole: Admin
+  enabled: false
+  image:
+    pullPolicy: IfNotPresent
+    repository: grafana/grafana
+    tag: 11.3.2
+  persistence:
+    enabled: true
+    size: 5Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+  service:
+    port: 3000
+    type: ClusterIP
+influxdb:
+  auth:
+    bucket: apinto
+    org: apipark
+    password: Key123qaz
+    token: dQ9>fK6&gJ
+    username: admin
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: influxdb
+    tag: 2.7.1
+  persistence:
+    size: 20Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+  service:
+    port: 8086
+    type: ClusterIP
+loki:
+  enabled: false
+  image:
+    pullPolicy: IfNotPresent
+    repository: grafana/loki
+    tag: 3.2.1
+  persistence:
+    size: 20Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+  service:
+    port: 3100
+    type: ClusterIP
+mysql:
+  auth:
+    database: apipark
+    password: "123456"
+    rootPassword: "123456"
+    username: root
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: mysql
+    tag: "8.0"
+  persistence:
+    size: 10Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+  service:
+    nodePort: 31306
+    port: 3306
+    targetPort: 3306
+    type: NodePort
+nodeSelector: {}
+nsq:
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: nsqio/nsq
+    tag: v1.3.0
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  service:
+    ports:
+      http:
+        port: 4151
+      tcp:
+        port: 4150
+    type: ClusterIP
+redis:
+  auth:
+    password: "123456"
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: redis
+    tag: 7.2.4
+  persistence:
+    enabled: true
+    size: 5Gi
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  service:
+    port: 6379
+    type: ClusterIP
+serviceAccount:
+  annotations: {}
+  create: true
+  name: ""
+tolerations: []
+
+HOOKS:
+MANIFEST:
+---
+# Source: apipark/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: apipark
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: apipark/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: apipark-secret
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  # MySQL passwords
+  mysql-root-password: "MTIzNDU2"
+  mysql-password: "MTIzNDU2"
+  
+  # Redis password
+  redis-password: "MTIzNDU2"
+  
+  # InfluxDB credentials
+  influxdb-username: "YWRtaW4="
+  influxdb-password: "S2V5MTIzcWF6"
+  influxdb-token: "ZFE5PmZLNiZnSg=="
+  
+  # APIPark admin password
+  apipark-admin-password: "YVRvaDBlYWc="
+---
+# Source: apipark/templates/configmap.yaml
+# 共享配置 ConfigMap - 包含跨組件共享的配置
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apipark-config
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: config
+data:
+  # Loki Configuration
+  loki-config.yaml: |
+    auth_enabled: false
+
+    server:
+      http_listen_port: 3100
+      grpc_listen_port: 9096
+
+    common:
+      instance_addr: 127.0.0.1
+      path_prefix: /tmp/loki
+      storage:
+        filesystem:
+          chunks_directory: /tmp/loki/chunks
+          rules_directory: /tmp/loki/rules
+      replication_factor: 1
+      ring:
+        kvstore:
+          store: inmemory
+
+    query_range:
+      results_cache:
+        cache:
+          embedded_cache:
+            enabled: true
+            max_size_mb: 100
+
+    schema_config:
+      configs:
+        - from: 2020-10-24
+          store: tsdb
+          object_store: filesystem
+          schema: v13
+          index:
+            prefix: index_
+            period: 24h
+
+    limits_config:
+      max_query_length: 90d
+
+    ruler:
+      alertmanager_url: http://localhost:9093
+
+    table_manager:
+      retention_period: 90d
+
+  # Grafana Datasource Configuration
+  grafana-datasource.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://apipark-loki:3100
+
+  # Apinto Gateway Configuration
+  config.yml: |
+    version: 2
+    client:
+      advertise_urls: # open api 服務的廣播位址
+        - http://0.0.0.0:9400
+      listen_urls: # open api 服務的監聽位址
+        - http://0.0.0.0:9400
+    gateway:
+      advertise_urls: # 轉送服務的廣播位址
+        - http://0.0.0.0:8099
+      listen_urls: # 轉送服務的監聽位址
+        - http://0.0.0.0:8099
+    peer: # 集群間節點通訊設定資訊
+      listen_urls: # 節點監聽位址
+        - http://0.0.0.0:9401
+      advertise_urls: # 節點通訊廣播位址
+        - http://0.0.0.0:9401
+
+  # MySQL Initialization Script
+  # mysql-init.sql: |
+  #   -- 確保資料庫存在
+  #   CREATE DATABASE IF NOT EXISTS apipark;
+    
+  #   -- 確保 root 用戶有正確的權限
+  #   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+  #   ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+    
+  #   -- 刷新權限
+  #   FLUSH PRIVILEGES;
+    
+  #   -- 顯示資料庫狀態
+  #   SHOW DATABASES;
+---
+# Source: apipark/templates/pv-apinto-data.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-apinto-data-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/apinto/data
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/pv-apinto-log.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-apinto-log-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/apinto/log
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/pv-grafana.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-grafana-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/grafana
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/pv-influxdb.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-influxdb-pv
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/influxdb
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/pv-loki.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-loki-pv
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/loki
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/pv-mysql.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-mysql-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/mysql
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/pv-redis.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-redis-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/redis
+    type: DirectoryOrCreate
+---
+# Source: apipark/templates/apinto-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apipark-apinto-data-pvc
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apinto
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: rpa-local-storage
+---
+# Source: apipark/templates/apinto-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apipark-apinto-log-pvc
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apinto
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: rpa-local-storage
+---
+# Source: apipark/templates/redis-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apipark-redis-pvc
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: redis
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: rpa-local-storage
+---
+# Source: apipark/templates/apinto-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: apipark-apinto
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apinto
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8099
+      targetPort: 8099
+      protocol: TCP
+      nodePort: 31899
+    - name: admin
+      port: 9400
+      protocol: TCP
+      nodePort: 
+    - name: metrics
+      port: 9401
+      protocol: TCP
+      nodePort: 
+  selector:
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/component: apinto
+---
+# Source: apipark/templates/apipark-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: apipark
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apipark
+spec:
+  type: NodePort
+  ports:
+    - port: 8288
+      targetPort: 8288
+      protocol: TCP
+      name: http
+      nodePort: 31288
+  selector:
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/component: apipark
+---
+# Source: apipark/templates/influxdb-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: apipark-influxdb
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: influxdb
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8086
+      protocol: TCP
+      name: influxdb
+  selector:
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/component: influxdb
+---
+# Source: apipark/templates/mysql-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: apipark-mysql
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: mysql
+spec:
+  type: NodePort
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+      name: mysql
+      nodePort: 31306
+  selector:
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/component: mysql
+---
+# Source: apipark/templates/nsq-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: apipark-nsq
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: nsq
+spec:
+  type: ClusterIP
+  ports:
+    - name: tcp
+      port: 4150
+      protocol: TCP
+    - name: http
+      port: 4151
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/component: nsq
+---
+# Source: apipark/templates/redis-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: apipark-redis
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: redis
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      protocol: TCP
+      name: redis
+  selector:
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/component: redis
+---
+# Source: apipark/templates/apinto-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apipark-apinto
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apinto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: apinto
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: apinto
+    spec:
+      containers:
+        - name: apinto
+          image: "eolinker/apinto-gateway:0.22.11"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort:  8099
+              protocol: TCP
+            - name: admin
+              containerPort: 9400
+              protocol: TCP
+            - name: metrics
+              containerPort: 9401
+              protocol: TCP
+          volumeMounts:
+            - name: apinto-data
+              mountPath: /var/lib/apinto
+            - name: apinto-log
+              mountPath: /var/log/apinto
+            - name: apinto-config
+              mountPath: /etc/apinto
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+      volumes:
+        - name: apinto-data
+          persistentVolumeClaim:
+            claimName: apipark-apinto-data-pvc
+        - name: apinto-log
+          persistentVolumeClaim:
+            claimName: apipark-apinto-log-pvc
+        - name: apinto-config
+          configMap:
+            name: apipark-config
+---
+# Source: apipark/templates/apipark-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apipark
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apipark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: apipark
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: apipark
+    spec:
+      # initContainers:
+      #   - name: wait-mysql
+      #     image: "busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-mysql 3306; do echo waiting for mysql; sleep 2; done;']
+      #   - name: wait-redis
+      #     image: "busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-redis 6379; do echo waiting for redis; sleep 2; done;']
+      #   - name: wait-influxdb
+      #     image: "busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-influxdb 8086; do echo waiting for redis; sleep 2; done;']
+      #   - name: wait-apinto
+      #     image: "busybox"
+      #     command: ['sh', '-c', 'until nc -z apipark-apinto 9400; do echo waiting for redis; sleep 2; done;']
+      # serviceAccountName: apipark
+      containers:
+        - name: apipark
+          image: "apipark/apipark:v1.9.3-beta"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8288
+              protocol: TCP
+          env:
+            - name: MYSQL_USER_NAME
+              value: "root"
+            - name: MYSQL_PWD
+              value: "123456"
+            - name: MYSQL_IP
+              value: "apipark-mysql"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DB
+              value: "apipark"
+            - name: ERROR_DIR
+              value: "work/logs"
+            - name: ERROR_FILE_NAME
+              value: "error.log"
+            - name: ERROR_LOG_LEVEL
+              value: "info"
+            - name: ERROR_EXPIRE
+              value: "7d"
+            - name: ERROR_PERIOD
+              value: "day"
+            - name: REDIS_ADDR
+              value: "apipark-redis:6379"
+            - name: REDIS_PWD
+              value: "123456"
+            - name: ADMIN_PASSWORD
+              value: "aToh0eag"
+            - name: Init
+              value: "true"
+            - name: InfluxdbToken
+              value: "dQ9>fK6&gJ"
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 4Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+---
+# Source: apipark/templates/nsq-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apipark-nsq
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: nsq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: nsq
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: nsq
+    spec:
+      containers:
+        - name: nsq
+          image: "nsqio/nsq:v1.3.0"
+          imagePullPolicy: IfNotPresent
+          command:
+            - /nsqd
+          ports:
+            - name: tcp
+              containerPort: 4150
+              protocol: TCP
+            - name: http
+              containerPort: 4151
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+---
+# Source: apipark/templates/redis-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apipark-redis
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: redis
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: redis
+    spec:
+      containers:
+        - name: redis
+          image: "redis:7.2.4"
+          imagePullPolicy: IfNotPresent
+          command:
+            - redis-server
+            - --protected-mode
+            - "yes"
+            - --logfile
+            - redis.log
+            - --appendonly
+            - "no"
+            - --port
+            - "6379"
+            - --requirepass
+            - "123456"
+          ports:
+            - name: redis
+              containerPort: 6379
+              protocol: TCP
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: apipark-redis-pvc
+---
+# Source: apipark/templates/influxdb-statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: apipark-influxdb
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: influxdb
+spec:
+  serviceName: apipark-influxdb
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: influxdb
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: influxdb
+    spec:
+      containers:
+        - name: influxdb
+          image: "influxdb:2.7.1"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: influxdb
+              containerPort: 8086
+              protocol: TCP
+          env:
+            - name: DOCKER_INFLUXDB_INIT_USERNAME
+              value: "admin"
+            - name: DOCKER_INFLUXDB_INIT_PASSWORD
+              value: "Key123qaz"
+            - name: DOCKER_INFLUXDB_INIT_ORG
+              value: "apipark"
+            - name: DOCKER_INFLUXDB_INIT_BUCKET
+              value: "apinto"
+            - name: DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+              value: "dQ9>fK6&gJ"
+            - name: DOCKER_INFLUXDB_INIT_MODE
+              value: "setup"
+          volumeMounts:
+            - name: influxdb-data
+              mountPath: /var/lib/influxdb2
+            - name: influxdb-config
+              mountPath: /etc/influxdb2
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+      volumes:
+        - name: influxdb-config
+          emptyDir: {}
+  volumeClaimTemplates:
+    - metadata:
+        name: influxdb-data
+      spec:
+        accessModes: 
+        - ReadWriteOnce
+        storageClassName: rpa-local-storage
+        resources:
+          requests:
+            storage: 20Gi
+---
+# Source: apipark/templates/mysql-statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: apipark-mysql
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: mysql
+spec:
+  serviceName: apipark-mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: mysql
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: "mysql:8.0"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "--character-set-server=utf8mb4"
+            - "--collation-server=utf8mb4_unicode_ci"
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: apipark-secret
+                  key: mysql-root-password
+            - name: MYSQL_DATABASE
+              value: "apipark"
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            # - name: mysql-init
+            #   mountPath: /docker-entrypoint-initdb.d
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 512Mi          
+      # volumes:
+      #   - name: mysql-init
+      #     configMap:
+      #       name: apipark-config
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-data
+      spec:
+        accessModes: 
+        - ReadWriteOnce
+        storageClassName: rpa-local-storage
+        resources:
+          requests:
+            storage: 10Gi
+

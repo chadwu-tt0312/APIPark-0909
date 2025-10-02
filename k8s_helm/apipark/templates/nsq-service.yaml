@@ -5,19 +5,23 @@ metadata:
   name: {{ include "apipark.nsq.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: nsq
+    app.kubernetes.io/component: nsq
 spec:
   type: {{ .Values.nsq.service.type }}
   ports:
     - name: tcp
-      port: 4150
-      targetPort: tcp
+      port: {{ .Values.nsq.service.ports.tcp.port }}
+      {{- if .Values.nsq.service.ports.tcp.targetPort }}
+      targetPort: {{ .Values.nsq.service.ports.tcp.targetPort }}
+      {{- end }}
       protocol: TCP
     - name: http
-      port: 4151
-      targetPort: http
+      port: {{ .Values.nsq.service.ports.http.port }}
+      {{- if .Values.nsq.service.ports.http.targetPort }}
+      targetPort: {{ .Values.nsq.service.ports.http.targetPort }}
+      {{- end }}
       protocol: TCP
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: nsq
+    app.kubernetes.io/component: nsq
 {{- end }}

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-redis-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs/redis
+    type: DirectoryOrCreate

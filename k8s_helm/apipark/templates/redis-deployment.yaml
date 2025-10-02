@@ -5,26 +5,30 @@ metadata:
   name: {{ include "apipark.redis.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: redis
+    app.kubernetes.io/component: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
       {{- include "apipark.selectorLabels" . | nindent 6 }}
-      component: redis
+      app.kubernetes.io/component: redis
   template:
     metadata:
       labels:
         {{- include "apipark.selectorLabels" . | nindent 8 }}
-        component: redis
+        app.kubernetes.io/component: redis
     spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
         - name: redis
-          image: "{{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag }}"
+          image: "{{ .Values.global.imageRegistry }}{{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag }}"
           imagePullPolicy: {{ .Values.redis.image.pullPolicy }}
           command:
             - redis-server
@@ -35,12 +39,12 @@ spec:
             - --appendonly
             - "no"
             - --port
-            - "6379"
+            - "{{ .Values.redis.service.port }}"
             - --requirepass
             - "{{ .Values.redis.auth.password }}"
           ports:
             - name: redis
-              containerPort: 6379
+              containerPort: {{ .Values.redis.service.port }}
               protocol: TCP
           volumeMounts:
             - name: redis-data
@@ -49,30 +53,6 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          livenessProbe:
-            exec:
-              command:
-                - redis-cli
-                - -a
-                - "{{ .Values.redis.auth.password }}"
-                - ping
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
-          readinessProbe:
-            exec:
-              command:
-                - redis-cli
-                - -a
-                - "{{ .Values.redis.auth.password }}"
-                - ping
-            initialDelaySeconds: 5
-            periodSeconds: 2
-            timeoutSeconds: 1
-            successThreshold: 1
-            failureThreshold: 3
       volumes:
         - name: redis-data
           {{- if .Values.redis.persistence.enabled }}

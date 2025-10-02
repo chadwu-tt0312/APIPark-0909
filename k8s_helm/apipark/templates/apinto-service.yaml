@@ -5,23 +5,38 @@ metadata:
   name: {{ include "apipark.apinto.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: apinto
+    app.kubernetes.io/component: apinto
 spec:
   type: {{ .Values.apinto.service.type }}
   ports:
     - name: http
-      port: 8099
-      targetPort: http
+      port: {{ .Values.apinto.service.port }}
+      {{- if .Values.apinto.service.targetPort }}
+      targetPort: {{ .Values.apinto.service.targetPort }}
+      {{- end }}
       protocol: TCP
+      {{- if eq .Values.apinto.service.type "NodePort" }}
+      nodePort: {{ .Values.apinto.service.nodePort }}
+      {{- end }}
     - name: admin
-      port: 9400
-      targetPort: admin
+      port: {{ .Values.apinto.service.ports.admin.port }}
+      {{- if .Values.apinto.service.ports.admin.targetPort }}
+      targetPort: {{ .Values.apinto.service.ports.admin.targetPort }}
+      {{- end }}
       protocol: TCP
+      {{- if eq .Values.apinto.service.type "NodePort" }}
+      nodePort: {{ .Values.apinto.service.ports.admin.nodePort }}
+      {{- end }}
     - name: metrics
-      port: 9401
-      targetPort: metrics
+      port: {{ .Values.apinto.service.ports.metrics.port }}
+      {{- if .Values.apinto.service.ports.metrics.targetPort }}
+      targetPort: {{ .Values.apinto.service.ports.metrics.targetPort }}
+      {{- end }}
       protocol: TCP
+      {{- if eq .Values.apinto.service.type "NodePort" }}
+      nodePort: {{ .Values.apinto.service.ports.metrics.nodePort }}
+      {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: apinto
+    app.kubernetes.io/component: apinto
 {{- end }}

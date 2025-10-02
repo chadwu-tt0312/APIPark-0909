@@ -1,0 +1,85 @@
+mysql:
+  user_name: root
+  password: 123456
+  ip: apipark-mysql
+  port: 3306
+  db: apipark
+redis:
+  user_name: 
+  password: 123456
+  addr: 
+    - apipark-redis:6379
+nsq:
+  addr: apipark-nsq:4150
+  topic_prefix: apipark
+port: 8288
+error_log:
+  dir: work/logs
+  file_name: error.log
+  log_level: info
+  log_expire: 7d
+  log_period: day
+curl -s -o /dev/null http://127.0.0.1:8288/api/v1/account/login
+[95m⏳ Waiting:[0m Waiting for apipark to start...
+[92m✔ Passed:[0m apipark has been installed successfully
+[96mℹ Info:[0m Executing: curl -X POST -s -i -H "Content-Type: application/json" -d '{"name":"admin","password":"aToh0eag"}' "http://127.0.0.1:8288/api/v1/account/login/username"
+[92m✔ Passed:[0m login success
+[96mℹ Info:[0m Executing: curl -X GET -s -i -H "Content-Type: application/json" -H "Cookie: session=103cbd06-fb5f-4475-9790-855aa623b0db" -d '' "http://127.0.0.1:8288/api/v1/system/general"
+[92m✔ Passed:[0m No apipark openapi address set
+curl -s -o /dev/null http://apipark-influxdb:8086/api/v2/health
+[95m⏳ Waiting:[0m Waiting for influxdb to start...
+curl -s -o /dev/null http://apipark-apinto:9400/api/router
+[92m✔ Passed:[0m influxdb has been installed successfully
+[95m⏳ Waiting:[0m Waiting for apinto to start...
+[92m✔ Passed:[0m apinto has been installed successfully
+[96mℹ Info:[0m Executing: curl -X PUT -s -i -H "Content-Type: application/json" -H "Cookie: session=103cbd06-fb5f-4475-9790-855aa623b0db" -d '{"manager_address":"http://apipark-apinto:9400"}' "http://127.0.0.1:8288/api/v1/cluster/reset"
+curl -s -o /dev/null http://apipark-influxdb:8086/api/v2/health
+[92m✔ Passed:[0m Set cluster successfully
+[95m⏳ Waiting:[0m Waiting for influxdb to start...
+[92m✔ Passed:[0m influxdb has been installed successfully
+[96mℹ Info:[0m Executing: curl -X POST -s -i -H "Content-Type: application/json" -H "Cookie: session=103cbd06-fb5f-4475-9790-855aa623b0db" -d '{"driver":"influxdb-v2","config":{"addr":"http://apipark-influxdb:8086","org":"apipark","token":"dQ9>fK6&gJ"}}' "http://127.0.0.1:8288/api/v1/monitor/config"
+[92m✔ Passed:[0m Update influxdb config successfully
+[96mℹ Info:[0m Executing: curl -X POST -s -i -H "Content-Type: application/json" -H "Cookie: session=103cbd06-fb5f-4475-9790-855aa623b0db" -d '{"config":{"url":"http://apipark-loki:3100"}}' "http://127.0.0.1:8288/api/v1/log/loki"
+[92m✔ Passed:[0m Set loki successfully
+[96mℹ Info:[0m Executing: curl -i -X POST -H "Content-Type: application/json" "http://apipark-apinto:9400/api/output/ai_event" -d '{
+          "address": [
+              "apipark-nsq:4150"
+          ],
+          "description": "auto init nsqd config",
+          "driver": "nsqd",
+          "formatter": {
+              "ai": [
+                  "$ai_provider",
+                  "$ai_model",
+                  "$ai_model_input_token",
+                  "$ai_model_output_token",
+                  "$ai_model_total_token",
+                  "$ai_model_cost",
+                  "$ai_provider_statuses"
+              ],
+              "fields": [
+                  "$time_iso8601",
+                  "$request_id",
+                  "$api",
+                  "$provider",
+                  "@ai"
+              ]
+          },
+          "scopes": [
+              "access_log"
+          ],
+          "topic": "apipark_ai_event",
+          "type": "json"
+      }'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1369  100   546  100   823   158k   239k --:--:-- --:--:-- --:--:--  668k
+[96mℹ Info:[0m HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Wed, 24 Sep 2025 06:53:08 GMT
+Content-Length: 546
+Connection: close
+
+{"address":["apipark-nsq:4150"],"create":"2025-09-24 14:45:32","description":"auto init nsqd config","driver":"nsqd","formatter":{"ai":["$ai_provider","$ai_model","$ai_model_input_token","$ai_model_output_token","$ai_model_total_token","$ai_model_cost","$ai_provider_statuses"],"fields":["$time_iso8601","$request_id","$api","$provider","@ai"]},"id":"ai_event@output","matches":null,"name":"ai_event","profession":"output","scopes":["access_log"],"topic":"apipark_ai_event","type":"json","update":"2025-09-24 14:53:08","version":"20250924145308"}
+[92m✔ Passed:[0m Update nsq successfully
+Status code: 200

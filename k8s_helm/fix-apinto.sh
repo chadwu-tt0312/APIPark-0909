@@ -46,7 +46,7 @@ kubectl logs -l component=apinto --tail=20
 
 # 6. 檢查配置
 print_message "檢查 Apinto 配置..."
-kubectl get configmap apipark-shared-config -o yaml
+kubectl get configmap apipark-config -o yaml
 
 # 7. 測試連接
 print_message "測試 Apinto 連接..."

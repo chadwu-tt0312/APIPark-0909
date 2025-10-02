@@ -5,14 +5,14 @@ metadata:
   name: {{ include "apipark.redis.fullname" . }}-pvc
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: redis
+    app.kubernetes.io/component: redis
 spec:
   accessModes:
-    - {{ .Values.redis.persistence.accessMode }}
+    - {{ .Values.global.persistence.accessMode }}
   resources:
     requests:
       storage: {{ .Values.redis.persistence.size }}
-  {{- if .Values.redis.persistence.storageClass }}
-  storageClassName: {{ .Values.redis.persistence.storageClass }}
+  {{- if .Values.global.persistence.storageClass }}
+  storageClassName: {{ .Values.global.persistence.storageClass }}
   {{- end }}
 {{- end }}

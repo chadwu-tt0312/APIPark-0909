@@ -5,15 +5,20 @@ metadata:
   name: {{ include "apipark.influxdb.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: influxdb
+    app.kubernetes.io/component: influxdb
 spec:
   type: {{ .Values.influxdb.service.type }}
   ports:
     - port: {{ .Values.influxdb.service.port }}
-      targetPort: influxdb
+      {{- if .Values.influxdb.service.targetPort }}
+      targetPort: {{ .Values.influxdb.service.targetPort }}
+      {{- end }}
       protocol: TCP
       name: influxdb
+      {{- if eq .Values.influxdb.service.type "NodePort" }}
+      nodePort: {{ .Values.influxdb.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: influxdb
+    app.kubernetes.io/component: influxdb
 {{- end }}

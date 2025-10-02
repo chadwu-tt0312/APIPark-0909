@@ -5,12 +5,14 @@ metadata:
   name: {{ include "apipark.grafana.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: grafana
+    app.kubernetes.io/component: grafana
 spec:
   type: {{ .Values.grafana.service.type }}
   ports:
     - port: {{ .Values.grafana.service.port }}
-      targetPort: grafana
+      {{- if .Values.grafana.service.targetPort }}
+      targetPort: {{ .Values.grafana.service.targetPort }}
+      {{- end }}
       protocol: TCP
       name: grafana
       {{- if eq .Values.grafana.service.type "NodePort" }}
@@ -18,5 +20,5 @@ spec:
       {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: grafana
+    app.kubernetes.io/component: grafana
 {{- end }}

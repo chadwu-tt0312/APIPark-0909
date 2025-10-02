@@ -9,10 +9,10 @@ keywords:
   - management
   - gateway
   - microservices
-home: https://github.com/APIPark-0909
+home: https://github.com/APIParkLab/APIPark
 sources:
-  - https://github.com/APIPark-0909
+  - https://github.com/APIParkLab/APIPark
 maintainers:
   - name: APIPark Team
-    email: support@apipark.com
+    email: contact@apipark.com
 dependencies: []

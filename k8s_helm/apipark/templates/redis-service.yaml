@@ -5,15 +5,20 @@ metadata:
   name: {{ include "apipark.redis.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: redis
+    app.kubernetes.io/component: redis
 spec:
   type: {{ .Values.redis.service.type }}
   ports:
     - port: {{ .Values.redis.service.port }}
-      targetPort: redis
+      {{- if .Values.redis.service.targetPort }}
+      targetPort: {{ .Values.redis.service.targetPort }}
+      {{- end }}
       protocol: TCP
       name: redis
+      {{- if eq .Values.redis.service.type "NodePort" }}
+      nodePort: {{ .Values.redis.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: redis
+    app.kubernetes.io/component: redis
 {{- end }}

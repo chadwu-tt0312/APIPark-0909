@@ -5,15 +5,20 @@ metadata:
   name: {{ include "apipark.loki.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: loki
+    app.kubernetes.io/component: loki
 spec:
   type: {{ .Values.loki.service.type }}
   ports:
     - port: {{ .Values.loki.service.port }}
-      targetPort: loki
+      {{- if .Values.loki.service.targetPort }}
+      targetPort: {{ .Values.loki.service.targetPort }}
+      {{- end }}
       protocol: TCP
       name: loki
+      {{- if eq .Values.loki.service.type "NodePort" }}
+      nodePort: {{ .Values.loki.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "apipark.selectorLabels" . | nindent 4 }}
-    component: loki
+    app.kubernetes.io/component: loki
 {{- end }}

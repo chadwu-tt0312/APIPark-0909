@@ -1,0 +1,80 @@
+Name:         apipark-69f59b6c48-rs76c
+Namespace:    rpa2
+Priority:     0
+Node:         smgrpatest02/10.11.109.93
+Start Time:   Thu, 25 Sep 2025 13:59:38 +0800
+Labels:       app.kubernetes.io/component=apipark
+              app.kubernetes.io/instance=apipark
+              app.kubernetes.io/name=apipark
+              pod-template-hash=69f59b6c48
+Annotations:  kubectl.kubernetes.io/restartedAt: 2025-09-25T05:59:38Z
+Status:       Running
+IP:           10.4.0.74
+IPs:
+  IP:           10.4.0.74
+Controlled By:  ReplicaSet/apipark-69f59b6c48
+Containers:
+  apipark:
+    Container ID:   containerd://194055f83b0cda906ac399f18443633177024f325d33a2edeb1d603c0e3dee67
+    Image:          10.11.233.138/rpa/apipark:v1.9.3-beta
+    Image ID:       10.11.233.138/rpa/apipark@sha256:1cc47d3cf27062dcd37d1322980513552b001b6a9a9ac99a46fe58cdcde7be66
+    Port:           8288/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Thu, 25 Sep 2025 14:07:08 +0800
+      Finished:     Thu, 25 Sep 2025 14:07:25 +0800
+    Ready:          False
+    Restart Count:  6
+    Limits:
+      cpu:     1
+      memory:  4Gi
+    Requests:
+      cpu:     500m
+      memory:  1Gi
+    Environment:
+      MYSQL_USER_NAME:  root
+      MYSQL_PWD:        123456
+      MYSQL_IP:         apipark-mysql
+      MYSQL_PORT:       3306
+      MYSQL_DB:         apipark
+      ERROR_DIR:        work/logs
+      ERROR_FILE_NAME:  error.log
+      ERROR_LOG_LEVEL:  info
+      ERROR_EXPIRE:     7d
+      ERROR_PERIOD:     day
+      REDIS_ADDR:       apipark-redis:6379
+      REDIS_PWD:        123456
+      ADMIN_PASSWORD:   aToh0eag
+      Init:             true
+      InfluxdbToken:    dQ9>fK6&gJ
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-lx45h (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-lx45h:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                     From               Message
+  ----     ------     ----                    ----               -------
+  Normal   Scheduled  8m31s                   default-scheduler  Successfully assigned rpa2/apipark-69f59b6c48-rs76c to smgrpatest02
+  Normal   Pulled     5m48s (x5 over 8m32s)   kubelet            Container image "10.11.233.138/rpa/apipark:v1.9.3-beta" already present on machine
+  Normal   Created    5m48s (x5 over 8m32s)   kubelet            Created container apipark
+  Normal   Started    5m48s (x5 over 8m31s)   kubelet            Started container apipark
+  Warning  BackOff    3m24s (x16 over 7m56s)  kubelet            Back-off restarting failed container

@@ -1,0 +1,69 @@
+{{- if .Values.influxdb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "apipark.influxdb.fullname" . }}
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+    app.kubernetes.io/component: influxdb
+spec:
+  serviceName: {{ include "apipark.influxdb.fullname" . }}
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "apipark.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: influxdb
+  template:
+    metadata:
+      labels:
+        {{- include "apipark.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: influxdb
+    spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: influxdb
+          image: "{{ .Values.global.imageRegistry }}{{ .Values.influxdb.image.repository }}:{{ .Values.influxdb.image.tag }}"
+          imagePullPolicy: {{ .Values.influxdb.image.pullPolicy }}
+          ports:
+            - name: influxdb
+              containerPort: {{ .Values.influxdb.service.port }}
+              protocol: TCP
+          env:
+            - name: DOCKER_INFLUXDB_INIT_USERNAME
+              value: {{ .Values.influxdb.auth.username | quote }}
+            - name: DOCKER_INFLUXDB_INIT_PASSWORD
+              value: {{ .Values.influxdb.auth.password | quote }}
+            - name: DOCKER_INFLUXDB_INIT_ORG
+              value: {{ .Values.influxdb.auth.org | quote }}
+            - name: DOCKER_INFLUXDB_INIT_BUCKET
+              value: {{ .Values.influxdb.auth.bucket | quote }}
+            - name: DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+              value: {{ .Values.influxdb.auth.token | quote }}
+            - name: DOCKER_INFLUXDB_INIT_MODE
+              value: "setup"
+          volumeMounts:
+            - name: influxdb-data
+              mountPath: /var/lib/influxdb2
+            - name: influxdb-config
+              mountPath: /etc/influxdb2
+          {{- with .Values.influxdb.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: influxdb-config
+          emptyDir: {}
+  volumeClaimTemplates:
+    - metadata:
+        name: influxdb-data
+      spec:
+        accessModes: 
+        - {{ .Values.global.persistence.accessMode }}
+        storageClassName: {{ .Values.global.persistence.storageClass }}
+        resources:
+          requests:
+            storage: {{ .Values.influxdb.persistence.size }}
+{{- end }}

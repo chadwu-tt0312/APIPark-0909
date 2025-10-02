@@ -1,0 +1,76 @@
+/apipark # ./test-openapi.sh 
++ Cookie=
++ '[['  '=='  ]]
++ ApiparkAddress=http://127.0.0.1:8288
++ set_openapi_config
++ dig +short myip.opendns.com @resolver1.opendns.com
++ grep -E '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'
++ IP=
++ '[' -z  ]
++ echo_fail 'Failed to resolve IP address'
++ printf '\e[91m✘ Error:\e[0m Failed to resolve IP address\n'
+✘ Error: Failed to resolve IP address
++ IP=127.0.0.1
++ body='{"site_prefix":"http://127.0.0.1:8288"}'
++ request_apipark /api/v1/system/general '{"site_prefix":"http://127.0.0.1:8288"}'
++ path=/api/v1/system/general
++ body='{"site_prefix":"http://127.0.0.1:8288"}'
++ method=
++ '[['  '=='  ]]
++ method=POST
++ '[['  '=='  ]]
++ cmd='curl -X POST -s -i -H "Content-Type: application/json" -d '"'"'{"site_prefix":"http://127.0.0.1:8288"}'"'"' "http://127.0.0.1:8288/api/v1/system/general"'
++ echo_info 'Executing: curl -X POST -s -i -H "Content-Type: application/json" -d '"'"'{"site_prefix":"http://127.0.0.1:8288"}'"'"' "http://127.0.0.1:8288/api/v1/system/general"'
++ printf '\e[96mℹ Info:\e[0m Executing: curl -X POST -s -i -H "Content-Type: application/json" -d '"'"'{"site_prefix":"http://127.0.0.1:8288"}'"'"' "http://127.0.0.1:8288/api/v1/system/general"\n'
+ℹ Info: Executing: curl -X POST -s -i -H "Content-Type: application/json" -d '{"site_prefix":"http://127.0.0.1:8288"}' "http://127.0.0.1:8288/api/v1/system/general"
++ eval 'curl -X POST -s -i -H "Content-Type: application/json" -d '"'"'{"site_prefix":"http://127.0.0.1:8288"}'"'"' "http://127.0.0.1:8288/api/v1/system/general"'
++ curl -X POST -s -i -H 'Content-Type: application/json' -d '{"site_prefix":"http://127.0.0.1:8288"}' http://127.0.0.1:8288/api/v1/system/general
++ response='HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}'
++ echo 'HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}'
++ response='HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}'
++ echo 'HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}'
++ grep -o '"code":[0-9]*'
++ head -1
++ sed 's/[^0-9]*//g'
++ code=401
++ '[[' 401 '=~' '^[0-9]+$' ]]
++ '[' 401 -eq 0 ]
++ echo_fail 'Update apipark openapi address failed: HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}'
++ printf '\e[91m✘ Error:\e[0m Update apipark openapi address failed: HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}\n'
+✘ Error: Update apipark openapi address failed: HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+Date: Fri, 26 Sep 2025 02:30:56 GMT
+Content-Length: 30
+
+{"code":401,"msg":"not login"}
++ exit 1

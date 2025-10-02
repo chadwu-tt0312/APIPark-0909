@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: apipark-pv
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: rpa-local-storage
+  hostPath:
+    path: /mnt/d/__FreeSpace/_chadwu0973/\!_Mount/nfs
+    type: DirectoryOrCreate

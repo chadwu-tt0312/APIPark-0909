@@ -5,26 +5,30 @@ metadata:
   name: {{ include "apipark.grafana.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
-    component: grafana
+    app.kubernetes.io/component: grafana
 spec:
   replicas: 1
   selector:
     matchLabels:
       {{- include "apipark.selectorLabels" . | nindent 6 }}
-      component: grafana
+      app.kubernetes.io/component: grafana
   template:
     metadata:
       labels:
         {{- include "apipark.selectorLabels" . | nindent 8 }}
-        component: grafana
+        app.kubernetes.io/component: grafana
     spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
         - name: grafana
-          image: "{{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}"
+          image: "{{ .Values.global.imageRegistry }}{{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}"
           imagePullPolicy: {{ .Values.grafana.image.pullPolicy }}
           command:
             - sh
@@ -35,7 +39,7 @@ spec:
               /run.sh
           ports:
             - name: grafana
-              containerPort: 3000
+              containerPort: {{ .Values.grafana.service.port }}
               protocol: TCP
           env:
             - name: GF_PATHS_PROVISIONING
@@ -53,24 +57,6 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /api/health
-              port: grafana
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /api/health
-              port: grafana
-            initialDelaySeconds: 5
-            periodSeconds: 2
-            timeoutSeconds: 1
-            successThreshold: 1
-            failureThreshold: 3
       volumes:
         - name: grafana-data
           {{- if .Values.grafana.persistence.enabled }}
@@ -81,5 +67,5 @@ spec:
           {{- end }}
         - name: grafana-config
           configMap:
-            name: {{ include "apipark.fullname" . }}-shared-config
+            name: {{ include "apipark.fullname" . }}-config
 {{- end }}
