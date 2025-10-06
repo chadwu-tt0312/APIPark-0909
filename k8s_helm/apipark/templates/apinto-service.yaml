@@ -10,13 +10,13 @@ spec:
   type: {{ .Values.apinto.service.type }}
   ports:
     - name: http
-      port: {{ .Values.apinto.service.port }}
-      {{- if .Values.apinto.service.targetPort }}
-      targetPort: {{ .Values.apinto.service.targetPort }}
+      port: {{ .Values.apinto.service.ports.http.port }}
+      {{- if .Values.apinto.service.ports.http.targetPort }}
+      targetPort: {{ .Values.apinto.service.ports.http.targetPort }}
       {{- end }}
       protocol: TCP
       {{- if eq .Values.apinto.service.type "NodePort" }}
-      nodePort: {{ .Values.apinto.service.nodePort }}
+      nodePort: {{ .Values.apinto.service.ports.http.nodePort }}
       {{- end }}
     - name: admin
       port: {{ .Values.apinto.service.ports.admin.port }}

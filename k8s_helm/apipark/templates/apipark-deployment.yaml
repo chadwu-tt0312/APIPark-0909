@@ -18,19 +18,19 @@ spec:
         {{- include "apipark.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: apipark
     spec:
-      # initContainers:
-      #   - name: wait-mysql
-      #     image: "{{ .Values.global.imageRegistry }}busybox"
-      #     command: ['sh', '-c', 'until nc -z apipark-mysql 3306; do echo waiting for mysql; sleep 2; done;']
-      #   - name: wait-redis
-      #     image: "{{ .Values.global.imageRegistry }}busybox"
-      #     command: ['sh', '-c', 'until nc -z apipark-redis 6379; do echo waiting for redis; sleep 2; done;']
-      #   - name: wait-influxdb
-      #     image: "{{ .Values.global.imageRegistry }}busybox"
-      #     command: ['sh', '-c', 'until nc -z apipark-influxdb 8086; do echo waiting for redis; sleep 2; done;']
-      #   - name: wait-apinto
-      #     image: "{{ .Values.global.imageRegistry }}busybox"
-      #     command: ['sh', '-c', 'until nc -z apipark-apinto 9400; do echo waiting for redis; sleep 2; done;']
+      initContainers:
+        - name: wait-mysql
+          image: "{{ .Values.global.imageRegistry }}busybox"
+          command: ['sh', '-c', 'until nc -z apipark-mysql 3306; do echo waiting for mysql; sleep 2; done;']
+        - name: wait-redis
+          image: "{{ .Values.global.imageRegistry }}busybox"
+          command: ['sh', '-c', 'until nc -z apipark-redis 6379; do echo waiting for redis; sleep 2; done;']
+        - name: wait-influxdb
+          image: "{{ .Values.global.imageRegistry }}busybox"
+          command: ['sh', '-c', 'until nc -z apipark-influxdb 8086; do echo waiting for redis; sleep 2; done;']
+        - name: wait-apinto
+          image: "{{ .Values.global.imageRegistry }}busybox"
+          command: ['sh', '-c', 'until nc -z apipark-apinto 9400; do echo waiting for redis; sleep 2; done;']
       {{- with .Values.global.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

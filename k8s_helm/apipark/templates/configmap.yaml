@@ -66,19 +66,13 @@ data:
   config.yml: |
     version: 2
     client:
-      advertise_urls: # open api 服務的廣播位址
-        - http://0.0.0.0:9400
       listen_urls: # open api 服務的監聽位址
         - http://0.0.0.0:9400
     gateway:
-      advertise_urls: # 轉送服務的廣播位址
-        - http://0.0.0.0:8099
       listen_urls: # 轉送服務的監聽位址
         - http://0.0.0.0:8099
     peer: # 集群間節點通訊設定資訊
       listen_urls: # 節點監聽位址
-        - http://0.0.0.0:9401
-      advertise_urls: # 節點通訊廣播位址
         - http://0.0.0.0:9401
 
   # MySQL Initialization Script

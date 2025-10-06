@@ -28,7 +28,7 @@ spec:
           imagePullPolicy: {{ .Values.apinto.image.pullPolicy }}
           ports:
             - name: http
-              containerPort:  {{ .Values.apinto.service.port }}
+              containerPort:  {{ .Values.apinto.service.ports.http.port }}
               protocol: TCP
             - name: admin
               containerPort: {{ .Values.apinto.service.ports.admin.port }}

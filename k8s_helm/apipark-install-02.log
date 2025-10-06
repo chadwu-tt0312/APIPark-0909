@@ -1,5 +1,5 @@
 NAME: apipark
-LAST DEPLOYED: Mon Oct  6 21:30:30 2025
+LAST DEPLOYED: Mon Oct  6 21:44:31 2025
 NAMESPACE: default
 STATUS: pending-install
 REVISION: 1
@@ -29,13 +29,14 @@ apinto:
     ports:
       admin:
         port: 9400
+        targetPort: 9400
       http:
-        nodePort: 31899
         port: 8099
         targetPort: 8099
       metrics:
         port: 9401
-    type: NodePort
+        targetPort: 9401
+    type: ClusterIP
 apipark:
   enabled: true
   env:
@@ -67,10 +68,9 @@ apipark:
       cpu: 500m
       memory: 1Gi
   service:
-    nodePort: 31288
     port: 8288
     targetPort: 8288
-    type: NodePort
+    type: ClusterIP
 global:
   imagePullSecrets: []
   imageRegistry: ""
@@ -124,6 +124,31 @@ influxdb:
   service:
     port: 8086
     type: ClusterIP
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  className: nginx
+  enabled: true
+  hosts:
+  - host: apipark.local
+    paths:
+    - path: /
+      pathType: Prefix
+      service:
+        name: apipark
+        port: 8288
+    - path: /api
+      pathType: Prefix
+      service:
+        name: apipark-apinto
+        port: 8099
+    - path: /mysql
+      pathType: Prefix
+      service:
+        name: apipark-mysql
+        port: 3306
+  tls: []
 loki:
   enabled: true
   image:
@@ -163,10 +188,9 @@ mysql:
       cpu: 250m
       memory: 512Mi
   service:
-    nodePort: 31306
     port: 3306
     targetPort: 3306
-    type: NodePort
+    type: ClusterIP
 nodeSelector: {}
 nsq:
   enabled: true
@@ -448,21 +472,20 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: apinto
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - name: http
       port: 8099
       targetPort: 8099
       protocol: TCP
-      nodePort: 31899
     - name: admin
       port: 9400
+      targetPort: 9400
       protocol: TCP
-      nodePort: 
     - name: metrics
       port: 9401
+      targetPort: 9401
       protocol: TCP
-      nodePort: 
   selector:
     app.kubernetes.io/name: apipark
     app.kubernetes.io/instance: apipark
@@ -481,13 +504,12 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: apipark
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 8288
       targetPort: 8288
       protocol: TCP
       name: http
-      nodePort: 31288
   selector:
     app.kubernetes.io/name: apipark
     app.kubernetes.io/instance: apipark
@@ -575,13 +597,12 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: mysql
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 3306
       targetPort: 3306
       protocol: TCP
       name: mysql
-      nodePort: 31306
   selector:
     app.kubernetes.io/name: apipark
     app.kubernetes.io/instance: apipark
@@ -1175,4 +1196,46 @@ spec:
         resources:
           requests:
             storage: 10Gi
+---
+# Source: apipark/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apipark
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "apipark.local"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apipark
+                port:
+                  number: 8288
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: apipark-apinto
+                port:
+                  number: 8099
+          - path: /mysql
+            pathType: Prefix
+            backend:
+              service:
+                name: apipark-mysql
+                port:
+                  number: 3306
 

@@ -23,10 +23,11 @@ mysql:
     tag: "8.0"
     pullPolicy: IfNotPresent
   service:
-    type: NodePort
+    #type: NodePort
+    type: ClusterIP
     port: 3306
     targetPort: 3306
-    nodePort: 31306
+    #nodePort: 31306
   auth:
     database: "apipark"
     rootPassword: "123456"
@@ -94,7 +95,7 @@ influxdb:
 
 # Loki Configuration
 loki:
-  enabled: false
+  enabled: true
   image:
     repository: grafana/loki
     # repository: loki
@@ -115,7 +116,7 @@ loki:
 
 # Grafana Configuration
 grafana:
-  enabled: false
+  enabled: true
   image:
     repository: grafana/grafana
     # repository: grafana
@@ -170,16 +171,19 @@ apinto:
     tag: "0.22.11"
     pullPolicy: IfNotPresent
   service:
-    # type: ClusterIP
-    type: NodePort
-    port: 8099 # 主要 HTTP 端口 (http)
-    targetPort: 8099
-    nodePort: 31899
+    type: ClusterIP
+    #type: NodePort
     ports:
+      http:
+        port: 8099 # 主要 HTTP 端口
+        targetPort: 8099
+        #nodePort: 31899
       admin:
         port: 9400
+        targetPort: 9400
       metrics:
         port: 9401
+        targetPort: 9401
   resources:
     limits:
       memory: 1Gi
@@ -201,10 +205,11 @@ apipark:
     tag: "v1.9.3-beta"
     pullPolicy: IfNotPresent
   service:
-    type: NodePort
+    type: ClusterIP
+    #type: NodePort
     port: 8288
     targetPort: 8288
-    nodePort: 31288
+    #nodePort: 31288
   replicaCount: 1
   env:
     MYSQL_USER_NAME: "root"
@@ -258,3 +263,27 @@ tolerations: []
 
 # Affinity
 affinity: {}
+
+# Ingress Configuration
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  nodePorts:
+    http: 31288
+    mysql: 31306
+  hosts:
+    - host: apipark.local
+      paths:
+        - path: /
+          pathType: Prefix
+          service:
+            name: apipark
+            port: 8288
+        - path: /api
+          pathType: Prefix
+          service:
+            name: apipark-apinto
+            port: 8099
+  tls: []
