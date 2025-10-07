@@ -1,0 +1,17 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "apipark.ingress.fullname" . }}-svc
+  labels:
+    {{- include "apipark.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8288
+      targetPort: 8288
+      nodePort: {{ .Values.ingress.nodePorts.http | default 31288 }}
+  selector:
+    app.kubernetes.io/component: {{ include "apipark.fullname" . }}
+{{- end }}

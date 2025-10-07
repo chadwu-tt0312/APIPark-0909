@@ -109,3 +109,10 @@ Apinto fullname
 {{- define "apipark.apinto.fullname" -}}
 {{- printf "%s-apinto" (include "apipark.fullname" .) }}
 {{- end }}
+
+{{/*
+Ingress fullname
+*/}}
+{{- define "apipark.ingress.fullname" -}}
+{{- printf "%s-ingress" (include "apipark.fullname" .) }}
+{{- end }}

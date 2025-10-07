@@ -9,20 +9,18 @@
 ### 1. 服務類型變更
 - **APIPark 主應用程式**: NodePort (31288) → ClusterIP (8288)
 - **Apinto Gateway**: NodePort (31899) → ClusterIP (8099)  
-- **MySQL 資料庫**: NodePort (31306) → ClusterIP (3306)
 
 ### 2. 新增 Ingress 配置
 - 域名: `apipark.local`
 - 路徑配置:
   - `/` → APIPark 主應用程式 (port 8288)
   - `/api` → Apinto Gateway (port 8099)
-  - `/mysql` → MySQL 資料庫 (port 3306)
 
 ## 部署步驟
 
 ### 1. 安裝 Nginx Ingress Controller
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.13.3/deploy/static/provider/cloud/deploy.yaml
 ```
 
 ### 2. 部署 APIPark
@@ -46,7 +44,6 @@ kubectl get ingress apipark
 
 - **APIPark 主應用程式**: http://apipark.local/
 - **Apinto API Gateway**: http://apipark.local/api
-- **MySQL 資料庫**: apipark.local/mysql (需要額外配置)
 
 ## 配置自訂
 

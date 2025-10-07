@@ -16,7 +16,7 @@ echo ""
 
 # 檢查 Ingress 資源
 echo "檢查 Ingress 資源狀態..."
-if ! kubectl get ingress apipark 2>/dev/null; then
+if ! kubectl get ingress apipark-ingress 2>/dev/null; then
     echo "⚠️  Ingress 資源不存在，請先部署 Helm Chart"
     echo "   部署指令：helm install apipark ./apipark"
     exit 1

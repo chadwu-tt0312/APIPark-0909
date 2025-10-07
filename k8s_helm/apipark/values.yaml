@@ -9,10 +9,34 @@ global:
   imagePullSecrets: []
   persistence:
     #storageClass: "rpa-sc-nfs"
-    storageClass: "rpa-local-storage"
+    # storageClass: "rpa-local-storage"  # 手動管理 PV，容易出現綁定問題
+    storageClass: "standard"  # 使用自動 provisioner，避免 PV 綁定問題
     accessMode: ReadWriteOnce
     size: 50Gi
     # subPath: "chad/apipark" # 沒作用
+
+# Ingress Configuration
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  nodePorts:
+    http: 31288
+  hosts:
+    - host: apipark.local
+      paths:
+        - path: /apinto
+          pathType: Prefix
+          service:
+            name: apipark-apinto
+            port: 8099
+        - path: /
+          pathType: Prefix
+          service:
+            name: apipark
+            port: 8288
+  tls: []
 
 # MySQL Configuration
 mysql:
@@ -23,11 +47,11 @@ mysql:
     tag: "8.0"
     pullPolicy: IfNotPresent
   service:
-    #type: NodePort
     type: ClusterIP
+    # type: NodePort
     port: 3306
     targetPort: 3306
-    #nodePort: 31306
+    # nodePort: 31306
   auth:
     database: "apipark"
     rootPassword: "123456"
@@ -172,12 +196,12 @@ apinto:
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
-    #type: NodePort
+    # type: NodePort
     ports:
       http:
         port: 8099 # 主要 HTTP 端口
         targetPort: 8099
-        #nodePort: 31899
+        # nodePort: 31899
       admin:
         port: 9400
         targetPort: 9400
@@ -206,10 +230,10 @@ apipark:
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
-    #type: NodePort
+    # type: NodePort
     port: 8288
     targetPort: 8288
-    #nodePort: 31288
+    # nodePort: 31288
   replicaCount: 1
   env:
     MYSQL_USER_NAME: "root"
@@ -263,27 +287,3 @@ tolerations: []
 
 # Affinity
 affinity: {}
-
-# Ingress Configuration
-ingress:
-  enabled: true
-  className: "nginx"
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-  nodePorts:
-    http: 31288
-    mysql: 31306
-  hosts:
-    - host: apipark.local
-      paths:
-        - path: /
-          pathType: Prefix
-          service:
-            name: apipark
-            port: 8288
-        - path: /api
-          pathType: Prefix
-          service:
-            name: apipark-apinto
-            port: 8099
-  tls: []

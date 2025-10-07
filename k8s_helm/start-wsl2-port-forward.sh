@@ -24,27 +24,18 @@ if lsof -Pi :31288 -sTCP:LISTEN -t >/dev/null ; then
     sleep 2
 fi
 
-if lsof -Pi :31306 -sTCP:LISTEN -t >/dev/null ; then
-    echo "⚠️  端口 31306 已被佔用，正在停止現有進程..."
-    pkill -f "kubectl port-forward.*31306"
-    sleep 2
-fi
-
 echo "啟動端口轉發服務..."
 echo "- APIPark 主應用程式: 0.0.0.0:31288"
-echo "- MySQL 資料庫: 0.0.0.0:31306"
 echo ""
 
 # 啟動 port-forward 服務
-kubectl port-forward --address 0.0.0.0 svc/apipark 31288:8288 &
-kubectl port-forward --address 0.0.0.0 svc/apipark-mysql 31306:3306 &
+kubectl port-forward --address 0.0.0.0 svc/apipark 31288:8288
 
 echo ""
 echo "✅ 端口轉發已啟動！"
 echo ""
 echo "🌐 現在您可以在 Windows 中訪問："
 echo "   - APIPark: http://$WSL_IP:31288/"
-echo "   - MySQL: $WSL_IP:31306"
 echo ""
 echo "💡 提示："
 echo "   - 保持此終端開啟以維持端口轉發"
