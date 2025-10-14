@@ -23,6 +23,19 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      # initContainers:
+      #   - name: fix-permissions
+      #     image: "{{ .Values.global.imageRegistry }}busybox"
+      #     command: ['sh', '-c', 'chown -R 1000:1000 /var/lib/influxdb2']
+      #     volumeMounts:
+      #       - name: influxdb-data
+      #         mountPath: /var/lib/influxdb2
+      #     securityContext:
+      #       runAsUser: 0
+      # securityContext:
+      #   fsGroup: 1000
+      #   runAsUser: 1000
+      #   runAsGroup: 1000
       containers:
         - name: influxdb
           image: "{{ .Values.global.imageRegistry }}{{ .Values.influxdb.image.repository }}:{{ .Values.influxdb.image.tag }}"
@@ -44,11 +57,17 @@ spec:
               value: {{ .Values.influxdb.auth.token | quote }}
             - name: DOCKER_INFLUXDB_INIT_MODE
               value: "setup"
+            # - name: INFLUXD_BIND_ADDRESS
+            #   value: ":8086"
           volumeMounts:
             - name: influxdb-data
               mountPath: /var/lib/influxdb2
             - name: influxdb-config
               mountPath: /etc/influxdb2
+          # securityContext:
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
+          #   allowPrivilegeEscalation: false
           {{- with .Values.influxdb.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

@@ -1,6 +1,9 @@
 ###
 curl http://192.168.31.180:5678/api/v1/health
 
+###
+curl http://127.0.0.1:5678/api/v1/health
+
 ### ApiPark Dashboard
 curl http://172.21.122.231:18288/
 
@@ -72,3 +75,299 @@ curl http://172.21.122.231:18288/api/v1/service/apidoc/9f33f9d4-5fdb-4744-bcbc-e
 curl http://172.21.122.231:8099/36ffbb2d/Pei_Knnowledge_Rag
 -X GET 
 -H "Authorization: {{USER_KEY}}"
+
+### 
+curl http://localhost:31288/api/v1/cluster/check 
+-X POST 
+-d '{"address": "10.244.0.31:9400"}'
+
+
+### ================= Health2 Restful Service =================
+@USER_KEY_180 = c5f67dbf-3d70-4318-ac1b-0c580e85978d
+
+curl -X GET "http://192.168.31.180:31899/4e5fdf32/health2"
+-H "Authorization: {{USER_KEY_180}}"
+
+###
+curl -X GET "http://192.168.31.180:30080/apinto/4e5fdf32/health2"
+-H "Host: apipark.local"
+-H "Authorization: {{USER_KEY_180}}"
+
+###
+curl http://192.168.31.180:31288/api/v1/service/apidoc/a00ca1fc-c8a5-49a7-968c-3f7be172a519
+-H "Host: apipark.local"
+
+###
+curl http://192.168.31.180:31288/api/v1/account/login/username
+-d '{"name":"admin","password":"aToh0eag"}'
+
+# response:
+Set-Cookie: session=20b55de-fdec-4c98-a559-942b584af610;
+
+###
+@COOKIE_KEY = 20b55de-fdec-4c98-a559-942b584af610
+curl http://192.168.31.180:31288/api/v1/system/general
+-H "Cookie: session={{COOKIE_KEY}}"
+
+### logs
+curl http://192.168.31.180:31288/api/v1/service/logs/rest?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720&start=1760198400&end=1760427836&page=1&page_size=20
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "logs": [
+      {
+        "id": "abcb664d-7b73-4243-b94a-7945dbdc3dca",
+        "api": {
+          "id": "8c3786b2-1c7c-4827-b053-e800ad2d00b7",
+          "name": "8c3786b2-1c7c-4827-b053-e800ad2d00b7"
+        },
+        "status": 200,
+        "log_time": "2025-10-14 15:40:07",
+        "ip": "127.0.0.1",
+        "consumer": {
+          "id": "c58f4e79-4da9-4828-b9e6-9ebf8a8a530b",
+          "name": "Demo Application"
+        },
+        "response_time": "4ms",
+        "traffic": "46B"
+      }
+    ],
+    "total": 1
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### overview-1 (總覽)
+curl http://192.168.31.180:31288/api/v1/service/overview/monitor/rest?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720&start=1760341740&end=1760428140
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "overview": {
+      "enable_mcp": true,
+      "subscriber_num": 1,
+      "api_num": 1,
+      "service_kind": "rest",
+      "available_monitor": true,
+      "request_overview": [],
+      "avg_request_per_subscriber_overview": [],
+      "max_request_per_subscriber": 1,
+      "min_request_per_subscriber": 1,
+      "request_total": 1,
+      "request_2xx_total": 1,
+      "request_4xx_total": 0,
+      "request_5xx_total": 0,
+      "traffic_overview": [],
+      "traffic_2xx_total": 46,
+      "traffic_4xx_total": 0,
+      "traffic_5xx_total": 0,
+      "avg_response_time_overview": [],
+      "avg_traffic_per_subscriber_overview": [],
+      "traffic_total": 46,
+      "avg_response_time": 4,
+      "max_response_time": 4,
+      "min_response_time": 4,
+      "date": [],
+      "max_traffic_per_subscriber": 46,
+      "min_traffic_per_subscriber": 46
+    }
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### overview-2 (總覽)
+curl http://192.168.31.180:31288/api/v1/service/monitor/top10?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720&start=1760341620&end=1760428020
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "apis": [
+      {
+        "id": "8c3786b2-1c7c-4827-b053-e800ad2d00b7",
+        "name": "8c3786b2-1c7c-4827-b053-e800ad2d00b7",
+        "request": "1",
+        "traffic": "46B"
+      }
+    ],
+    "consumers": [
+      {
+        "id": "c58f4e79-4da9-4828-b9e6-9ebf8a8a530b",
+        "name": "Demo Application",
+        "request": "1",
+        "traffic": "46B"
+      }
+    ]
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### API 路由
+curl http://192.168.31.180:31288/api/v1/service/routers?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720&keyword=
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "routers": [
+      {
+        "id": "8c3786b2-1c7c-4827-b053-e800ad2d00b7",
+        "name": "8c3786b2-1c7c-4827-b053-e800ad2d00b7",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "PATCH",
+          "OPTIONS"
+        ],
+        "protocols": [
+          "HTTP",
+          "HTTPS"
+        ],
+        "request_path": "/4e5fdf32/health2",
+        "description": "auto create by create service",
+        "disabled": false,
+        "creator": {
+          "id": "admin",
+          "name": "admin"
+        },
+        "updater": {
+          "id": "admin",
+          "name": "admin"
+        },
+        "create_time": "2025-10-14 15:38:30",
+        "update_time": "2025-10-14 15:38:30",
+        "can_delete": true
+      }
+    ]
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### API 文檔
+curl http://192.168.31.180:31288/api/v1/service/api_doc?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "doc": {
+      "content": "components:\n    schemas:\n        HealthResponse:\n            properties:\n                message:\n                    example: Service is healthy\n                    type: string\n                status:\n                    example: ok\n                    type: string\n            type: object\ninfo:\n    description: 健康檢查 API 文件\n    title: Health2 Restful Service\n    version: 1.0.0\nopenapi: 3.0.0\npaths:\n    /4e5fdf32/health2:\n        get:\n            description: 取得健康檢查資訊\n            responses:\n                \"200\":\n                    content:\n                        application/json:\n                            schema:\n                                $ref: '#/components/schemas/HealthResponse'\n                    description: 成功取得健康檢查資訊\n            summary: health2\n            tags:\n                - health\nservers:\n    - url: http://192.168.31.180:5678\n",
+      "updater": "admin",
+      "update_time": "2025-10-14 15:38:30"
+    }
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### 上游
+curl http://192.168.31.180:31288/api/v1/service/upstream?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "upstream": {
+      "driver": "http",
+      "balance": "round-robin",
+      "timeout": 30000,
+      "retry": 0,
+      "remark": "",
+      "limit_peer_second": 0,
+      "proxy_headers": [],
+      "scheme": "http",
+      "pass_host": "pass",
+      "upstream_host": "",
+      "nodes": [
+        {
+          "address": "192.168.31.180:5678",
+          "weight": 100
+        }
+      ],
+      "discover": {
+        "discover": "",
+        "service": ""
+      }
+    }
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### 發布
+curl http://192.168.31.180:31288/api/v1/service/releases?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "releases": [
+      {
+        "id": "07ead387-f8c2-4f64-b0dd-08df96007542",
+        "version": "v1",
+        "service": {
+          "id": "a00ca1fc-c8a5-49a7-968c-3f7be172a519",
+          "name": "Health2 Restful Service"
+        },
+        "create_time": "2025-10-14 15:38:30",
+        "creator": {
+          "id": "admin",
+          "name": "admin"
+        },
+        "status": "running",
+        "flowId": "c0f1a8a2-2559-4420-b51b-f6131f1f2a5a",
+        "remark": "Auto create v1 release for quick create service",
+        "can_rollback": true
+      }
+    ]
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### 設置
+curl http://192.168.31.180:31288/api/v1/service/info?team=c65bd5a2-40de-42e5-94ce-87e8e4300720&service=a00ca1fc-c8a5-49a7-968c-3f7be172a519
+-H "Cookie: session={{COOKIE_KEY}}"
+
+# response
+{
+  "data": {
+    "service": {
+      "id": "a00ca1fc-c8a5-49a7-968c-3f7be172a519",
+      "name": "Health2 Restful Service",
+      "prefix": "/4e5fdf32",
+      "description": "Auto create by upload swagger",
+      "team": {
+        "id": "c65bd5a2-40de-42e5-94ce-87e8e4300720",
+        "name": "Default Team"
+      },
+      "create_time": "2025-10-14 15:38:30",
+      "update_time": "2025-10-14 15:38:30",
+      "service_type": "public",
+      "catalogue": {
+        "id": "50bab8e0-0f8c-438a-9264-cb20ea75074e",
+        "name": "Default Category"
+      },
+      "tags": null,
+      "logo": "",
+      "approval_type": "auto",
+      "service_kind": "rest",
+      "state": "public",
+      "model_mapping": "",
+      "as_server": true,
+      "as_app": false,
+      "enable_mcp": true
+    }
+  },
+  "code": 0,
+  "success": "success"
+}

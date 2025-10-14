@@ -10,7 +10,7 @@ global:
   persistence:
     #storageClass: "rpa-sc-nfs"
     # storageClass: "rpa-local-storage"  # 手動管理 PV，容易出現綁定問題
-    storageClass: "standard"  # 使用自動 provisioner，避免 PV 綁定問題
+    storageClass: "standard" # 使用自動 provisioner，避免 PV 綁定問題
     accessMode: ReadWriteOnce
     size: 50Gi
     # subPath: "chad/apipark" # 沒作用
@@ -148,8 +148,11 @@ grafana:
     tag: "11.3.2"
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
+    # type: ClusterIP
+    type: NodePort
     port: 3000
+    targetPort: 3000
+    nodePort: 31300
   auth:
     anonymousEnabled: true
     anonymousOrgRole: "Admin"
@@ -224,10 +227,11 @@ apinto:
 apipark:
   enabled: true
   image:
-    repository: apipark/apipark
+    # repository: apipark/apipark
     # repository: apipark
-    # tag: "v1.9.5-beta-0911"
-    tag: "v1.9.3-beta"
+    repository: chadwu/apipark
+    tag: "v1.9.5-beta-0911"
+    # tag: "v1.9.3-beta"
     pullPolicy: IfNotPresent
   service:
     # type: ClusterIP

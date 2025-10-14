@@ -1,5 +1,5 @@
 NAME: apipark
-LAST DEPLOYED: Mon Oct  6 21:30:30 2025
+LAST DEPLOYED: Tue Oct 14 16:42:46 2025
 NAMESPACE: default
 STATUS: pending-install
 REVISION: 1
@@ -29,12 +29,14 @@ apinto:
     ports:
       admin:
         port: 9400
+        targetPort: 9400
       http:
         nodePort: 31899
         port: 8099
         targetPort: 8099
       metrics:
         port: 9401
+        targetPort: 9401
     type: NodePort
 apipark:
   enabled: true
@@ -56,8 +58,8 @@ apipark:
     REDIS_PWD: "123456"
   image:
     pullPolicy: IfNotPresent
-    repository: apipark/apipark
-    tag: v1.9.3-beta
+    repository: chadwu/apipark
+    tag: v1.9.5-beta-0911
   replicaCount: 1
   resources:
     limits:
@@ -77,7 +79,7 @@ global:
   persistence:
     accessMode: ReadWriteOnce
     size: 50Gi
-    storageClass: rpa-local-storage
+    storageClass: standard
 grafana:
   auth:
     anonymousEnabled: true
@@ -98,8 +100,10 @@ grafana:
       cpu: 250m
       memory: 512Mi
   service:
+    nodePort: 31300
     port: 3000
-    type: ClusterIP
+    targetPort: 3000
+    type: NodePort
 influxdb:
   auth:
     bucket: apinto
@@ -124,6 +128,28 @@ influxdb:
   service:
     port: 8086
     type: ClusterIP
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  className: nginx
+  enabled: false
+  hosts:
+  - host: apipark.local
+    paths:
+    - path: /apinto/(.+)
+      pathType: ImplementationSpecific
+      service:
+        name: apipark-apinto
+        port: 8099
+    - path: /
+      pathType: Prefix
+      service:
+        name: apipark
+        port: 8288
+  nodePorts:
+    http: 31288
+  tls: []
 loki:
   enabled: true
   image:
@@ -334,26 +360,27 @@ data:
       listen_urls: # open api 服務的監聽位址
         - http://0.0.0.0:9400
     gateway:
+      # advertise_urls: # 轉送服務的廣播位址
+      #   - http://10.11.109.93:31899
       listen_urls: # 轉送服務的監聽位址
         - http://0.0.0.0:8099
     peer: # 集群間節點通訊設定資訊
       listen_urls: # 節點監聽位址
         - http://0.0.0.0:9401
 
-  # MySQL Initialization Script
-  # mysql-init.sql: |
-  #   -- 確保資料庫存在
-  #   CREATE DATABASE IF NOT EXISTS apipark;
-    
-  #   -- 確保 root 用戶有正確的權限
-  #   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
-  #   ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
-    
-  #   -- 刷新權限
-  #   FLUSH PRIVILEGES;
-    
-  #   -- 顯示資料庫狀態
-  #   SHOW DATABASES;
+  apinto.yml: |
+    # 資料檔案放置目錄
+    data_dir: /var/lib/apinto
+    # 日誌放置目錄
+    log_dir: /var/log/apinto
+    # 錯誤日誌檔名
+    error_log_name: error.log
+    # 錯誤日誌等級，日誌等級可以劃分為：debug，info，warn，error，panic五個等級，預設等級為error
+    error_log_level: error
+    # 錯誤日誌過期時間，預設單位為天，d|天，h|小時
+    error_log_expire: 7d
+    # 錯誤日誌切割週期，僅支援day、hour
+    error_log_period: day
 ---
 # Source: apipark/templates/apinto-pvc.yaml
 apiVersion: v1
@@ -373,7 +400,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: rpa-local-storage
+  storageClassName: standard
 ---
 # Source: apipark/templates/apinto-pvc.yaml
 apiVersion: v1
@@ -393,7 +420,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: rpa-local-storage
+  storageClassName: standard
 ---
 # Source: apipark/templates/grafana-pvc.yaml
 apiVersion: v1
@@ -413,7 +440,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: rpa-local-storage
+  storageClassName: standard
 ---
 # Source: apipark/templates/redis-pvc.yaml
 apiVersion: v1
@@ -433,7 +460,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: rpa-local-storage
+  storageClassName: standard
 ---
 # Source: apipark/templates/apinto-service.yaml
 apiVersion: v1
@@ -457,10 +484,12 @@ spec:
       nodePort: 31899
     - name: admin
       port: 9400
+      targetPort: 9400
       protocol: TCP
       nodePort: 
     - name: metrics
       port: 9401
+      targetPort: 9401
       protocol: TCP
       nodePort: 
   selector:
@@ -506,11 +535,13 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: grafana
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 3000
+      targetPort: 3000
       protocol: TCP
       name: grafana
+      nodePort: 31300
   selector:
     app.kubernetes.io/name: apipark
     app.kubernetes.io/instance: apipark
@@ -713,6 +744,7 @@ metadata:
     app.kubernetes.io/version: "1.9.5-beta"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: apipark
+    app.kubernetes.io/group: apipark-ingress-backend
 spec:
   replicas: 1
   selector:
@@ -720,30 +752,36 @@ spec:
       app.kubernetes.io/name: apipark
       app.kubernetes.io/instance: apipark
       app.kubernetes.io/component: apipark
+      app.kubernetes.io/group: apipark-ingress-backend
   template:
     metadata:
       labels:
         app.kubernetes.io/name: apipark
         app.kubernetes.io/instance: apipark
         app.kubernetes.io/component: apipark
+        app.kubernetes.io/group: apipark-ingress-backend
     spec:
       initContainers:
         - name: wait-mysql
           image: "busybox"
+          imagePullPolicy: IfNotPresent
           command: ['sh', '-c', 'until nc -z apipark-mysql 3306; do echo waiting for mysql; sleep 2; done;']
         - name: wait-redis
           image: "busybox"
+          imagePullPolicy: IfNotPresent
           command: ['sh', '-c', 'until nc -z apipark-redis 6379; do echo waiting for redis; sleep 2; done;']
         - name: wait-influxdb
           image: "busybox"
+          imagePullPolicy: IfNotPresent
           command: ['sh', '-c', 'until nc -z apipark-influxdb 8086; do echo waiting for redis; sleep 2; done;']
         - name: wait-apinto
           image: "busybox"
+          imagePullPolicy: IfNotPresent
           command: ['sh', '-c', 'until nc -z apipark-apinto 9400; do echo waiting for redis; sleep 2; done;']
       # serviceAccountName: apipark
       containers:
         - name: apipark
-          image: "apipark/apipark:v1.9.3-beta"
+          image: "chadwu/apipark:v1.9.5-beta-0911"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -991,6 +1029,19 @@ spec:
         app.kubernetes.io/instance: apipark
         app.kubernetes.io/component: influxdb
     spec:
+      # initContainers:
+      #   - name: fix-permissions
+      #     image: "busybox"
+      #     command: ['sh', '-c', 'chown -R 1000:1000 /var/lib/influxdb2']
+      #     volumeMounts:
+      #       - name: influxdb-data
+      #         mountPath: /var/lib/influxdb2
+      #     securityContext:
+      #       runAsUser: 0
+      # securityContext:
+      #   fsGroup: 1000
+      #   runAsUser: 1000
+      #   runAsGroup: 1000
       containers:
         - name: influxdb
           image: "influxdb:2.7.1"
@@ -1012,11 +1063,17 @@ spec:
               value: "dQ9>fK6&gJ"
             - name: DOCKER_INFLUXDB_INIT_MODE
               value: "setup"
+            - name: INFLUXD_BIND_ADDRESS
+              value: ":8086"
           volumeMounts:
             - name: influxdb-data
               mountPath: /var/lib/influxdb2
             - name: influxdb-config
               mountPath: /etc/influxdb2
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
           resources:
             limits:
               cpu: 500m
@@ -1033,7 +1090,7 @@ spec:
       spec:
         accessModes: 
         - ReadWriteOnce
-        storageClassName: rpa-local-storage
+        storageClassName: standard
         resources:
           requests:
             storage: 20Gi
@@ -1065,6 +1122,10 @@ spec:
         app.kubernetes.io/instance: apipark
         app.kubernetes.io/component: loki
     spec:
+      # securityContext:
+      #   fsGroup: 10001
+      #   runAsUser: 10001
+      #   runAsGroup: 10001
       containers:
         - name: loki
           image: "grafana/loki:3.2.1"
@@ -1081,6 +1142,11 @@ spec:
               mountPath: /tmp/loki
             - name: loki-config
               mountPath: /etc/loki
+          # securityContext:
+          #   runAsUser: 10001
+          #   runAsGroup: 10001
+          #   allowPrivilegeEscalation: false
+          #   readOnlyRootFilesystem: false
           resources:
             limits:
               cpu: 500m
@@ -1098,7 +1164,7 @@ spec:
       spec:
         accessModes: 
         - ReadWriteOnce
-        storageClassName: rpa-local-storage
+        storageClassName: standard
         resources:
           requests:
             storage: 20Gi
@@ -1171,7 +1237,7 @@ spec:
       spec:
         accessModes: 
         - ReadWriteOnce
-        storageClassName: rpa-local-storage
+        storageClassName: standard
         resources:
           requests:
             storage: 10Gi

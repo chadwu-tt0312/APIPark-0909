@@ -13,6 +13,7 @@ fi
 echo "啟動端口轉發："
 echo "- APIPark 主應用程式: 0.0.0.0:31288"
 echo "- Apinto Gateway: 0.0.0.0:31899"
+echo "- Grafana: 0.0.0.0:31300"
 echo "- MySQL: 0.0.0.0:31306"
 echo ""
 
@@ -20,6 +21,7 @@ echo ""
 echo "正在啟動服務..."
 kubectl port-forward --address 0.0.0.0 svc/apipark 31288:8288 &
 kubectl port-forward --address 0.0.0.0 svc/apipark-apinto 31899:8099 &
+kubectl port-forward --address 0.0.0.0 svc/apipark-grafana 31300:3000 &
 kubectl port-forward --address 0.0.0.0 svc/apipark-mysql 31306:3306 &
 
 echo ""
@@ -28,6 +30,7 @@ echo ""
 echo "🌐 現在您可以在瀏覽器中訪問："
 echo "   - APIPark: http://192.168.31.180:31288"
 echo "   - Apinto: http://192.168.31.180:31899"
+echo "   - Grafana: http://192.168.31.180:31300"
 echo "   - MySQL: 192.168.31.180:31306"
 echo ""
 echo "💡 提示："
