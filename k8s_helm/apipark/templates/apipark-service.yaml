@@ -6,6 +6,7 @@ metadata:
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
     app.kubernetes.io/component: apipark
+    app.kubernetes.io/group: apipark-ingress-backend
 spec:
   type: {{ .Values.apipark.service.type }}
   ports:

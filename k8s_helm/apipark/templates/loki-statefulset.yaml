@@ -23,10 +23,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      securityContext:
-        fsGroup: 10001
-        runAsUser: 10001
-        runAsGroup: 10001
       containers:
         - name: loki
           image: "{{ .Values.global.imageRegistry }}{{ .Values.loki.image.repository }}:{{ .Values.loki.image.tag }}"
@@ -43,11 +39,6 @@ spec:
               mountPath: /tmp/loki
             - name: loki-config
               mountPath: /etc/loki
-          securityContext:
-            runAsUser: 10001
-            runAsGroup: 10001
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
           {{- with .Values.loki.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

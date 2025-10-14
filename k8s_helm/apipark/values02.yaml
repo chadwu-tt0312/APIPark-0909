@@ -2,22 +2,18 @@
 
 # Global settings
 global:
-  # imageRegistry: "10.11.233.138/rpa/"
-  imageRegistry: ""
-  #imagePullSecrets:
-  #  - name: rpasecret
-  imagePullSecrets: []
+  imageRegistry: "10.11.233.138/rpa/"
+  imagePullSecrets:
+    - name: rpasecret
   persistence:
-    #storageClass: "rpa-sc-nfs"
-    # storageClass: "rpa-local-storage"  # 手動管理 PV，容易出現綁定問題
-    storageClass: "standard"  # 使用自動 provisioner，避免 PV 綁定問題
+    storageClass: "rpa-sc-nfs"
     accessMode: ReadWriteOnce
     size: 50Gi
     # subPath: "chad/apipark" # 沒作用
 
 # Ingress Configuration
 ingress:
-  enabled: false
+  enabled: true
   className: "nginx"
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -32,7 +28,7 @@ ingress:
           service:
             name: apipark-apinto
             port: 8099
-        - path: /
+        - path: /(.+)
           pathType: Prefix
           service:
             name: apipark
@@ -48,11 +44,11 @@ mysql:
     tag: "8.0"
     pullPolicy: IfNotPresent
   service:
-    # type: ClusterIP
-    type: NodePort
+    type: ClusterIP
+    # type: NodePort
     port: 3306
     targetPort: 3306
-    nodePort: 31306
+    # nodePort: 31306
   auth:
     database: "apipark"
     rootPassword: "123456"
@@ -122,8 +118,7 @@ influxdb:
 loki:
   enabled: true
   image:
-    repository: grafana/loki
-    # repository: loki
+    repository: loki
     tag: "3.2.1"
     pullPolicy: IfNotPresent
   service:
@@ -143,8 +138,7 @@ loki:
 grafana:
   enabled: true
   image:
-    repository: grafana/grafana
-    # repository: grafana
+    repository: grafana
     tag: "11.3.2"
     pullPolicy: IfNotPresent
   service:
@@ -168,8 +162,7 @@ grafana:
 nsq:
   enabled: true
   image:
-    repository: nsqio/nsq
-    # repository: nsq
+    repository: nsq
     tag: "v1.3.0"
     pullPolicy: IfNotPresent
   service:
@@ -191,18 +184,17 @@ nsq:
 apinto:
   enabled: true
   image:
-    repository: eolinker/apinto-gateway
-    # repository: apinto-gateway
+    repository: apinto-gateway
     tag: "0.22.11"
     pullPolicy: IfNotPresent
   service:
-    # type: ClusterIP
-    type: NodePort
+    type: ClusterIP
+    # type: NodePort
     ports:
       http:
         port: 8099 # 主要 HTTP 端口
         targetPort: 8099
-        nodePort: 31899
+        # nodePort: 31899
       admin:
         port: 9400
         targetPort: 9400
@@ -224,17 +216,16 @@ apinto:
 apipark:
   enabled: true
   image:
-    repository: apipark/apipark
-    # repository: apipark
+    repository: apipark
     # tag: "v1.9.5-beta-0911"
     tag: "v1.9.3-beta"
     pullPolicy: IfNotPresent
   service:
-    # type: ClusterIP
-    type: NodePort
+    type: ClusterIP
+    # type: NodePort
     port: 8288
     targetPort: 8288
-    nodePort: 31288
+    # nodePort: 31288
   replicaCount: 1
   env:
     MYSQL_USER_NAME: "root"

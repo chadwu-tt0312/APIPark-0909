@@ -69,23 +69,24 @@ data:
       listen_urls: # open api 服務的監聽位址
         - http://0.0.0.0:9400
     gateway:
+      # advertise_urls: # 轉送服務的廣播位址
+      #   - http://10.11.109.93:31899
       listen_urls: # 轉送服務的監聽位址
         - http://0.0.0.0:8099
     peer: # 集群間節點通訊設定資訊
       listen_urls: # 節點監聽位址
         - http://0.0.0.0:9401
 
-  # MySQL Initialization Script
-  # mysql-init.sql: |
-  #   -- 確保資料庫存在
-  #   CREATE DATABASE IF NOT EXISTS {{ .Values.mysql.auth.database }};
-    
-  #   -- 確保 root 用戶有正確的權限
-  #   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '{{ .Values.mysql.auth.rootPassword }}';
-  #   ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '{{ .Values.mysql.auth.rootPassword }}';
-    
-  #   -- 刷新權限
-  #   FLUSH PRIVILEGES;
-    
-  #   -- 顯示資料庫狀態
-  #   SHOW DATABASES;
+  apinto.yml: |
+    # 資料檔案放置目錄
+    data_dir: /var/lib/apinto
+    # 日誌放置目錄
+    log_dir: /var/log/apinto
+    # 錯誤日誌檔名
+    error_log_name: error.log
+    # 錯誤日誌等級，日誌等級可以劃分為：debug，info，warn，error，panic五個等級，預設等級為error
+    error_log_level: error
+    # 錯誤日誌過期時間，預設單位為天，d|天，h|小時
+    error_log_expire: 7d
+    # 錯誤日誌切割週期，僅支援day、hour
+    error_log_period: day

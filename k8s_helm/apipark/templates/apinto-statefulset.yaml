@@ -1,22 +1,26 @@
 {{- if .Values.apinto.enabled }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "apipark.apinto.fullname" . }}
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
     app.kubernetes.io/component: apinto
+    app.kubernetes.io/group: apipark-ingress-backend
 spec:
+  serviceName: {{ include "apipark.apinto.fullname" . }}
   replicas: 1
   selector:
     matchLabels:
       {{- include "apipark.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: apinto
+      app.kubernetes.io/group: apipark-ingress-backend
   template:
     metadata:
       labels:
         {{- include "apipark.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: apinto
+        app.kubernetes.io/group: apipark-ingress-backend
     spec:
       {{- with .Values.global.imagePullSecrets }}
       imagePullSecrets:
@@ -39,8 +43,10 @@ spec:
           volumeMounts:
             - name: apinto-data
               mountPath: /var/lib/apinto
-            - name: apinto-log
+              subPath: data/
+            - name: apinto-data
               mountPath: /var/log/apinto
+              subPath: log/
             - name: apinto-config
               mountPath: /etc/apinto
           {{- with .Values.apinto.resources }}
@@ -48,21 +54,17 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
-        - name: apinto-data
-          {{- if .Values.apinto.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ include "apipark.apinto.fullname" . }}-data-pvc
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
-        - name: apinto-log
-          {{- if .Values.apinto.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ include "apipark.apinto.fullname" . }}-log-pvc
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
         - name: apinto-config
           configMap:
             name: {{ include "apipark.fullname" . }}-config
+  volumeClaimTemplates:
+    - metadata:
+        name: apinto-data
+      spec:
+        accessModes: 
+        - {{ .Values.global.persistence.accessMode }}
+        storageClassName: {{ .Values.global.persistence.storageClass }}
+        resources:
+          requests:
+            storage: {{ .Values.loki.persistence.size }}
 {{- end }}

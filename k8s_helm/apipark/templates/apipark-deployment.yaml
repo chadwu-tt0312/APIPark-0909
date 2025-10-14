@@ -6,17 +6,20 @@ metadata:
   labels:
     {{- include "apipark.labels" . | nindent 4 }}
     app.kubernetes.io/component: apipark
+    app.kubernetes.io/group: apipark-ingress-backend
 spec:
   replicas: {{ .Values.apipark.replicaCount }}
   selector:
     matchLabels:
       {{- include "apipark.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: apipark
+      app.kubernetes.io/group: apipark-ingress-backend
   template:
     metadata:
       labels:
         {{- include "apipark.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: apipark
+        app.kubernetes.io/group: apipark-ingress-backend
     spec:
       initContainers:
         - name: wait-mysql

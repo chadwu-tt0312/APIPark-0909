@@ -14,4 +14,5 @@ spec:
       nodePort: {{ .Values.ingress.nodePorts.http | default 31288 }}
   selector:
     app.kubernetes.io/component: {{ include "apipark.fullname" . }}
+    # app.kubernetes.io/group: apipark-ingress-backend
 {{- end }}
