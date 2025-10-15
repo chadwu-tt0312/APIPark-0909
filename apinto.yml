@@ -20,7 +20,7 @@ extends_dir: /var/lib/apinto/extenders/
 error_log_name: error.log
 
 # 错误日志等级
-error_log_level: error
+error_log_level: info
 
 # 错误日志过期时间，默认单位为天，d|天，h|小时
 error_log_expire: 7d

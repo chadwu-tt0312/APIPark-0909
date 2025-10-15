@@ -56,7 +56,7 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - apipark-influxdb-data:/var/lib/influxdb2  # 關鍵修改：使用正確的路徑
+      - apipark-influxdb-data:/var/lib/influxdb2   # 關鍵修改：使用正確的路徑
       - apipark-influxdb-config:/etc/influxdb2     # 新增配置持久化
     environment:
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
@@ -223,10 +223,12 @@ services:
     depends_on:
       - apipark-mysql
       - apipark-redis
+      - apipark-nsq
     volumes:
       - apipark-apinto-data:/var/lib/apinto
       - apipark-apinto-log:/var/log/apinto
       - ${PWD}/config.yml:/etc/apinto/config.yml
+      - ${PWD}/apinto.yml:/etc/apinto/apinto.yml
     networks:
       - apipark
 volumes:

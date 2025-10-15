@@ -1,0 +1,284 @@
+2025-10-15T10:19:03.158033407Z [2025-10-15 18:19:03] [DEBU] [master-50]1.7605235430141375e+09	debug	apply entry normal	{"consistent-index": 45, "entry-index": 46, "should-applyV3": true}
+2025-10-15T10:19:03.158052832Z [2025-10-15 18:19:03] [DEBU] [master-50]1.7605235430141456e+09	debug	applyEntryNormal	{"raftReq": "header:<ID:3852717225243275537 > put:<key:\"/worker/fakegpt@ai-resource\" value:\"{\\\"id\\\":\\\"fakegpt@ai-resource\\\",\\\"profession\\\":\\\"ai-resource\\\",\\\"name\\\":\\\"fakegpt\\\",\\\"driver\\\":\\\"ai-provider\\\",\\\"create\\\":\\\"2025-10-15 18:19:03\\\",\\\"update\\\":\\\"2025-10-15 18:19:03\\\",\\\"body\\\":\\\"eyJkZXNjcmlwdGlvbiI6IkZha2VHUFQiLCJkcml2ZXIiOiJhaS1wcm92aWRlciIsImlkIjoiZmFrZWdwdEBhaS1yZXNvdXJjZSIsIm1hdGNoZXMiOnsibW9kdWxlIjoiYWktcHJvdmlkZXIifSwibW9kZWwiOiJmYWtlZ3B0LTEuMCIsIm1vZGVsX2NvbmZpZyI6IntcbiAgXCJtYXhfdG9rZW5zXCI6IDQwOTYsXG4gIFwidGVtcGVyYXR1cmVcIjogMSxcbiAgXCJ0b3Bfa1wiOiBudWxsLFxuICBcInRvcF9wXCI6IDAuOTk5XG59IiwibmFtZSI6ImZha2VncHQiLCJwcm92aWRlciI6ImZha2VncHQiLCJ2ZXJzaW9uIjoiMjAyNTEwMTUxNTMzMzYifQ==\\\",\\\"description\\\":\\\"FakeGPT\\\",\\\"version\\\":\\\"20251015153336\\\",\\\"matches\\\":{\\\"module\\\":\\\"ai-provider\\\"}}\" > "}
+2025-10-15T10:19:03.158061850Z [2025-10-15 18:19:03] [DEBU] [master-50]send listen to worker:namespace:"worker"  command:"set"  key:"fakegpt@ai-resource"  data:"{\"id\":\"fakegpt@ai-resource\",\"profession\":\"ai-resource\",\"name\":\"fakegpt\",\"driver\":\"ai-provider\",\"create\":\"2025-10-15 18:19:03\",\"update\":\"2025-10-15 18:19:03\",\"body\":\"eyJkZXNjcmlwdGlvbiI6IkZha2VHUFQiLCJkcml2ZXIiOiJhaS1wcm92aWRlciIsImlkIjoiZmFrZWdwdEBhaS1yZXNvdXJjZSIsIm1hdGNoZXMiOnsibW9kdWxlIjoiYWktcHJvdmlkZXIifSwibW9kZWwiOiJmYWtlZ3B0LTEuMCIsIm1vZGVsX2NvbmZpZyI6IntcbiAgXCJtYXhfdG9rZW5zXCI6IDQwOTYsXG4gIFwidGVtcGVyYXR1cmVcIjogMSxcbiAgXCJ0b3Bfa1wiOiBudWxsLFxuICBcInRvcF9wXCI6IDAuOTk5XG59IiwibmFtZSI6ImZha2VncHQiLCJwcm92aWRlciI6ImZha2VncHQiLCJ2ZXJzaW9uIjoiMjAyNTEwMTUxNTMzMzYifQ==\",\"description\":\"FakeGPT\",\"version\":\"20251015153336\",\"matches\":{\"module\":\"ai-provider\"}}"
+2025-10-15T10:19:03.158063909Z [2025-10-15 18:19:03] [DEBU] [worker-68]recv:namespace:"worker"  command:"set"  key:"fakegpt@ai-resource"  data:"{\"id\":\"fakegpt@ai-resource\",\"profession\":\"ai-resource\",\"name\":\"fakegpt\",\"driver\":\"ai-provider\",\"create\":\"2025-10-15 18:19:03\",\"update\":\"2025-10-15 18:19:03\",\"body\":\"eyJkZXNjcmlwdGlvbiI6IkZha2VHUFQiLCJkcml2ZXIiOiJhaS1wcm92aWRlciIsImlkIjoiZmFrZWdwdEBhaS1yZXNvdXJjZSIsIm1hdGNoZXMiOnsibW9kdWxlIjoiYWktcHJvdmlkZXIifSwibW9kZWwiOiJmYWtlZ3B0LTEuMCIsIm1vZGVsX2NvbmZpZyI6IntcbiAgXCJtYXhfdG9rZW5zXCI6IDQwOTYsXG4gIFwidGVtcGVyYXR1cmVcIjogMSxcbiAgXCJ0b3Bfa1wiOiBudWxsLFxuICBcInRvcF9wXCI6IDAuOTk5XG59IiwibmFtZSI6ImZha2VncHQiLCJwcm92aWRlciI6ImZha2VncHQiLCJ2ZXJzaW9uIjoiMjAyNTEwMTUxNTMzMzYifQ==\",\"description\":\"FakeGPT\",\"version\":\"20251015153336\",\"matches\":{\"module\":\"ai-provider\"}}"
+2025-10-15T10:19:03.158065782Z [2025-10-15 18:19:03] [DEBU] [worker-68]setEvent NamespaceWorker:
+2025-10-15T10:19:03.158067320Z [2025-10-15 18:19:03] [DEBU] [worker-68]NamespaceWorker:ai-resourcefakegpt
+2025-10-15T10:19:03.158068843Z [2025-10-15 18:19:03] [DEBU] [worker-68]set:fakegpt@ai-resource,ai-resource,fakegpt,ai-provider
+2025-10-15T10:19:03.158070684Z [2025-10-15 18:19:03] [DEBU] [worker-68]get profession:ai-resource:true->name:"ai-resource"  label:"AI资源"  desc:"AI资源"  drivers:{id:"eolinker.com:apinto:ai-key"  name:"ai-key"  label:"ai-key"  desc:"ai-key"}  drivers:{id:"eolinker.com:apinto:ai-provider"  name:"ai-provider"  label:"ai-provider"  desc:"ai-provider"}  drivers:{id:"eolinker.com:apinto:ai-model"  name:"ai-model"  label:"ai-model"  desc:"ai-model"}
+2025-10-15T10:19:03.158072526Z [2025-10-15 18:19:03] [DEBU] [worker-68]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*ai_provider.Config Value> kind: ptr
+2025-10-15T10:19:03.158074019Z [2025-10-15 18:19:03] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:19:03.158075481Z [2025-10-15 18:19:03] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:19:03.158076938Z [2025-10-15 18:19:03] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:19:03.158078696Z [2025-10-15 18:19:03] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <int Value> kind: int
+2025-10-15T10:19:03.158079805Z [2025-10-15 18:19:03] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:19:03.158080792Z [2025-10-15 18:19:03] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:19:03.158098281Z [2025-10-15 18:19:03] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:19:04.151529248Z [2025-10-15 18:19:03] [DEBU] [worker-68]worker-data set worker done:fakegpt@ai-resource
+2025-10-15T10:19:04.151793648Z [2025-10-15 18:19:03] [DEBU] [master-50]copy to client:read unix @->/tmp/apinto/apinto.admin-102.sock: use of closed network connection
+2025-10-15T10:19:04.151814458Z [2025-10-15 18:19:03] [DEBU] [admin-102]conn close
+2025-10-15T10:20:17.722463882Z [2025-10-15 18:20:17] [DEBU] [admin-102]update:9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service service,9e583d5c-fbfa-4655-bbb8-4f51372ecb56,http,{"id":"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service","name":"9e583d5c-fbfa-4655-bbb8-4f51372ecb56","description":"","driver":"http","version":"826ef08f-17b8-4e5a-80a3-600e1f83fb7b","matches":{"project":"9e583d5c-fbfa-4655-bbb8-4f51372ecb56"},"nodes":["192.168.31.180:5678 weight=100"],"pass_host":"pass","scheme":"HTTP","timeout":30000,"balance":"round-robin","labels":null}
+2025-10-15T10:20:17.722593721Z [2025-10-15 18:20:17] [DEBU] [admin-102]set:9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service,service,9e583d5c-fbfa-4655-bbb8-4f51372ecb56,http
+2025-10-15T10:20:17.722610569Z [2025-10-15 18:20:17] [DEBU] [admin-102]get profession:service:true->name:"service"  label:"服务"  desc:"服务"  dependencies:"discovery"  appendLabels:"discovery"  drivers:{id:"eolinker.com:apinto:service_http"  name:"http"  label:"service"  desc:"服务"}
+2025-10-15T10:20:17.722619462Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*service.Config Value> kind: ptr
+2025-10-15T10:20:17.722628119Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.722636813Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.722645249Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <int64 Value> kind: int64
+2025-10-15T10:20:17.722652822Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.722660153Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.722667529Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722675073Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.722682484Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.722689615Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.722697271Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.722704447Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.722711654Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722718738Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722726002Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722733296Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.722740704Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.722749806Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.722757838Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.722773180Z [2025-10-15 18:20:17] [DEBU] [admin-102]update:4e1cf7bc-b604-4b61-8bd9-963b88139242@router router,4e1cf7bc-b604-4b61-8bd9-963b88139242,http,{"id":"4e1cf7bc-b604-4b61-8bd9-963b88139242@router","name":"4e1cf7bc-b604-4b61-8bd9-963b88139242","description":"auto create by create service","driver":"http","version":"826ef08f-17b8-4e5a-80a3-600e1f83fb7b","matches":{"project":"9e583d5c-fbfa-4655-bbb8-4f51372ecb56"},"listen":0,"host":[],"method":["GET","POST","PUT","DELETE","PATCH","OPTIONS"],"protocols":["http","https"],"location":"/b1a25ccc/health2","rules":[],"service":"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service","plugins":{"proxy_rewrite":{"disable":false,"config":{"path_type":"prefix","prefix_path":[{"prefix_path_match":"/b1a25ccc/health2","prefix_path_replace":"/api/v1/health"}],"not_match_err":true,"host_rewrite":false,"headers":{}}}},"retry":0,"time_out":30000,"labels":{"api_kind":"rest","provider":"9e583d5c-fbfa-4655-bbb8-4f51372ecb56"}}
+2025-10-15T10:20:17.722814961Z [2025-10-15 18:20:17] [DEBU] [admin-102]set:4e1cf7bc-b604-4b61-8bd9-963b88139242@router,router,4e1cf7bc-b604-4b61-8bd9-963b88139242,http
+2025-10-15T10:20:17.722894793Z [2025-10-15 18:20:17] [DEBU] [admin-102]get profession:router:true->name:"router"  label:"路由"  desc:"路由"  dependencies:"service"  dependencies:"template"  dependencies:"transcode"  appendLabels:"host"  appendLabels:"service"  appendLabels:"listen"  appendLabels:"disable"  drivers:{id:"eolinker.com:apinto:http_router"  name:"http"  label:"http"  desc:"http路由"}  drivers:{id:"eolinker.com:apinto:grpc_router"  name:"grpc"  label:"grpc"  desc:"grpc路由"}  drivers:{id:"eolinker.com:apinto:dubbo2_router"  name:"dubbo2"  label:"dubbo2"  desc:"dubbo2路由"}
+2025-10-15T10:20:17.722905942Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*http_router.Config Value> kind: ptr
+2025-10-15T10:20:17.722913399Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.722919139Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.722924601Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722929893Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722935377Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722941323Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722946834Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722952284Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722957674Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.722963604Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722969079Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722974672Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.722979939Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.722985998Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <[]http_router.Rule Value> kind: slice
+2025-10-15T10:20:17.723005578Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.723011563Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.723017164Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723022685Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <map[string]string Value> kind: map
+2025-10-15T10:20:17.723028116Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723033383Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.723038867Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723044427Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.723049958Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723055566Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.723061225Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723066631Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.723072634Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723078370Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <plugin.Plugins Value> kind: map
+2025-10-15T10:20:17.723085145Z [2025-10-15 18:20:17] [DEBU] [admin-102]plugin manager get config type:[0xc000a68f78 0xc000a68fa8 0xc000a68fc0 0xc000a68fd8 0xc000a68ff0 0xc000a69008 0xc000a69020 0xc000a69038 0xc000a69050 0xc000a69068 0xc000a69080 0xc000a69098 0xc000a690b0 0xc000a690c8]
+2025-10-15T10:20:17.723155721Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.723165193Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <proxy_rewrite_v2.Config Value> kind: struct
+2025-10-15T10:20:17.723172119Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.723178607Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.723186495Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723194928Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <[]*proxy_rewrite_v2.SPrefixPath Value> kind: slice
+2025-10-15T10:20:17.723202930Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <*proxy_rewrite_v2.SPrefixPath Value> kind: ptr
+2025-10-15T10:20:17.723217471Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.723225310Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.723234343Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal: <[]*proxy_rewrite_v2.SRegexPath Value> kind: slice
+2025-10-15T10:20:17.723242539Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723250256Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.723274511Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.723282779Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.723290838Z [2025-10-15 18:20:17] [DEBU] [admin-102]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.723298688Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <map[string]string Value> kind: map
+2025-10-15T10:20:17.723306221Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.723314915Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.723322388Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal: <map[string]string Value> kind: map
+2025-10-15T10:20:17.723330013Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: api_kind targetVal:  kind: string
+2025-10-15T10:20:17.723337428Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.723344808Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: provider targetVal:  kind: string
+2025-10-15T10:20:17.723352278Z [2025-10-15 18:20:17] [DEBU] [admin-102]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.723361538Z [2025-10-15 18:20:17] [DEBU] [admin-102]check skill:github.com/eolinker/apinto/service.service.IService on 9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service:&{{9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service 9e583d5c-fbfa-4655-bbb8-4f51372ecb56} {0xc0005d48c0 0xc000afc200  http 30000000000 0xc000816aa0 0 }}
+2025-10-15T10:20:17.723369367Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker access_log@plugin start
+2025-10-15T10:20:17.723378002Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker access_log@plugin done
+2025-10-15T10:20:17.723385754Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker monitor@plugin start
+2025-10-15T10:20:17.723393933Z [2025-10-15 18:20:17] [INFO] [admin-102]create monitor worker...
+2025-10-15T10:20:17.723402019Z [2025-10-15 18:20:17] [INFO] [admin-102]finish monitor worker...
+2025-10-15T10:20:17.723409656Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker monitor@plugin done
+2025-10-15T10:20:17.723417165Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker proxy_rewrite@plugin start
+2025-10-15T10:20:17.723424494Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker proxy_rewrite@plugin done
+2025-10-15T10:20:17.723431858Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker app@plugin start
+2025-10-15T10:20:17.723439748Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker app@plugin done
+2025-10-15T10:20:17.723448330Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker access_relational@plugin start
+2025-10-15T10:20:17.723456424Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker  done
+2025-10-15T10:20:17.723464085Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_visit@plugin start
+2025-10-15T10:20:17.723471460Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_visit@plugin done
+2025-10-15T10:20:17.723479318Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_grey@plugin start
+2025-10-15T10:20:17.723569162Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_grey@plugin done
+2025-10-15T10:20:17.723582248Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_limiting@plugin start
+2025-10-15T10:20:17.723591749Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_limiting@plugin done
+2025-10-15T10:20:17.723616946Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_fuse@plugin start
+2025-10-15T10:20:17.723626373Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_fuse@plugin done
+2025-10-15T10:20:17.723639092Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_cache@plugin start
+2025-10-15T10:20:17.723647255Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_cache@plugin done
+2025-10-15T10:20:17.723655177Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_data_mask@plugin start
+2025-10-15T10:20:17.723662728Z [2025-10-15 18:20:17] [DEBU] [admin-102]create worker strategy_data_mask@plugin done
+2025-10-15T10:20:17.723672363Z [2025-10-15 18:20:17] [DEBU] [admin-102]create chain len: 11
+2025-10-15T10:20:17.723680598Z [2025-10-15 18:20:17] [DEBU] [master-50]etcd send event:set namespace:worker key:9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service
+2025-10-15T10:20:17.723688674Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172190528e+09	debug	Applying entries	{"num-entries": 1}
+2025-10-15T10:20:17.723697056Z [2025-10-15 18:20:17] [DEBU] [master-50]1.760523617219077e+09	debug	Applying entry	{"index": 47, "term": 3, "type": "EntryNormal"}
+2025-10-15T10:20:17.723705468Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172190835e+09	debug	apply entry normal	{"consistent-index": 46, "entry-index": 47, "should-applyV3": true}
+2025-10-15T10:20:17.723718747Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172190897e+09	debug	applyEntryNormal	{"raftReq": "header:<ID:3852717225243275538 > put:<key:\"/worker/9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service\" value:\"{\\\"id\\\":\\\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service\\\",\\\"profession\\\":\\\"service\\\",\\\"name\\\":\\\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\\\",\\\"driver\\\":\\\"http\\\",\\\"create\\\":\\\"2025-10-15 15:40:11\\\",\\\"update\\\":\\\"2025-10-15 18:20:17\\\",\\\"body\\\":\\\"eyJpZCI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NkBzZXJ2aWNlIiwibmFtZSI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NiIsImRlc2NyaXB0aW9uIjoiIiwiZHJpdmVyIjoiaHR0cCIsInZlcnNpb24iOiI4MjZlZjA4Zi0xN2I4LTRlNWEtODBhMy02MDBlMWY4M2ZiN2IiLCJtYXRjaGVzIjp7InByb2plY3QiOiI5ZTU4M2Q1Yy1mYmZhLTQ2NTUtYmJiOC00ZjUxMzcyZWNiNTYifSwibm9kZXMiOlsiMTkyLjE2OC4zMS4xODA6NTY3OCB3ZWlnaHQ9MTAwIl0sInBhc3NfaG9zdCI6InBhc3MiLCJzY2hlbWUiOiJIVFRQIiwidGltZW91dCI6MzAwMDAsImJhbGFuY2UiOiJyb3VuZC1yb2JpbiIsImxhYmVscyI6bnVsbH0=\\\",\\\"version\\\":\\\"826ef08f-17b8-4e5a-80a3-600e1f83fb7b\\\",\\\"matches\\\":{\\\"project\\\":\\\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\\\"}}\" > "}
+2025-10-15T10:20:17.723727571Z [2025-10-15 18:20:17] [DEBU] [master-50]etcd send event:set namespace:worker key:4e1cf7bc-b604-4b61-8bd9-963b88139242@router
+2025-10-15T10:20:17.723739624Z [2025-10-15 18:20:17] [DEBU] [master-50]send listen to worker:namespace:"worker"  command:"set"  key:"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service"  data:"{\"id\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service\",\"profession\":\"service\",\"name\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\",\"driver\":\"http\",\"create\":\"2025-10-15 15:40:11\",\"update\":\"2025-10-15 18:20:17\",\"body\":\"eyJpZCI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NkBzZXJ2aWNlIiwibmFtZSI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NiIsImRlc2NyaXB0aW9uIjoiIiwiZHJpdmVyIjoiaHR0cCIsInZlcnNpb24iOiI4MjZlZjA4Zi0xN2I4LTRlNWEtODBhMy02MDBlMWY4M2ZiN2IiLCJtYXRjaGVzIjp7InByb2plY3QiOiI5ZTU4M2Q1Yy1mYmZhLTQ2NTUtYmJiOC00ZjUxMzcyZWNiNTYifSwibm9kZXMiOlsiMTkyLjE2OC4zMS4xODA6NTY3OCB3ZWlnaHQ9MTAwIl0sInBhc3NfaG9zdCI6InBhc3MiLCJzY2hlbWUiOiJIVFRQIiwidGltZW91dCI6MzAwMDAsImJhbGFuY2UiOiJyb3VuZC1yb2JpbiIsImxhYmVscyI6bnVsbH0=\",\"version\":\"826ef08f-17b8-4e5a-80a3-600e1f83fb7b\",\"matches\":{\"project\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\"}}"
+2025-10-15T10:20:17.723843858Z [2025-10-15 18:20:17] [DEBU] [worker-68]recv:namespace:"worker"  command:"set"  key:"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service"  data:"{\"id\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service\",\"profession\":\"service\",\"name\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\",\"driver\":\"http\",\"create\":\"2025-10-15 15:40:11\",\"update\":\"2025-10-15 18:20:17\",\"body\":\"eyJpZCI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NkBzZXJ2aWNlIiwibmFtZSI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NiIsImRlc2NyaXB0aW9uIjoiIiwiZHJpdmVyIjoiaHR0cCIsInZlcnNpb24iOiI4MjZlZjA4Zi0xN2I4LTRlNWEtODBhMy02MDBlMWY4M2ZiN2IiLCJtYXRjaGVzIjp7InByb2plY3QiOiI5ZTU4M2Q1Yy1mYmZhLTQ2NTUtYmJiOC00ZjUxMzcyZWNiNTYifSwibm9kZXMiOlsiMTkyLjE2OC4zMS4xODA6NTY3OCB3ZWlnaHQ9MTAwIl0sInBhc3NfaG9zdCI6InBhc3MiLCJzY2hlbWUiOiJIVFRQIiwidGltZW91dCI6MzAwMDAsImJhbGFuY2UiOiJyb3VuZC1yb2JpbiIsImxhYmVscyI6bnVsbH0=\",\"version\":\"826ef08f-17b8-4e5a-80a3-600e1f83fb7b\",\"matches\":{\"project\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\"}}"
+2025-10-15T10:20:17.723873884Z [2025-10-15 18:20:17] [DEBU] [worker-68]setEvent NamespaceWorker:
+2025-10-15T10:20:17.723884419Z [2025-10-15 18:20:17] [DEBU] [worker-68]NamespaceWorker:service9e583d5c-fbfa-4655-bbb8-4f51372ecb56
+2025-10-15T10:20:17.723894259Z [2025-10-15 18:20:17] [DEBU] [worker-68]set:9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service,service,9e583d5c-fbfa-4655-bbb8-4f51372ecb56,http
+2025-10-15T10:20:17.723964936Z [2025-10-15 18:20:17] [DEBU] [worker-68]get profession:service:true->name:"service"  label:"服务"  desc:"服务"  dependencies:"discovery"  appendLabels:"discovery"  drivers:{id:"eolinker.com:apinto:service_http"  name:"http"  label:"service"  desc:"服务"}
+2025-10-15T10:20:17.723977969Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*service.Config Value> kind: ptr
+2025-10-15T10:20:17.723986942Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.723997214Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724005328Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <int64 Value> kind: int64
+2025-10-15T10:20:17.724013041Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.724021253Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724028955Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724036371Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724044071Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724051829Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724060024Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724067571Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.724074965Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724082490Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724090092Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724097542Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724105883Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724127405Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.724135037Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724142391Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172204614e+09	debug	Applying entries	{"num-entries": 1}
+2025-10-15T10:20:17.724153265Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172204885e+09	debug	Applying entry	{"index": 48, "term": 3, "type": "EntryNormal"}
+2025-10-15T10:20:17.724161119Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172204962e+09	debug	apply entry normal	{"consistent-index": 47, "entry-index": 48, "should-applyV3": true}
+2025-10-15T10:20:17.724261748Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172205012e+09	debug	applyEntryNormal	{"raftReq": "header:<ID:3852717225243275539 > put:<key:\"/worker/4e1cf7bc-b604-4b61-8bd9-963b88139242@router\" value:\"{\\\"id\\\":\\\"4e1cf7bc-b604-4b61-8bd9-963b88139242@router\\\",\\\"profession\\\":\\\"router\\\",\\\"name\\\":\\\"4e1cf7bc-b604-4b61-8bd9-963b88139242\\\",\\\"driver\\\":\\\"http\\\",\\\"create\\\":\\\"2025-10-15 15:40:11\\\",\\\"update\\\":\\\"2025-10-15 18:20:17\\\",\\\"body\\\":\\\"eyJpZCI6IjRlMWNmN2JjLWI2MDQtNGI2MS04YmQ5LTk2M2I4ODEzOTI0MkByb3V0ZXIiLCJuYW1lIjoiNGUxY2Y3YmMtYjYwNC00YjYxLThiZDktOTYzYjg4MTM5MjQyIiwiZGVzY3JpcHRpb24iOiJhdXRvIGNyZWF0ZSBieSBjcmVhdGUgc2VydmljZSIsImRyaXZlciI6Imh0dHAiLCJ2ZXJzaW9uIjoiODI2ZWYwOGYtMTdiOC00ZTVhLTgwYTMtNjAwZTFmODNmYjdiIiwibWF0Y2hlcyI6eyJwcm9qZWN0IjoiOWU1ODNkNWMtZmJmYS00NjU1LWJiYjgtNGY1MTM3MmVjYjU2In0sImxpc3RlbiI6MCwiaG9zdCI6W10sIm1ldGhvZCI6WyJHRVQiLCJQT1NUIiwiUFVUIiwiREVMRVRFIiwiUEFUQ0giLCJPUFRJT05TIl0sInByb3RvY29scyI6WyJodHRwIiwiaHR0cHMiXSwibG9jYXRpb24iOiIvYjFhMjVjY2MvaGVhbHRoMiIsInJ1bGVzIjpbXSwic2VydmljZSI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NkBzZXJ2aWNlIiwicGx1Z2lucyI6eyJwcm94eV9yZXdyaXRlIjp7ImRpc2FibGUiOmZhbHNlLCJjb25maWciOnsicGF0aF90eXBlIjoicHJlZml4IiwicHJlZml4X3BhdGgiOlt7InByZWZpeF9wYXRoX21hdGNoIjoiL2IxYTI1Y2NjL2hlYWx0aDIiLCJwcmVmaXhfcGF0aF9yZXBsYWNlIjoiL2FwaS92MS9oZWFsdGgifV0sIm5vdF9tYXRjaF9lcnIiOnRydWUsImhvc3RfcmV3cml0ZSI6ZmFsc2UsImhlYWRlcnMiOnt9fX19LCJyZXRyeSI6MCwidGltZV9vdXQiOjMwMDAwLCJsYWJlbHMiOnsiYXBpX2tpbmQiOiJyZXN0IiwicHJvdmlkZXIiOiI5ZTU4M2Q1Yy1mYmZhLTQ2NTUtYmJiOC00ZjUxMzcyZWNiNTYifX0=\\\",\\\"description\\\":\\\"auto create by create service\\\",\\\"version\\\":\\\"826ef08f-17b8-4e5a-80a3-600e1f83fb7b\\\",\\\"matches\\\":{\\\"project\\\":\\\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\\\"}}\" > "}
+2025-10-15T10:20:17.724286220Z [2025-10-15 18:20:17] [DEBU] [master-50]send listen to worker:namespace:"worker"  command:"set"  key:"4e1cf7bc-b604-4b61-8bd9-963b88139242@router"  data:"{\"id\":\"4e1cf7bc-b604-4b61-8bd9-963b88139242@router\",\"profession\":\"router\",\"name\":\"4e1cf7bc-b604-4b61-8bd9-963b88139242\",\"driver\":\"http\",\"create\":\"2025-10-15 15:40:11\",\"update\":\"2025-10-15 18:20:17\",\"body\":\"eyJpZCI6IjRlMWNmN2JjLWI2MDQtNGI2MS04YmQ5LTk2M2I4ODEzOTI0MkByb3V0ZXIiLCJuYW1lIjoiNGUxY2Y3YmMtYjYwNC00YjYxLThiZDktOTYzYjg4MTM5MjQyIiwiZGVzY3JpcHRpb24iOiJhdXRvIGNyZWF0ZSBieSBjcmVhdGUgc2VydmljZSIsImRyaXZlciI6Imh0dHAiLCJ2ZXJzaW9uIjoiODI2ZWYwOGYtMTdiOC00ZTVhLTgwYTMtNjAwZTFmODNmYjdiIiwibWF0Y2hlcyI6eyJwcm9qZWN0IjoiOWU1ODNkNWMtZmJmYS00NjU1LWJiYjgtNGY1MTM3MmVjYjU2In0sImxpc3RlbiI6MCwiaG9zdCI6W10sIm1ldGhvZCI6WyJHRVQiLCJQT1NUIiwiUFVUIiwiREVMRVRFIiwiUEFUQ0giLCJPUFRJT05TIl0sInByb3RvY29scyI6WyJodHRwIiwiaHR0cHMiXSwibG9jYXRpb24iOiIvYjFhMjVjY2MvaGVhbHRoMiIsInJ1bGVzIjpbXSwic2VydmljZSI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NkBzZXJ2aWNlIiwicGx1Z2lucyI6eyJwcm94eV9yZXdyaXRlIjp7ImRpc2FibGUiOmZhbHNlLCJjb25maWciOnsicGF0aF90eXBlIjoicHJlZml4IiwicHJlZml4X3BhdGgiOlt7InByZWZpeF9wYXRoX21hdGNoIjoiL2IxYTI1Y2NjL2hlYWx0aDIiLCJwcmVmaXhfcGF0aF9yZXBsYWNlIjoiL2FwaS92MS9oZWFsdGgifV0sIm5vdF9tYXRjaF9lcnIiOnRydWUsImhvc3RfcmV3cml0ZSI6ZmFsc2UsImhlYWRlcnMiOnt9fX19LCJyZXRyeSI6MCwidGltZV9vdXQiOjMwMDAwLCJsYWJlbHMiOnsiYXBpX2tpbmQiOiJyZXN0IiwicHJvdmlkZXIiOiI5ZTU4M2Q1Yy1mYmZhLTQ2NTUtYmJiOC00ZjUxMzcyZWNiNTYifX0=\",\"description\":\"auto create by create service\",\"version\":\"826ef08f-17b8-4e5a-80a3-600e1f83fb7b\",\"matches\":{\"project\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\"}}"
+2025-10-15T10:20:17.724407994Z [2025-10-15 18:20:17] [DEBU] [worker-68]recv:namespace:"worker"  command:"set"  key:"4e1cf7bc-b604-4b61-8bd9-963b88139242@router"  data:"{\"id\":\"4e1cf7bc-b604-4b61-8bd9-963b88139242@router\",\"profession\":\"router\",\"name\":\"4e1cf7bc-b604-4b61-8bd9-963b88139242\",\"driver\":\"http\",\"create\":\"2025-10-15 15:40:11\",\"update\":\"2025-10-15 18:20:17\",\"body\":\"eyJpZCI6IjRlMWNmN2JjLWI2MDQtNGI2MS04YmQ5LTk2M2I4ODEzOTI0MkByb3V0ZXIiLCJuYW1lIjoiNGUxY2Y3YmMtYjYwNC00YjYxLThiZDktOTYzYjg4MTM5MjQyIiwiZGVzY3JpcHRpb24iOiJhdXRvIGNyZWF0ZSBieSBjcmVhdGUgc2VydmljZSIsImRyaXZlciI6Imh0dHAiLCJ2ZXJzaW9uIjoiODI2ZWYwOGYtMTdiOC00ZTVhLTgwYTMtNjAwZTFmODNmYjdiIiwibWF0Y2hlcyI6eyJwcm9qZWN0IjoiOWU1ODNkNWMtZmJmYS00NjU1LWJiYjgtNGY1MTM3MmVjYjU2In0sImxpc3RlbiI6MCwiaG9zdCI6W10sIm1ldGhvZCI6WyJHRVQiLCJQT1NUIiwiUFVUIiwiREVMRVRFIiwiUEFUQ0giLCJPUFRJT05TIl0sInByb3RvY29scyI6WyJodHRwIiwiaHR0cHMiXSwibG9jYXRpb24iOiIvYjFhMjVjY2MvaGVhbHRoMiIsInJ1bGVzIjpbXSwic2VydmljZSI6IjllNTgzZDVjLWZiZmEtNDY1NS1iYmI4LTRmNTEzNzJlY2I1NkBzZXJ2aWNlIiwicGx1Z2lucyI6eyJwcm94eV9yZXdyaXRlIjp7ImRpc2FibGUiOmZhbHNlLCJjb25maWciOnsicGF0aF90eXBlIjoicHJlZml4IiwicHJlZml4X3BhdGgiOlt7InByZWZpeF9wYXRoX21hdGNoIjoiL2IxYTI1Y2NjL2hlYWx0aDIiLCJwcmVmaXhfcGF0aF9yZXBsYWNlIjoiL2FwaS92MS9oZWFsdGgifV0sIm5vdF9tYXRjaF9lcnIiOnRydWUsImhvc3RfcmV3cml0ZSI6ZmFsc2UsImhlYWRlcnMiOnt9fX19LCJyZXRyeSI6MCwidGltZV9vdXQiOjMwMDAwLCJsYWJlbHMiOnsiYXBpX2tpbmQiOiJyZXN0IiwicHJvdmlkZXIiOiI5ZTU4M2Q1Yy1mYmZhLTQ2NTUtYmJiOC00ZjUxMzcyZWNiNTYifX0=\",\"description\":\"auto create by create service\",\"version\":\"826ef08f-17b8-4e5a-80a3-600e1f83fb7b\",\"matches\":{\"project\":\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\"}}"
+2025-10-15T10:20:17.724421227Z [2025-10-15 18:20:17] [DEBU] [worker-68]setEvent NamespaceWorker:
+2025-10-15T10:20:17.724431283Z [2025-10-15 18:20:17] [DEBU] [worker-68]NamespaceWorker:router4e1cf7bc-b604-4b61-8bd9-963b88139242
+2025-10-15T10:20:17.724440292Z [2025-10-15 18:20:17] [DEBU] [worker-68]set:4e1cf7bc-b604-4b61-8bd9-963b88139242@router,router,4e1cf7bc-b604-4b61-8bd9-963b88139242,http
+2025-10-15T10:20:17.724450368Z [2025-10-15 18:20:17] [DEBU] [worker-68]get profession:router:true->name:"router"  label:"路由"  desc:"路由"  dependencies:"service"  dependencies:"template"  dependencies:"transcode"  appendLabels:"host"  appendLabels:"service"  appendLabels:"listen"  appendLabels:"disable"  drivers:{id:"eolinker.com:apinto:http_router"  name:"http"  label:"http"  desc:"http路由"}  drivers:{id:"eolinker.com:apinto:grpc_router"  name:"grpc"  label:"grpc"  desc:"grpc路由"}  drivers:{id:"eolinker.com:apinto:dubbo2_router"  name:"dubbo2"  label:"dubbo2"  desc:"dubbo2路由"}
+2025-10-15T10:20:17.724459047Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*http_router.Config Value> kind: ptr
+2025-10-15T10:20:17.724467192Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.724476140Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.724486375Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724494645Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724502372Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724509946Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724517439Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724539429Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724547411Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.724554835Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724563726Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724571959Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]string Value> kind: slice
+2025-10-15T10:20:17.724665986Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724683042Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]http_router.Rule Value> kind: slice
+2025-10-15T10:20:17.724697511Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724711397Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.724724992Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724740107Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]string Value> kind: map
+2025-10-15T10:20:17.724752846Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724766046Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724774432Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724782440Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724790291Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724797860Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.724805518Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724814193Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.724821795Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724829571Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <plugin.Plugins Value> kind: map
+2025-10-15T10:20:17.724838178Z [2025-10-15 18:20:17] [DEBU] [worker-68]plugin manager get config type:[0xc0008a1158 0xc0008a1188 0xc0008a11a0 0xc0008a11b8 0xc0008a11d0 0xc0008a11e8 0xc0008a1200 0xc0008a1218 0xc0008a1230 0xc0008a1248 0xc0008a1260 0xc0008a1278 0xc0008a1290 0xc0008a12a8]
+2025-10-15T10:20:17.724846026Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.724854333Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <proxy_rewrite_v2.Config Value> kind: struct
+2025-10-15T10:20:17.724863307Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724870701Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724879005Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724902882Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]*proxy_rewrite_v2.SPrefixPath Value> kind: slice
+2025-10-15T10:20:17.724910921Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*proxy_rewrite_v2.SPrefixPath Value> kind: ptr
+2025-10-15T10:20:17.724920411Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724927827Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.724935554Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <[]*proxy_rewrite_v2.SRegexPath Value> kind: slice
+2025-10-15T10:20:17.724943173Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724950567Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.724958593Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T10:20:17.724966249Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal:  kind: string
+2025-10-15T10:20:17.724973918Z [2025-10-15 18:20:17] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T10:20:17.724981490Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <map[string]string Value> kind: map
+2025-10-15T10:20:17.724989229Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.724997146Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T10:20:17.725153226Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <map[string]string Value> kind: map
+2025-10-15T10:20:17.725170024Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: api_kind targetVal:  kind: string
+2025-10-15T10:20:17.725184925Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.725199422Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: provider targetVal:  kind: string
+2025-10-15T10:20:17.725211844Z [2025-10-15 18:20:17] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T10:20:17.725226109Z [2025-10-15 18:20:17] [DEBU] [worker-68]check skill:github.com/eolinker/apinto/service.service.IService on 9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service:&{{9e583d5c-fbfa-4655-bbb8-4f51372ecb56@service 9e583d5c-fbfa-4655-bbb8-4f51372ecb56} {0xc0008432d0 0xc006f8c7a0  http 30000000000 0xc00079e3c0 0 }}
+2025-10-15T10:20:17.725239520Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker access_log@plugin start
+2025-10-15T10:20:17.725252354Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker access_log@plugin done
+2025-10-15T10:20:17.725269294Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker monitor@plugin start
+2025-10-15T10:20:17.725283662Z [2025-10-15 18:20:17] [INFO] [worker-68]create monitor worker...
+2025-10-15T10:20:17.725295529Z [2025-10-15 18:20:17] [INFO] [worker-68]finish monitor worker...
+2025-10-15T10:20:17.725308258Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker monitor@plugin done
+2025-10-15T10:20:17.725320746Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker proxy_rewrite@plugin start
+2025-10-15T10:20:17.725333383Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker proxy_rewrite@plugin done
+2025-10-15T10:20:17.725366575Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker app@plugin start
+2025-10-15T10:20:17.725379939Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker app@plugin done
+2025-10-15T10:20:17.725391657Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker access_relational@plugin start
+2025-10-15T10:20:18.723816241Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker  done
+2025-10-15T10:20:18.724010946Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_visit@plugin start
+2025-10-15T10:20:18.724030564Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_visit@plugin done
+2025-10-15T10:20:18.724039767Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_grey@plugin start
+2025-10-15T10:20:18.724047884Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_grey@plugin done
+2025-10-15T10:20:18.724055509Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_limiting@plugin start
+2025-10-15T10:20:18.724062936Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_limiting@plugin done
+2025-10-15T10:20:18.724072290Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_fuse@plugin start
+2025-10-15T10:20:18.724080365Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_fuse@plugin done
+2025-10-15T10:20:18.724088525Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_cache@plugin start
+2025-10-15T10:20:18.724096285Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_cache@plugin done
+2025-10-15T10:20:18.724104988Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_data_mask@plugin start
+2025-10-15T10:20:18.724112924Z [2025-10-15 18:20:17] [DEBU] [worker-68]create worker strategy_data_mask@plugin done
+2025-10-15T10:20:18.724120878Z [2025-10-15 18:20:17] [DEBU] [worker-68]create chain len: 11
+2025-10-15T10:20:18.724130672Z [2025-10-15 18:20:17] [DEBU] [master-50]etcd send event:set namespace:customer key:service_of_api:4e1cf7bc-b604-4b61-8bd9-963b88139242
+2025-10-15T10:20:18.724139953Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172220597e+09	debug	Applying entries	{"num-entries": 1}
+2025-10-15T10:20:18.724147738Z [2025-10-15 18:20:17] [DEBU] [master-50]1.760523617222073e+09	debug	Applying entry	{"index": 49, "term": 3, "type": "EntryNormal"}
+2025-10-15T10:20:18.724156585Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172220786e+09	debug	apply entry normal	{"consistent-index": 48, "entry-index": 49, "should-applyV3": true}
+2025-10-15T10:20:18.724166096Z [2025-10-15 18:20:17] [DEBU] [master-50]1.7605236172220833e+09	debug	applyEntryNormal	{"raftReq": "header:<ID:3852717225243275540 > put:<key:\"/customer/service_of_api:4e1cf7bc-b604-4b61-8bd9-963b88139242\" value:\"{\\\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\\\":\\\"0\\\"}\" > "}
+2025-10-15T10:20:18.724175435Z [2025-10-15 18:20:17] [DEBU] [master-50]send listen to worker:namespace:"customer"  command:"set"  key:"service_of_api:4e1cf7bc-b604-4b61-8bd9-963b88139242"  data:"{\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\":\"0\"}"
+2025-10-15T10:20:18.724184252Z [2025-10-15 18:20:17] [DEBU] [worker-68]recv:namespace:"customer"  command:"set"  key:"service_of_api:4e1cf7bc-b604-4b61-8bd9-963b88139242"  data:"{\"9e583d5c-fbfa-4655-bbb8-4f51372ecb56\":\"0\"}"
+2025-10-15T10:20:18.724192172Z [2025-10-15 18:20:17] [DEBU] [master-50]copy to client:read unix @->/tmp/apinto/apinto.admin-102.sock: use of closed network connection
+2025-10-15T10:20:18.724204380Z [2025-10-15 18:20:17] [DEBU] [admin-102]conn close
+2025-10-15T10:20:57.878421603Z [2025-10-15 18:20:56] [INFO] [master-50]1.7605236567358246e+09	info	starting auto revision compaction	{"revision": 28, "revision-compaction-retention": 10}
+2025-10-15T10:20:57.878525871Z [2025-10-15 18:20:56] [DEBU] [master-50]1.7605236567379932e+09	debug	Applying entries	{"num-entries": 1}
+2025-10-15T10:20:57.878599192Z [2025-10-15 18:20:56] [DEBU] [master-50]1.760523656738033e+09	debug	Applying entry	{"index": 50, "term": 3, "type": "EntryNormal"}
+2025-10-15T10:20:57.878607441Z [2025-10-15 18:20:56] [DEBU] [master-50]1.7605236567380445e+09	debug	apply entry normal	{"consistent-index": 49, "entry-index": 50, "should-applyV3": true}
+2025-10-15T10:20:57.878614493Z [2025-10-15 18:20:56] [DEBU] [master-50]1.7605236567380576e+09	debug	applyEntryNormal	{"raftReq": "header:<ID:3852717225243275541 > compaction:<revision:28 > "}
+2025-10-15T10:20:57.878622004Z [2025-10-15 18:20:56] [INFO] [master-50]1.7605236567410805e+09	info	compact tree index	{"revision": 28}
+2025-10-15T10:20:57.878706298Z [2025-10-15 18:20:56] [INFO] [master-50]1.7605236567412133e+09	info	completed auto revision compaction	{"revision": 28, "revision-compaction-retention": 10, "took": 0.005401678}
+2025-10-15T10:20:57.878722858Z [2025-10-15 18:20:56] [INFO] [master-50]1.7605236567466588e+09	info	finished scheduled compaction	{"compact-revision": 28, "took": 0.005406893, "hash": 3195241562, "current-db-size-bytes": 86016, "current-db-size": "86 kB", "current-db-size-in-use-bytes": 86016, "current-db-size-in-use": "86 kB"}
+2025-10-15T10:20:57.878732513Z [2025-10-15 18:20:56] [INFO] [master-50]1.7605236567467628e+09	info	storing new hash	{"hash": 3195241562, "revision": 28, "compact-revision": 13}
+2025-10-15T10:22:58.518248072Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:port
+2025-10-15T10:22:58.518271026Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:port-8099
+2025-10-15T10:22:58.518272500Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:protocol
+2025-10-15T10:22:58.518275134Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:protocol-http
+2025-10-15T10:22:58.518276330Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:host
+2025-10-15T10:22:58.518277619Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:host-192.168.31.180
+2025-10-15T10:22:58.518278675Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:method
+2025-10-15T10:22:58.518279696Z [2025-10-15 18:22:57] [DEBU] [worker-68]SimpleMatcher:method-GET
+2025-10-15T10:22:58.518281997Z [2025-10-15 18:22:57] [DEBU] [worker-68]CheckMatcher::Match(0)path=/b1a25ccc/health2
+2025-10-15T10:22:58.518282973Z [2025-10-15 18:22:57] [DEBU] [worker-68]match has:8099
+2025-10-15T10:22:58.518283960Z [2025-10-15 18:22:57] [DEBU] [worker-68]start monitor...
+2025-10-15T10:22:58.518285065Z [2025-10-15 18:22:57] [DEBU] [worker-68]auth beginning
+2025-10-15T10:22:58.518286102Z [2025-10-15 18:22:57] [DEBU] [worker-68]start auth...
+2025-10-15T10:22:58.518287266Z [2025-10-15 18:22:57] [DEBU] [worker-68]application name is 924179c7-fa75-4453-9714-27004eabbd13
+2025-10-15T10:22:58.518288316Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: handler label value: proxy
+2025-10-15T10:22:58.518289901Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: upstream label value: 9e583d5c-fbfa-4655-bbb8-4f51372ecb56
+2025-10-15T10:22:58.518290928Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: provider label value: 9e583d5c-fbfa-4655-bbb8-4f51372ecb56
+2025-10-15T10:22:58.518291925Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: api_kind label value: rest
+2025-10-15T10:22:58.518292892Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: status_code label value: -
+2025-10-15T10:22:58.518293862Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: api label value: 4e1cf7bc-b604-4b61-8bd9-963b88139242
+2025-10-15T10:22:58.518294838Z [2025-10-15 18:22:57] [DEBU] [worker-68]label name: app label value: 924179c7-fa75-4453-9714-27004eabbd13
+2025-10-15T10:22:58.518297553Z [2025-10-15 18:22:57] [DEBU] [worker-68]table: proxy tags: map[addr:http://192.168.31.180:5678 api:4e1cf7bc-b604-4b61-8bd9-963b88139242 api_kind:rest app:924179c7-fa75-4453-9714-27004eabbd13 cluster:47706e22-3f6d-458d-8cf3-adfcbb44c95a handler:proxy host:192.168.31.180:31289 method:GET node:72bb83a3ed054541856a44b269690f93 provider:9e583d5c-fbfa-4655-bbb8-4f51372ecb56 status_code:- upstream:9e583d5c-fbfa-4655-bbb8-4f51372ecb56] fields: map[index:0 request:0 response:46 status:200 timing:7] time: 2025-10-15 18:22:57.133990139 +0800 CST m=+422.690388000
+2025-10-15T10:22:58.518309128Z [2025-10-15 18:22:57] [DEBU] [worker-68]table: request tags: map[api:4e1cf7bc-b604-4b61-8bd9-963b88139242 api_kind:rest app:924179c7-fa75-4453-9714-27004eabbd13 cluster:47706e22-3f6d-458d-8cf3-adfcbb44c95a handler:proxy host:192.168.31.180:31289 method:GET node:72bb83a3ed054541856a44b269690f93 provider:9e583d5c-fbfa-4655-bbb8-4f51372ecb56 status_code:2xx upstream:9e583d5c-fbfa-4655-bbb8-4f51372ecb56] fields: map[input_token:0 output_token:0 request:0 response:46 retry:0 status:200 timing:10 total_token:0] time: 2025-10-15 18:22:57.131255279 +0800 CST m=+422.687653271

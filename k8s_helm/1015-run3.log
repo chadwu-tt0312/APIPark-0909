@@ -1,0 +1,303 @@
+Container:
+Follow Logs: 
+Show timestamp: 
+Since:
+-1
+Tail: 
+-1
+Destination: 
+Filter:
+Enter your keywords
+Wrap lines:
+2025-10-15T12:31:41.345910184Z mysql:
+2025-10-15T12:31:41.345964026Z   user_name: root
+2025-10-15T12:31:41.345965819Z   password: 123456
+2025-10-15T12:31:41.345966558Z   ip: apipark-mysql
+2025-10-15T12:31:41.345967280Z   port: 3306
+2025-10-15T12:31:41.345967998Z   db: apipark
+2025-10-15T12:31:41.345968655Z redis:
+2025-10-15T12:31:41.345969564Z   user_name:
+2025-10-15T12:31:41.345970252Z   password: 123456
+2025-10-15T12:31:41.345970928Z   addr:
+2025-10-15T12:31:41.345971577Z     - apipark-redis:6379
+2025-10-15T12:31:41.345973238Z nsq:
+2025-10-15T12:31:41.345973879Z   addr: apipark-nsq:4150
+2025-10-15T12:31:41.345974527Z   topic_prefix: apipark
+2025-10-15T12:31:41.345975145Z port: 8288
+2025-10-15T12:31:41.345975785Z error_log:
+2025-10-15T12:31:41.345976428Z   dir: work/logs
+2025-10-15T12:31:41.345977027Z   file_name: error.log
+2025-10-15T12:31:41.345977632Z   log_level: info
+2025-10-15T12:31:41.345978229Z   log_expire: 7d
+2025-10-15T12:31:41.345978900Z   log_period: day
+2025-10-15T12:31:41.346100472Z curl -s -o /dev/null http://127.0.0.1:8288/api/v1/account/login
+2025-10-15T12:31:41.346222412Z ⏳ Waiting: Waiting for apipark to start...
+2025-10-15T12:31:43.372891038Z ✔ Passed: apipark has been installed successfully
+2025-10-15T12:31:43.373741817Z ℹ Info: Executing: curl -X POST -s -i -H "Content-Type: application/json" -d '{"name":"admin","password":"aToh0eag"}' "http://127.0.0.1:8288/api/v1/account/login/username"
+2025-10-15T12:31:43.385413904Z ✔ Passed: login success
+2025-10-15T12:31:43.385772668Z ℹ Info: Executing: curl -X GET -s -i -H "Content-Type: application/json" -H "Cookie: session=232de4a7-bb42-4b07-8a39-ad6f99ccac6c" -d '' "http://127.0.0.1:8288/api/v1/system/general"
+2025-10-15T12:31:43.392193333Z ✔ Passed: Apipark openapi address found: http://192.168.31.180:31288
+2025-10-15T12:31:43.392215541Z Already initialized, skipping initialization.
+2025-10-15T12:31:43.393153166Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T12:31:43.393175365Z [0.695ms] [rows:1] SELECT * FROM `user_auth` WHERE `driver` = 'auth_password' AND `identifier` = 'admin' ORDER BY `user_auth`.`id` LIMIT 1
+2025-10-15T12:31:43.393176328Z
+2025-10-15T12:31:43.393177235Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:217
+2025-10-15T12:31:43.393177996Z [0.414ms] [rows:1] SELECT * FROM `user_info` WHERE uid in ('admin') ORDER BY name asc
+2025-10-15T12:31:43.393178983Z [GIN] 2025/10/15 - 20:31:43 | 200 |    2.281432ms |       127.0.0.1 | POST     "/api/v1/account/login/username"
+2025-10-15T12:31:43.393179577Z
+2025-10-15T12:31:43.393180251Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:203
+2025-10-15T12:31:43.393181368Z [0.410ms] [rows:3] SELECT * FROM `apinto_setting`
+2025-10-15T12:31:43.393182041Z [GIN] 2025/10/15 - 20:31:43 | 200 |     984.576µs |       127.0.0.1 | GET      "/api/v1/system/general"
+2025-10-15T12:31:44.393996703Z
+2025-10-15T12:31:44.394064996Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394075550Z [0.138ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394080183Z
+2025-10-15T12:31:44.394086015Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394101155Z [0.843ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394226596Z
+2025-10-15T12:31:44.394234238Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394240624Z [0.909ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'apipark' AND table_name = 'ai_api_use' AND table_type = 'BASE TABLE'
+2025-10-15T12:31:44.394245003Z
+2025-10-15T12:31:44.394250508Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394255331Z [0.096ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394259534Z
+2025-10-15T12:31:44.394264181Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394268716Z [0.388ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394272613Z
+2025-10-15T12:31:44.394277057Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394282684Z [0.215ms] [rows:-] SELECT * FROM `ai_api_use` LIMIT 1
+2025-10-15T12:31:44.394286788Z
+2025-10-15T12:31:44.394291203Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394304572Z [0.794ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'apipark' AND table_name = 'ai_api_use' ORDER BY ORDINAL_POSITION
+2025-10-15T12:31:44.394312083Z
+2025-10-15T12:31:44.394321001Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394325854Z [0.126ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394329910Z
+2025-10-15T12:31:44.394334485Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394339745Z [0.410ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394343041Z
+2025-10-15T12:31:44.394344102Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394345409Z [0.742ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_api_use' AND index_name = 'api'
+2025-10-15T12:31:44.394346320Z
+2025-10-15T12:31:44.394347305Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394348346Z [0.107ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394349277Z
+2025-10-15T12:31:44.394350338Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394351359Z [0.415ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394352250Z
+2025-10-15T12:31:44.394353195Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394354182Z [0.551ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_api_use' AND index_name = 'service'
+2025-10-15T12:31:44.394357827Z
+2025-10-15T12:31:44.394358942Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394360001Z [0.092ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394360906Z
+2025-10-15T12:31:44.394361887Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394362913Z [0.304ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394363791Z
+2025-10-15T12:31:44.394364799Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394365810Z [0.462ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_api_use' AND index_name = 'provider'
+2025-10-15T12:31:44.394366754Z
+2025-10-15T12:31:44.394367792Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394387647Z [0.101ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394389224Z
+2025-10-15T12:31:44.394390446Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394391596Z [0.314ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394392667Z
+2025-10-15T12:31:44.394393753Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394394818Z [0.510ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'apipark' AND table_name = 'ai_key' AND table_type = 'BASE TABLE'
+2025-10-15T12:31:44.394395909Z
+2025-10-15T12:31:44.394397676Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394398811Z [0.079ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394399724Z
+2025-10-15T12:31:44.394400786Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394401819Z [0.337ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394402752Z
+2025-10-15T12:31:44.394403714Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394404877Z [0.176ms] [rows:-] SELECT * FROM `ai_key` LIMIT 1
+2025-10-15T12:31:44.394405729Z
+2025-10-15T12:31:44.394406736Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394410032Z [0.669ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'apipark' AND table_name = 'ai_key' ORDER BY ORDINAL_POSITION
+2025-10-15T12:31:44.394411012Z
+2025-10-15T12:31:44.394412027Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394413090Z [0.091ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394414005Z
+2025-10-15T12:31:44.394415250Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394418766Z [0.312ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394419706Z
+2025-10-15T12:31:44.394420670Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394421672Z [0.475ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_key' AND index_name = 'uuid'
+2025-10-15T12:31:44.394422554Z
+2025-10-15T12:31:44.394425428Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394426518Z [0.090ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394427487Z
+2025-10-15T12:31:44.394428446Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394429433Z [0.329ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394430326Z
+2025-10-15T12:31:44.394431322Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394432329Z [0.614ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_key' AND index_name = 'creator'
+2025-10-15T12:31:44.394433227Z
+2025-10-15T12:31:44.394434149Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394435211Z [0.106ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394436114Z
+2025-10-15T12:31:44.394437062Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394438066Z [0.327ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394438974Z
+2025-10-15T12:31:44.394439946Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394440913Z [0.595ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_key' AND index_name = 'updater'
+2025-10-15T12:31:44.394441795Z
+2025-10-15T12:31:44.394442828Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394443811Z [0.129ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394444689Z
+2025-10-15T12:31:44.394461456Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394463111Z [0.349ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394464197Z
+2025-10-15T12:31:44.394465408Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394466626Z [0.518ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'apipark' AND table_name = 'ai_key_index' AND table_type = 'BASE TABLE'
+2025-10-15T12:31:44.394467586Z
+2025-10-15T12:31:44.394468667Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394472053Z [0.088ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394473045Z
+2025-10-15T12:31:44.394474202Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394475327Z [0.309ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394476258Z
+2025-10-15T12:31:44.394477505Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394478524Z [0.170ms] [rows:-] SELECT * FROM `ai_key_index` LIMIT 1
+2025-10-15T12:31:44.394479428Z
+2025-10-15T12:31:44.394480416Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394481518Z [0.599ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'apipark' AND table_name = 'ai_key_index' ORDER BY ORDINAL_POSITION
+2025-10-15T12:31:44.394482492Z
+2025-10-15T12:31:44.394483471Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394484414Z [0.085ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394485441Z
+2025-10-15T12:31:44.394486447Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394487449Z [0.331ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394488310Z
+2025-10-15T12:31:44.394489313Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394490282Z [0.482ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_key_index' AND index_name = 'tid'
+2025-10-15T12:31:44.394491167Z
+2025-10-15T12:31:44.394492109Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394493192Z [0.170ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394494087Z
+2025-10-15T12:31:44.394495059Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394496001Z [0.427ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394496861Z
+2025-10-15T12:31:44.394497820Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394498795Z [0.554ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'apipark' AND table_name = 'ai_provider' AND table_type = 'BASE TABLE'
+2025-10-15T12:31:44.394499654Z
+2025-10-15T12:31:44.394500648Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394501633Z [0.086ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394502507Z
+2025-10-15T12:31:44.394503433Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394504391Z [0.408ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394507051Z
+2025-10-15T12:31:44.394508020Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394509051Z [0.343ms] [rows:-] SELECT * FROM `ai_provider` LIMIT 1
+2025-10-15T12:31:44.394509966Z
+2025-10-15T12:31:44.394510893Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394527417Z [0.719ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'apipark' AND table_name = 'ai_provider' ORDER BY ORDINAL_POSITION
+2025-10-15T12:31:44.394528988Z
+2025-10-15T12:31:44.394530244Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394531494Z [0.104ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394532598Z
+2025-10-15T12:31:44.394533906Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394535103Z [0.310ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394536159Z
+2025-10-15T12:31:44.394537319Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394538426Z [0.600ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_provider' AND index_name = 'uuid'
+2025-10-15T12:31:44.394539379Z
+2025-10-15T12:31:44.394540442Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394541463Z [0.082ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394542505Z
+2025-10-15T12:31:44.394543490Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394544523Z [0.309ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394545477Z
+2025-10-15T12:31:44.394546480Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394547735Z [0.459ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_provider' AND index_name = 'creator'
+2025-10-15T12:31:44.394548638Z
+2025-10-15T12:31:44.394549665Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394550845Z [0.083ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394551784Z
+2025-10-15T12:31:44.394552773Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394553797Z [0.320ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394554674Z
+2025-10-15T12:31:44.394555648Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:68
+2025-10-15T12:31:44.394558619Z [0.472ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_provider' AND index_name = 'updater'
+2025-10-15T12:31:44.394559542Z
+2025-10-15T12:31:44.394560640Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394561653Z [0.081ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394562558Z
+2025-10-15T12:31:44.394563499Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394564437Z [0.345ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394565341Z
+2025-10-15T12:31:44.394566355Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394567366Z [0.590ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'apipark' AND table_name = 'ai_provider_index' AND table_type = 'BASE TABLE'
+2025-10-15T12:31:44.394568311Z
+2025-10-15T12:31:44.394569262Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394570262Z [0.105ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394571190Z
+2025-10-15T12:31:44.394572231Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394573200Z [0.499ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394574141Z
+2025-10-15T12:31:44.394575125Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394576191Z [0.202ms] [rows:-] SELECT * FROM `ai_provider_index` LIMIT 1
+2025-10-15T12:31:44.394577041Z
+2025-10-15T12:31:44.394577964Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394599352Z [0.633ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'apipark' AND table_name = 'ai_provider_index' ORDER BY ORDINAL_POSITION
+2025-10-15T12:31:44.394600835Z
+2025-10-15T12:31:44.394602102Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394603451Z [0.119ms] [rows:-] SELECT DATABASE()
+2025-10-15T12:31:44.394604632Z
+2025-10-15T12:31:44.394605884Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394607056Z [0.456ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'apipark%' ORDER BY SCHEMA_NAME='apipark' DESC,SCHEMA_NAME limit 1
+2025-10-15T12:31:44.394608026Z
+2025-10-15T12:31:44.394609101Z 2025/10/15 20:31:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/search.go:49
+2025-10-15T12:31:44.394610309Z [0.662ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'apipark' AND table_name = 'ai_provider_index' AND index_name = 'tid'
+2025-10-15T12:31:44.394611343Z 2025/10/15 20:31:43 INF    1 [apipark_ai_event/apipark-74b786df86-wr9c4] (apipark-nsq:4150) connecting to nsqd
+2025-10-15T12:31:44.394615105Z 2025/10/15 20:31:43 Connected to NSQ
+2025-10-15T12:31:53.395824963Z
+2025-10-15T12:31:53.395844766Z 2025/10/15 20:31:53 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:31:53.395846227Z [3.066ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:03.399617108Z
+2025-10-15T12:32:03.399709591Z 2025/10/15 20:32:03 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:03.399718925Z [1.578ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:13.401998241Z
+2025-10-15T12:32:13.402125830Z 2025/10/15 20:32:13 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:13.402144374Z [2.795ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:23.404164966Z
+2025-10-15T12:32:23.404232308Z 2025/10/15 20:32:23 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:23.404240447Z [9.316ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:31.405505796Z [GIN] 2025/10/15 - 20:32:30 | 200 |      73.179µs |       127.0.0.1 | GET      "/cluster"
+2025-10-15T12:32:31.405539736Z [GIN] 2025/10/15 - 20:32:31 | 401 |     344.535µs |       127.0.0.1 | GET      "/api/v1/account/profile"
+2025-10-15T12:32:31.405545003Z [GIN] 2025/10/15 - 20:32:31 | 401 |      234.84µs |       127.0.0.1 | GET      "/api/v1/profile/permission/system"
+2025-10-15T12:32:31.405548484Z [GIN] 2025/10/15 - 20:32:31 | 200 |      13.219µs |       127.0.0.1 | GET      "/login"
+2025-10-15T12:32:31.405551745Z
+2025-10-15T12:32:31.405555425Z 2025/10/15 20:32:31 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:86 record not found
+2025-10-15T12:32:31.405558795Z [0.931ms] [rows:0] SELECT * FROM `auth_driver` WHERE uuid = 'feishu' ORDER BY `auth_driver`.`id` LIMIT 1
+2025-10-15T12:32:31.405562876Z [GIN] 2025/10/15 - 20:32:31 | 200 |    1.349175ms |       127.0.0.1 | GET      "/api/v1/account/login"
+2025-10-15T12:32:31.405566315Z [GIN] 2025/10/15 - 20:32:31 | 200 |     1.41073ms |       127.0.0.1 | GET      "/api/v1/common/version"
+2025-10-15T12:32:33.406898806Z
+2025-10-15T12:32:33.406989177Z 2025/10/15 20:32:33 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:33.407001222Z [11.641ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:43.407829158Z
+2025-10-15T12:32:43.407875486Z 2025/10/15 20:32:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:43.407879722Z [1.616ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:43.407882399Z
+2025-10-15T12:32:43.407885248Z 2025/10/15 20:32:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:43.407887712Z [1.724ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:32:43.407890161Z
+2025-10-15T12:32:43.407892639Z 2025/10/15 20:32:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T12:32:43.407895105Z [0.842ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T12:32:43.407897683Z
+2025-10-15T12:32:43.407900077Z 2025/10/15 20:32:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T12:32:43.407931344Z [13.797ms] [rows:1] UPDATE `log` SET `uuid`='8b6f8958-f484-4a78-ab0f-37929092b15b',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 20:31:43.107',`create_at`='2025-10-15 15:33:34',`update_at`='2025-10-15 20:32:43.113' WHERE `id` = 1
+2025-10-15T12:32:53.409795228Z
+2025-10-15T12:32:53.409829213Z 2025/10/15 20:32:53 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:32:53.409831697Z [10.389ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:33:03.411676719Z
+2025-10-15T12:33:03.411743175Z 2025/10/15 20:33:03 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T12:33:03.411748638Z [7.969ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T12:33:05.411823165Z
+2025-10-15T12:33:05.411846799Z 2025/10/15 20:33:04 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T12:33:05.411849007Z [1.260ms] [rows:1] SELECT * FROM `user_auth` WHERE `driver` = 'auth_password' AND `identifier` = 'admin' ORDER BY `user_auth`.`id` LIMIT 1
+2025-10-15T12:33:05.411850002Z
+2025-10-15T12:33:05.411851312Z 2025/10/15 20:33:04 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:217

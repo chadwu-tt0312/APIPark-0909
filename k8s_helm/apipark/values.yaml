@@ -205,7 +205,7 @@ apinto:
       http:
         port: 8099 # 主要 HTTP 端口
         targetPort: 8099
-        nodePort: 31899
+        nodePort: 31289
       admin:
         port: 9400
         targetPort: 9400
@@ -230,8 +230,9 @@ apipark:
     # repository: apipark/apipark
     # repository: apipark
     repository: chadwu/apipark
-    tag: "v1.9.5-beta-0911"
     # tag: "v1.9.3-beta"
+    # tag: "v1.9.5-beta-0911"
+    tag: "v1.9.5-beta-1015"
     pullPolicy: IfNotPresent
   service:
     # type: ClusterIP

@@ -76,25 +76,49 @@ curl http://172.21.122.231:8099/36ffbb2d/Pei_Knnowledge_Rag
 -X GET 
 -H "Authorization: {{USER_KEY}}"
 
-### 
-curl http://localhost:31288/api/v1/cluster/check 
+### API gateway
+curl http://192.168.31.180:31288/api/v1/cluster/check 
 -X POST 
--d '{"address": "10.244.0.31:9400"}'
+-d '{"address":"apipark-apinto:9400"}'
 
+# response (peer_address 與其他不同) addr 改 "10.244.0.188:9400" 就可以相同
+{
+    "data": {
+        "nodes": [
+            {
+                "id": "eda67d7af66b3577",
+                "name": "72bb83a3ed054541856a44b269690f93",
+                "manager_address": [
+                    "http://10.244.0.188:9400"
+                ],
+                "peer_address": [
+                    "http://10.244.0.168:9401"
+                ],
+                "service_address": [
+                    "http://10.244.0.188:8099",
+                    "https://10.244.0.188:8099"
+                ],
+                "status": 1
+            }
+        ]
+    },
+    "code": 0,
+    "success": "success"
+}
 
 ### ================= Health2 Restful Service =================
-@USER_KEY_180 = c5f67dbf-3d70-4318-ac1b-0c580e85978d
+@USER_KEY_180 = 6474379f-bbdb-481b-8e56-5eea4c59b964
 
-curl -X GET "http://192.168.31.180:31899/4e5fdf32/health2"
+curl -X GET "http://192.168.31.180:31289/b1a25ccc/health2"
 -H "Authorization: {{USER_KEY_180}}"
 
 ###
-curl -X GET "http://192.168.31.180:30080/apinto/4e5fdf32/health2"
+curl -X GET "http://192.168.31.180:30080/apinto/b1a25ccc/health2"
 -H "Host: apipark.local"
 -H "Authorization: {{USER_KEY_180}}"
 
 ###
-curl http://192.168.31.180:31288/api/v1/service/apidoc/a00ca1fc-c8a5-49a7-968c-3f7be172a519
+curl http://192.168.31.180:31288/api/v1/service/apidoc/9e583d5c-fbfa-4655-bbb8-4f51372ecb56
 -H "Host: apipark.local"
 
 ###
@@ -370,4 +394,515 @@ curl http://192.168.31.180:31288/api/v1/service/info?team=c65bd5a2-40de-42e5-94c
   },
   "code": 0,
   "success": "success"
+}
+
+# ================= Loki =================
+# start 是 24 小時前（以 nanosecond 為單位）
+# end 是現在
+
+### loki labels
+curl -G "http://localhost:3100/loki/api/v1/labels" \
+--data-urlencode "start=$(($(date +%s%N)-3600*24_000_000_000))" \
+--data-urlencode "end=$(date +%s%N)" 
+
+### loki labels-2
+curl -G "http://localhost:3100/loki/api/v1/labels" \
+--data-urlencode "start=$(date -d '24 hour ago' +%s%N)" \
+--data-urlencode "end=$(date +%s%N)" 
+
+### loki series
+curl -G "http://localhost:3100/loki/api/v1/series" \
+--data-urlencode "start=$(($(date +%s%N)-3600*24_000_000_000))" \
+--data-urlencode "end=$(date +%s%N)"
+
+### loki query
+curl -G "http://localhost:3100/loki/api/v1/query_range" \
+--data-urlencode 'query={cluster="a3e22d5b-bb13-46ea-a39d-bd53bee8eefe"}' \
+--data-urlencode 'limit=10' | jq
+
+# loki query-2
+curl -s "http://localhost:3100/loki/api/v1/query_range?query=%7Bcluster%3D%22a3e22d5b-bb13-46ea-a39d-bd53bee8eefe%22%7D&limit=10"
+
+### add job (測試是否真的能寫入 Loki) ({job="test", service_name="test"})
+curl -X POST "http://localhost:3100/loki/api/v1/push" \
+-H "Content-Type: application/json" \
+-d '{
+  "streams": [
+    {
+      "stream": { \"job\": \"test\" },
+      "values": [ [ "'$(date +%s%N)'", \"hello from curl\" ] ]
+    }
+  ]
+}'
+
+### loki push (X)
+curl -X POST http://localhost:3100/loki/api/v1/push \
+  -H "Content-Type: application/json" \
+  -d '{ 
+    "streams": [
+      {
+        "labels": "{cluster=\"test-cluster\", node=\"test-node\", service_name=\"test-service\"}",
+        "entries": [
+          {
+            "ts": "'$(date -u +%Y-%m-%dT%H:%M:%S.%3N)Z'",
+            "line": "測試日誌訊息"
+          }
+        ]
+      }
+    ]
+  }'
+
+# ================= apinto =================  
+###
+curl -s http://localhost:9400/api/output
+
+# response
+[
+  {
+    "create": "2025-10-15 15:33:34",
+    "description": "",
+    "driver": "influxdbv2",
+    "id": "default_influxdb@output",
+    "name": "default_influxdb",
+    "profession": "output",
+    "update": "2025-10-15 15:33:34",
+    "version": "20251015153334"
+  },
+  {
+    "create": "2025-10-15 15:33:34",
+    "description": "collect access log",
+    "driver": "loki",
+    "id": "loki@output",
+    "name": "loki",
+    "profession": "output",
+    "update": "2025-10-15 15:33:34",
+    "version": "20251015153334"
+  },
+  {
+    "create": "2025-10-15 15:33:34",
+    "description": "auto init nsqd config",
+    "driver": "nsqd",
+    "id": "ai_event@output",
+    "name": "ai_event",
+    "profession": "output",
+    "update": "2025-10-15 15:33:34",
+    "version": "20251015153334"
+  }
+]
+
+###
+curl -s http://localhost:9400/api/output/loki@output
+
+# response
+{
+  "create": "2025-10-15 15:33:34",
+  "description": "collect access log",
+  "driver": "loki",
+  "formatter": {
+    "fields": [
+      "$msec",
+      "$service",
+      "$provider",
+      "$scheme as request_scheme",
+      "$url as request_uri",
+      "$host as request_host",
+      "$header as request_header",
+      "$remote_addr",
+      "$request_body",
+      "$proxy_body",
+      "$proxy_method",
+      "$proxy_scheme",
+      "$proxy_uri",
+      "$api",
+      "$proxy_host",
+      "$proxy_header",
+      "$proxy_addr",
+      "$response_header",
+      "$response_headers",
+      "$status",
+      "$content_type",
+      "$proxy_status",
+      "$request_time",
+      "$response_time",
+      "$node",
+      "$cluster",
+      "$application",
+      "$src_ip",
+      "$block_name as strategy",
+      "$request_id",
+      "$request_method",
+      "$authorization",
+      "$response_body",
+      "$proxy_response_body",
+      "$ai_provider",
+      "$ai_model",
+      "$ai_model_input_token",
+      "$ai_model_output_token",
+      "$ai_model_total_token"
+    ]
+  },
+  "headers": {},
+  "id": "loki@output",
+  "labels": {
+    "cluster": "$cluster",
+    "node": "$node"
+  },
+  "matches": null,
+  "method": "POST",
+  "name": "loki",
+  "profession": "output",
+  "scopes": [
+    "access_log"
+  ],
+  "type": "json",
+  "update": "2025-10-15 15:33:34",
+  "url": "http://apipark-loki:3100",
+  "version": "20251015153334"
+}
+
+###
+curl -s http://localhost:9400/api/setting/plugin
+
+# response
+{
+  "plugins": [
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:access_log",
+      "name": "access_log",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:monitor",
+      "name": "monitor",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:proxy_rewrite_v2",
+      "name": "proxy_rewrite",
+      "rely": "",
+      "status": "enable"
+    },
+    {
+      "config": {
+        "force_auth": true
+      },
+      "id": "eolinker.com:apinto:plugin_app",
+      "name": "app",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": {
+        "response": {
+          "body": "Forbidden",
+          "charset": "utf-8",
+          "content_type": "text/plan",
+          "status_code": 403
+        },
+        "rules": [
+          {
+            "a": "service_of_api:#{api}",
+            "b": "subscription_service:#{application}"
+          }
+        ]
+      },
+      "id": "eolinker.com:apinto:access_relational",
+      "name": "access_relational",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:extra_params",
+      "name": "extra_params",
+      "rely": "",
+      "status": "enable"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:strategy-plugin-visit",
+      "name": "strategy_visit",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:strategy-plugin-grey",
+      "name": "strategy_grey",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": {
+        "cache": "redis@output"
+      },
+      "id": "eolinker.com:apinto:strategy-plugin-limiting",
+      "name": "strategy_limiting",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": {
+        "cache": "redis@output"
+      },
+      "id": "eolinker.com:apinto:strategy-plugin-fuse",
+      "name": "strategy_fuse",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": {
+        "cache": "redis@output"
+      },
+      "id": "eolinker.com:apinto:strategy-plugin-cache",
+      "name": "strategy_cache",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": {
+        "cache": "redis@output"
+      },
+      "id": "eolinker.com:apinto:strategy-plugin-data_mask",
+      "name": "strategy_data_mask",
+      "rely": "",
+      "status": "global"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:ai_prompt",
+      "name": "ai_prompt",
+      "rely": "",
+      "status": "enable"
+    },
+    {
+      "config": null,
+      "id": "eolinker.com:apinto:ai_formatter",
+      "name": "ai_formatter",
+      "rely": "",
+      "status": "enable"
+    }
+  ]
+}
+
+###
+curl -s http://localhost:9400/api/router
+
+# response
+[
+  {
+    "create": "2025-10-15 15:40:11",
+    "description": "auto create by create service",
+    "driver": "http",
+    "id": "4e1cf7bc-b604-4b61-8bd9-963b88139242@router",
+    "name": "4e1cf7bc-b604-4b61-8bd9-963b88139242",
+    "profession": "router",
+    "update": "2025-10-15 15:40:11",
+    "version": "fe1c9bfb-74e7-44b0-a5e4-13827f883c98"
+  }
+]
+
+###
+curl -s http://localhost:9400/api/plugin/global/access_log
+
+# response
+{"status":404,"header":null,"data":null}
+
+###
+curl -X POST 'http://localhost:9400/api/output' \
+-H 'Content-Type:application/json' \
+-d '{
+  "name": "demo_file",
+  "driver": "file",
+  "dir": "/var/log/apinto",
+  "file": "demo",
+  "period": "day",
+  "expire": 3,
+  "type": "line",
+  "formatter": {
+    "fields": ["$request_id", "$request", "$status", "@time", "@proxy", "$response_time"],
+    "time": ["$msec", "$time_iso8601", "$time_local"],
+    "proxy": ["$proxy_uri", "$proxy_scheme", "$proxy_addr"]
+  },
+  "matches": {
+    "module": "file-access-log"
+  },
+  "scopes": [
+      "access_log"
+  ]
+}'
+
+# curl -s http://localhost:9400/api/output/demo_file@output
+# response
+{
+  "create": "2025-10-15 17:34:32",
+  "description": "",
+  "dir": "/var/log/apinto",
+  "driver": "file",
+  "expire": 3,
+  "file": "demo",
+  "formatter": {
+    "fields": [
+      "$request_id",
+      "$request",
+      "$status",
+      "@time",
+      "@proxy",
+      "$response_time"
+    ],
+    "proxy": [
+      "$proxy_uri",
+      "$proxy_scheme",
+      "$proxy_addr"
+    ],
+    "time": [
+      "$msec",
+      "$time_iso8601",
+      "$time_local"
+    ]
+  },
+  "id": "demo_file@output",
+  "matches": {
+    "module": "file-access-log"
+  },
+  "name": "demo_file",
+  "period": "day",
+  "profession": "output",
+  "scopes": [
+    "access_log"
+  ],
+  "type": "line",
+  "update": "2025-10-15 18:01:21",
+  "version": "20251015180121"
+}
+
+### update loki@output
+curl -X PUT http://localhost:9400/api/output/loki@output \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "loki",
+    "description": "collect access log",
+    "driver": "loki",
+    "url": "http://apipark-loki:3100",
+    "method": "POST",
+    "scopes": ["access_log"],
+    "labels": {
+      "cluster": "$cluster",
+      "node": "$node"
+    },
+    "type": "json",
+    "formatter": {
+      "fields": [
+        "$msec",
+        "$service",
+        "$provider",
+        "$scheme as request_scheme",
+        "$url as request_uri",
+        "$host as request_host",
+        "$header as request_header",
+        "$remote_addr",
+        "$request_body",
+        "$proxy_body",
+        "$proxy_method",
+        "$proxy_scheme",
+        "$proxy_uri",
+        "$api",
+        "$proxy_host",
+        "$proxy_header",
+        "$proxy_addr",
+        "$response_header",
+        "$response_headers",
+        "$status",
+        "$content_type",
+        "$proxy_status",
+        "$request_time",
+        "$response_time",
+        "$node",
+        "$cluster",
+        "$application",
+        "$src_ip",
+        "$block_name as strategy",
+        "$request_id",
+        "$request_method",
+        "$authorization",
+        "$response_body",
+        "$proxy_response_body",
+        "$ai_provider",
+        "$ai_model",
+        "$ai_model_input_token",
+        "$ai_model_output_token",
+        "$ai_model_total_token"
+      ]
+    }
+  }'
+
+# response
+{
+  "create": "2025-10-15 15:33:34",
+  "description": "collect access log",
+  "driver": "loki",
+  "formatter": {
+    "fields": [
+      "$msec",
+      "$service",
+      "$provider",
+      "$scheme as request_scheme",
+      "$url as request_uri",
+      "$host as request_host",
+      "$header as request_header",
+      "$remote_addr",
+      "$request_body",
+      "$proxy_body",
+      "$proxy_method",
+      "$proxy_scheme",
+      "$proxy_uri",
+      "$api",
+      "$proxy_host",
+      "$proxy_header",
+      "$proxy_addr",
+      "$response_header",
+      "$response_headers",
+      "$status",
+      "$content_type",
+      "$proxy_status",
+      "$request_time",
+      "$response_time",
+      "$node",
+      "$cluster",
+      "$application",
+      "$src_ip",
+      "$block_name as strategy",
+      "$request_id",
+      "$request_method",
+      "$authorization",
+      "$response_body",
+      "$proxy_response_body",
+      "$ai_provider",
+      "$ai_model",
+      "$ai_model_input_token",
+      "$ai_model_output_token",
+      "$ai_model_total_token"
+    ]
+  },
+  "id": "loki@output",
+  "labels": {
+    "cluster": "$cluster",
+    "node": "$node"
+  },
+  "matches": null,
+  "method": "POST",
+  "name": "loki@output",
+  "profession": "output",
+  "scopes": [
+    "access_log"
+  ],
+  "type": "json",
+  "update": "2025-10-15 20:47:03",
+  "url": "http://apipark-loki:3100",
+  "version": "20251015204703"
 }

@@ -1,0 +1,362 @@
+2025-10-15T05:38:41.151625944Z
+2025-10-15T05:38:41.151627212Z 2025/10/15 13:38:40 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:38:41.151636336Z [3.474ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.994',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:38:40.913' WHERE `id` = 1
+2025-10-15T05:38:51.154660898Z
+2025-10-15T05:38:51.154877416Z 2025/10/15 13:38:50 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:38:51.154899167Z [2.064ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:01.157179534Z
+2025-10-15T05:39:01.157386907Z 2025/10/15 13:39:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:01.157407086Z [9.810ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:10.623589507Z
+2025-10-15T05:39:10.623795708Z 2025/10/15 13:39:10 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:10.623813402Z [5.989ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:20.626875661Z
+2025-10-15T05:39:20.627028891Z 2025/10/15 13:39:20 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:20.627047176Z [4.360ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:30.629910202Z
+2025-10-15T05:39:30.630201816Z 2025/10/15 13:39:30 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:30.630230973Z [10.789ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:40.040436408Z
+2025-10-15T05:39:40.040633943Z 2025/10/15 13:39:39 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:40.040667802Z [2.973ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:40.040680346Z
+2025-10-15T05:39:40.040692996Z 2025/10/15 13:39:39 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:40.040704379Z [3.134ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:39:40.040714966Z
+2025-10-15T05:39:40.040726670Z 2025/10/15 13:39:39 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:39:40.040738770Z [0.457ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:39:40.040749228Z
+2025-10-15T05:39:40.040760902Z 2025/10/15 13:39:39 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:39:40.040780764Z [16.355ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.994',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:39:39.78' WHERE `id` = 1
+2025-10-15T05:39:50.044864104Z
+2025-10-15T05:39:50.045110228Z 2025/10/15 13:39:49 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:39:50.045142485Z [12.207ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:00.049061245Z
+2025-10-15T05:40:00.049274621Z 2025/10/15 13:39:59 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:00.049296481Z [2.600ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:09.343690226Z
+2025-10-15T05:40:09.343730861Z 2025/10/15 13:40:09 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:09.343735465Z [10.576ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:19.348489650Z
+2025-10-15T05:40:19.348612321Z 2025/10/15 13:40:19 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:19.348624531Z [2.716ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:29.351494706Z
+2025-10-15T05:40:29.351869680Z 2025/10/15 13:40:29 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:29.351903008Z [7.349ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:38.589916139Z
+2025-10-15T05:40:38.589964435Z 2025/10/15 13:40:38 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:38.589969447Z [6.468ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:38.589972083Z
+2025-10-15T05:40:38.589974846Z 2025/10/15 13:40:38 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:38.589977487Z [5.478ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:38.589980792Z
+2025-10-15T05:40:38.589983799Z 2025/10/15 13:40:38 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:40:38.589986556Z [3.206ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:40:38.589989127Z
+2025-10-15T05:40:38.589991680Z 2025/10/15 13:40:38 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:40:38.589995561Z [24.430ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.994',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:40:38.319' WHERE `id` = 1
+2025-10-15T05:40:48.592991494Z
+2025-10-15T05:40:48.593032518Z 2025/10/15 13:40:48 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:48.593035874Z [1.729ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:40:58.600312384Z
+2025-10-15T05:40:58.600360400Z 2025/10/15 13:40:58 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:40:58.600365267Z [3.305ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:08.602903554Z
+2025-10-15T05:41:08.602936733Z 2025/10/15 13:41:08 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:08.602939571Z [1.835ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:17.974956789Z
+2025-10-15T05:41:17.975055009Z 2025/10/15 13:41:17 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:17.975066074Z [1.847ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:27.980890545Z
+2025-10-15T05:41:27.980954274Z 2025/10/15 13:41:27 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:27.980992427Z [3.329ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:37.983337274Z
+2025-10-15T05:41:37.983408333Z 2025/10/15 13:41:37 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:37.983411177Z [1.773ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:37.983412160Z
+2025-10-15T05:41:37.983413269Z 2025/10/15 13:41:37 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:37.983414282Z [1.866ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:37.983415300Z
+2025-10-15T05:41:37.983416262Z 2025/10/15 13:41:37 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:41:37.983417164Z [0.718ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:41:37.983418019Z
+2025-10-15T05:41:37.983418942Z 2025/10/15 13:41:37 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:41:37.983420946Z [4.116ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:41:37.677' WHERE `id` = 1
+2025-10-15T05:41:47.245690745Z
+2025-10-15T05:41:47.245848748Z 2025/10/15 13:41:46 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:47.245868924Z [9.893ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:41:57.249748574Z
+2025-10-15T05:41:57.249939418Z 2025/10/15 13:41:56 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:41:57.249962500Z [9.579ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:07.250941216Z
+2025-10-15T05:42:07.250970701Z 2025/10/15 13:42:06 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:07.250973836Z [10.381ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:16.556610169Z
+2025-10-15T05:42:16.556929567Z 2025/10/15 13:42:16 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:16.556965226Z [11.752ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:26.558433688Z
+2025-10-15T05:42:26.558475839Z 2025/10/15 13:42:26 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:26.558479552Z [11.432ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:36.561095386Z
+2025-10-15T05:42:36.561185322Z 2025/10/15 13:42:36 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:36.561193372Z [7.499ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:36.561197356Z
+2025-10-15T05:42:36.561201293Z 2025/10/15 13:42:36 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:36.561211056Z [8.066ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:36.561241538Z
+2025-10-15T05:42:36.561244680Z 2025/10/15 13:42:36 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:42:36.561247482Z [3.750ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:42:36.561250148Z
+2025-10-15T05:42:36.561252900Z 2025/10/15 13:42:36 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:42:36.561258511Z [26.925ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:42:36.254' WHERE `id` = 1
+2025-10-15T05:42:45.858425172Z
+2025-10-15T05:42:45.858574891Z 2025/10/15 13:42:45 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:45.858589728Z [2.567ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:42:55.860931876Z
+2025-10-15T05:42:55.861016254Z 2025/10/15 13:42:55 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:42:55.861022907Z [2.882ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:05.862054939Z
+2025-10-15T05:43:05.862090310Z 2025/10/15 13:43:05 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:05.862093082Z [1.778ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:15.202028525Z
+2025-10-15T05:43:15.202064837Z 2025/10/15 13:43:14 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:15.202067907Z [1.899ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:25.203475936Z
+2025-10-15T05:43:25.203515535Z 2025/10/15 13:43:24 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:25.203518431Z [1.753ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:35.205249339Z
+2025-10-15T05:43:35.205284817Z 2025/10/15 13:43:34 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:35.205289988Z [1.818ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:35.205291389Z
+2025-10-15T05:43:35.205293043Z 2025/10/15 13:43:34 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:35.205294359Z [1.804ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:35.205295705Z
+2025-10-15T05:43:35.205297145Z 2025/10/15 13:43:34 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:43:35.205298725Z [0.647ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:43:35.205300029Z
+2025-10-15T05:43:35.205301438Z 2025/10/15 13:43:34 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:43:35.205310955Z [12.001ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:43:34.87' WHERE `id` = 1
+2025-10-15T05:43:45.206919487Z
+2025-10-15T05:43:45.206963510Z 2025/10/15 13:43:44 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:45.206966320Z [2.204ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:43:54.494859125Z
+2025-10-15T05:43:54.494894242Z 2025/10/15 13:43:54 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:43:54.494896915Z [2.069ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:04.496614172Z
+2025-10-15T05:44:04.496660091Z 2025/10/15 13:44:04 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:04.496663102Z [1.756ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:14.498010488Z
+2025-10-15T05:44:14.498075799Z 2025/10/15 13:44:14 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:14.498078833Z [1.917ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:23.827192365Z
+2025-10-15T05:44:23.827233853Z 2025/10/15 13:44:23 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:23.827236831Z [1.853ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:33.828996864Z
+2025-10-15T05:44:33.829036556Z 2025/10/15 13:44:33 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:33.829039337Z [1.916ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:33.829040737Z
+2025-10-15T05:44:33.829042021Z 2025/10/15 13:44:33 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:33.829043217Z [2.152ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:33.829044296Z
+2025-10-15T05:44:33.829045496Z 2025/10/15 13:44:33 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:44:33.829046819Z [0.568ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:44:33.829048023Z
+2025-10-15T05:44:33.829049301Z 2025/10/15 13:44:33 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:44:33.829075623Z [3.882ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:44:33.483' WHERE `id` = 1
+2025-10-15T05:44:43.831291853Z
+2025-10-15T05:44:43.831323959Z 2025/10/15 13:44:43 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:43.831326533Z [1.608ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:44:53.138012425Z
+2025-10-15T05:44:53.138049996Z 2025/10/15 13:44:52 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:44:53.138053792Z [1.944ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:03.140223738Z
+2025-10-15T05:45:03.140278573Z 2025/10/15 13:45:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:03.140280864Z [2.045ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:13.142362885Z
+2025-10-15T05:45:13.142406130Z 2025/10/15 13:45:12 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:13.142408778Z [1.741ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:22.449567524Z
+2025-10-15T05:45:22.449605436Z 2025/10/15 13:45:22 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:22.449607784Z [2.698ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:32.452900731Z
+2025-10-15T05:45:32.453116470Z 2025/10/15 13:45:32 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:32.453139698Z [8.930ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:32.453149141Z
+2025-10-15T05:45:32.453158241Z 2025/10/15 13:45:32 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:32.453166006Z [9.138ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:32.453173509Z
+2025-10-15T05:45:32.453184707Z 2025/10/15 13:45:32 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:45:32.453193425Z [3.385ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:45:32.453200361Z
+2025-10-15T05:45:32.453208496Z 2025/10/15 13:45:32 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:45:32.453224573Z [18.504ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:45:32.109' WHERE `id` = 1
+2025-10-15T05:45:42.453944137Z
+2025-10-15T05:45:42.453981982Z 2025/10/15 13:45:42 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:42.453984429Z [2.052ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:45:52.456346858Z
+2025-10-15T05:45:52.456389469Z 2025/10/15 13:45:52 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:45:52.456392813Z [1.892ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:01.761628273Z
+2025-10-15T05:46:01.761668280Z 2025/10/15 13:46:01 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:01.761670637Z [1.777ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:11.764767262Z
+2025-10-15T05:46:11.764808919Z 2025/10/15 13:46:11 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:11.764811623Z [1.698ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:21.776184534Z
+2025-10-15T05:46:21.776222078Z 2025/10/15 13:46:21 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:21.776225205Z [1.694ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:31.063565537Z
+2025-10-15T05:46:31.063608104Z 2025/10/15 13:46:30 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:31.063610623Z [1.948ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:31.063611659Z
+2025-10-15T05:46:31.063612697Z 2025/10/15 13:46:30 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:31.063613672Z [2.003ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:31.063614534Z
+2025-10-15T05:46:31.063615482Z 2025/10/15 13:46:30 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:46:31.063616390Z [0.686ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:46:31.063617288Z
+2025-10-15T05:46:31.063618213Z 2025/10/15 13:46:30 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:46:31.063619940Z [11.703ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:46:30.675' WHERE `id` = 1
+2025-10-15T05:46:41.066263819Z
+2025-10-15T05:46:41.066295079Z 2025/10/15 13:46:40 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:41.066297226Z [1.967ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:46:51.070289157Z
+2025-10-15T05:46:51.070338568Z 2025/10/15 13:46:50 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:46:51.070340850Z [2.369ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:00.401077192Z
+2025-10-15T05:47:00.401110257Z 2025/10/15 13:47:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:00.401113012Z [1.635ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:10.409984506Z
+2025-10-15T05:47:10.410040859Z 2025/10/15 13:47:10 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:10.410049439Z [1.571ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:20.411324833Z
+2025-10-15T05:47:20.411361889Z 2025/10/15 13:47:20 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:20.411364780Z [1.761ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:29.692855945Z
+2025-10-15T05:47:29.692922504Z 2025/10/15 13:47:29 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:29.692925506Z [1.751ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:29.692926845Z
+2025-10-15T05:47:29.692928160Z 2025/10/15 13:47:29 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:29.692929480Z [1.798ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:29.692930747Z
+2025-10-15T05:47:29.692932223Z 2025/10/15 13:47:29 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:47:29.692959767Z [0.542ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:47:29.692960934Z
+2025-10-15T05:47:29.692961900Z 2025/10/15 13:47:29 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:47:29.692963480Z [3.566ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:47:29.283' WHERE `id` = 1
+2025-10-15T05:47:39.694183277Z
+2025-10-15T05:47:39.694219055Z 2025/10/15 13:47:39 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:39.694222121Z [1.823ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:49.695610022Z
+2025-10-15T05:47:49.695649718Z 2025/10/15 13:47:49 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:49.695652801Z [2.157ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:47:59.028595859Z
+2025-10-15T05:47:59.028633189Z 2025/10/15 13:47:59 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:47:59.028636199Z [1.891ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:09.031353966Z
+2025-10-15T05:48:09.031402811Z 2025/10/15 13:48:08 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:09.031405526Z [1.763ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:19.033451361Z
+2025-10-15T05:48:19.033494220Z 2025/10/15 13:48:18 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:19.033497135Z [1.935ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:19.033498798Z
+2025-10-15T05:48:19.033500823Z 2025/10/15 13:48:18 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231 record not found
+2025-10-15T05:48:19.033502749Z [1.009ms] [rows:0] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:48:19.033503961Z
+2025-10-15T05:48:19.033505205Z 2025/10/15 13:48:18 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:93
+2025-10-15T05:48:19.033507166Z [4.112ms] [rows:1] INSERT INTO `log_record` (`uuid`,`driver`,`service`,`api`,`strategy`,`method`,`url`,`remote_ip`,`consumer`,`authorization`,`input_token`,`output_token`,`total_token`,`ai_provider`,`ai_model`,`status_code`,`response_time`,`traffic`,`record_time`) VALUES ('2f194906-73e3-47e8-bcdf-60d64322e72f','loki','1ec6eb56-14e5-4526-9ae8-817930246f65','3c6fefea-3eef-497b-958f-529d7c9fa74b','','GET','http://192.168.31.180:31899/8ecb812d/health2','127.0.0.1','78f19252-2896-434e-b878-17c44abbb852','b61bba65-9468-4f54-bceb-a41bd050655c',0,0,0,'','',200,6,46,'2025-10-15 13:48:17.342')
+2025-10-15T05:48:29.035320685Z
+2025-10-15T05:48:29.035367145Z 2025/10/15 13:48:28 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:29.035370434Z [1.857ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:29.035409959Z
+2025-10-15T05:48:29.035411142Z 2025/10/15 13:48:28 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:29.035412096Z [1.864ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:29.035412961Z
+2025-10-15T05:48:29.035413927Z 2025/10/15 13:48:28 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:48:29.035414907Z [0.617ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:48:29.035415771Z
+2025-10-15T05:48:29.035416697Z 2025/10/15 13:48:28 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:48:29.035417882Z [0.755ms] [rows:1] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:48:29.035418767Z
+2025-10-15T05:48:29.035419669Z 2025/10/15 13:48:28 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:48:29.035423000Z [4.019ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:48:28.613' WHERE `id` = 1
+2025-10-15T05:48:38.341236262Z
+2025-10-15T05:48:38.341274512Z 2025/10/15 13:48:37 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:38.341277077Z [2.613ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:38.341278211Z
+2025-10-15T05:48:38.341279293Z 2025/10/15 13:48:37 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:48:38.341280966Z [0.669ms] [rows:1] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:48:48.342812323Z
+2025-10-15T05:48:48.342852888Z 2025/10/15 13:48:47 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:48.342855755Z [1.831ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:48.342856828Z
+2025-10-15T05:48:48.342857855Z 2025/10/15 13:48:47 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:48:48.342859057Z [0.784ms] [rows:1] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:48:58.345031955Z
+2025-10-15T05:48:58.345075160Z 2025/10/15 13:48:57 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:48:58.345078242Z [1.655ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:48:58.345079856Z
+2025-10-15T05:48:58.345081184Z 2025/10/15 13:48:57 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:48:58.345087544Z [0.743ms] [rows:1] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:49:00.345284275Z
+2025-10-15T05:49:00.345322468Z 2025/10/15 13:49:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:203
+2025-10-15T05:49:00.345325710Z [1.105ms] [rows:1] SELECT * FROM `role_member` WHERE `target` = 'team:3db0d4fa-6a46-4084-8ba8-48696def73fa' AND `user` = 'admin'
+2025-10-15T05:49:00.345343780Z
+2025-10-15T05:49:00.345345153Z 2025/10/15 13:49:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:203
+2025-10-15T05:49:00.345346629Z [1.130ms] [rows:1] SELECT * FROM `role` WHERE `uuid` = 'team.team_admin'
+2025-10-15T05:49:00.345347472Z
+2025-10-15T05:49:00.345348441Z 2025/10/15 13:49:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:258
+2025-10-15T05:49:00.345349821Z [0.805ms] [rows:1] SELECT count(*) FROM `log_record` WHERE `record_time` between '2025-10-13 00:00:00' and '2025-10-15 13:48:59' and `service` = '1ec6eb56-14e5-4526-9ae8-817930246f65'
+2025-10-15T05:49:00.345350682Z
+2025-10-15T05:49:00.345351606Z 2025/10/15 13:49:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:258
+2025-10-15T05:49:00.345352872Z [0.522ms] [rows:2] SELECT * FROM `log_record` WHERE `record_time` between '2025-10-13 00:00:00' and '2025-10-15 13:48:59' and `service` = '1ec6eb56-14e5-4526-9ae8-817930246f65' ORDER BY record_time desc LIMIT 20
+2025-10-15T05:49:00.345353770Z
+2025-10-15T05:49:00.345354738Z 2025/10/15 13:49:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:217
+2025-10-15T05:49:00.345356117Z [1.061ms] [rows:1] SELECT * FROM `api_info` WHERE `uuid` in ('3c6fefea-3eef-497b-958f-529d7c9fa74b') ORDER BY id
+2025-10-15T05:49:00.345357005Z
+2025-10-15T05:49:00.345357946Z 2025/10/15 13:49:00 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:217
+2025-10-15T05:49:00.345359486Z [0.931ms] [rows:1] SELECT * FROM `service` WHERE `uuid` in ('78f19252-2896-434e-b878-17c44abbb852') ORDER BY id
+2025-10-15T05:49:00.345360953Z [GIN] 2025/10/15 - 13:49:00 | 200 |    9.928447ms |       127.0.0.1 | GET      "/api/v1/service/logs/rest?service=1ec6eb56-14e5-4526-9ae8-817930246f65&team=3db0d4fa-6a46-4084-8ba8-48696def73fa&start=1760284800&end=1760507339&page=1&page_size=20"
+2025-10-15T05:49:02.345581827Z
+2025-10-15T05:49:02.345632814Z 2025/10/15 13:49:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:203
+2025-10-15T05:49:02.345638817Z [0.841ms] [rows:1] SELECT * FROM `role_member` WHERE `target` = 'team:3db0d4fa-6a46-4084-8ba8-48696def73fa' AND `user` = 'admin'
+2025-10-15T05:49:02.345640506Z
+2025-10-15T05:49:02.345642311Z 2025/10/15 13:49:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:203
+2025-10-15T05:49:02.345645108Z [0.436ms] [rows:1] SELECT * FROM `role` WHERE `uuid` = 'team.team_admin'
+2025-10-15T05:49:02.345646539Z
+2025-10-15T05:49:02.345648084Z 2025/10/15 13:49:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:258
+2025-10-15T05:49:02.345651229Z [0.364ms] [rows:1] SELECT count(*) FROM `log_record` WHERE `record_time` between '2025-10-14 13:49:01' and '2025-10-15 13:49:01' and `service` = '1ec6eb56-14e5-4526-9ae8-817930246f65'
+2025-10-15T05:49:02.345652696Z
+2025-10-15T05:49:02.345654257Z 2025/10/15 13:49:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:258
+2025-10-15T05:49:02.345657208Z [0.358ms] [rows:2] SELECT * FROM `log_record` WHERE `record_time` between '2025-10-14 13:49:01' and '2025-10-15 13:49:01' and `service` = '1ec6eb56-14e5-4526-9ae8-817930246f65' ORDER BY record_time desc LIMIT 20
+2025-10-15T05:49:02.345658725Z
+2025-10-15T05:49:02.345660378Z 2025/10/15 13:49:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:217
+2025-10-15T05:49:02.345663108Z [0.323ms] [rows:1] SELECT * FROM `api_info` WHERE `uuid` in ('3c6fefea-3eef-497b-958f-529d7c9fa74b') ORDER BY id
+2025-10-15T05:49:02.345679876Z
+2025-10-15T05:49:02.345681772Z 2025/10/15 13:49:02 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:217
+2025-10-15T05:49:02.345683396Z [0.269ms] [rows:1] SELECT * FROM `service` WHERE `uuid` in ('78f19252-2896-434e-b878-17c44abbb852') ORDER BY id
+2025-10-15T05:49:02.345686037Z [GIN] 2025/10/15 - 13:49:02 | 200 |    3.401319ms |       127.0.0.1 | GET      "/api/v1/service/logs/rest?service=1ec6eb56-14e5-4526-9ae8-817930246f65&team=3db0d4fa-6a46-4084-8ba8-48696def73fa&start=1760420941&end=1760507341&page=1&page_size=20"
+2025-10-15T05:49:07.631530822Z
+2025-10-15T05:49:07.631572539Z 2025/10/15 13:49:07 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:49:07.631577368Z [10.967ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:49:07.631578451Z
+2025-10-15T05:49:07.631579684Z 2025/10/15 13:49:07 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:49:07.631582160Z [5.428ms] [rows:1] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:49:17.637273636Z
+2025-10-15T05:49:17.637314381Z 2025/10/15 13:49:17 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:49:17.637316714Z [6.010ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:49:17.637317695Z
+2025-10-15T05:49:17.637318791Z 2025/10/15 13:49:17 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:49:17.637321204Z [1.850ms] [rows:1] SELECT * FROM `log_record` WHERE `uuid` = '2f194906-73e3-47e8-bcdf-60d64322e72f' ORDER BY `log_record`.`id` LIMIT 1
+2025-10-15T05:49:27.640505379Z
+2025-10-15T05:49:27.640543791Z 2025/10/15 13:49:27 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:49:27.640545818Z [1.731ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:49:27.640546684Z
+2025-10-15T05:49:27.640547686Z 2025/10/15 13:49:27 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:244
+2025-10-15T05:49:27.640548521Z [1.801ms] [rows:1] SELECT * FROM `cluster` WHERE `uuid` = 'default' ORDER BY id desc LIMIT 1
+2025-10-15T05:49:27.640549454Z
+2025-10-15T05:49:27.640550339Z 2025/10/15 13:49:27 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:231
+2025-10-15T05:49:27.640551168Z [0.710ms] [rows:1] SELECT * FROM `log` WHERE `driver` = 'loki' ORDER BY `log`.`id` LIMIT 1
+2025-10-15T05:49:27.640551929Z
+2025-10-15T05:49:27.640552747Z 2025/10/15 13:49:27 /home/chad/go/pkg/mod/github.com/eolinker/go-common@v1.1.7/store/base.go:102
+2025-10-15T05:49:27.640558247Z [3.740ms] [rows:1] UPDATE `log` SET `uuid`='963cce09-e5b0-42de-8d03-8ee7e3c1a454',`cluster`='default',`driver`='loki',`config`='{"url":"http://apipark-loki:3100"}',`creator`='admin',`updater`='admin',`last_pull_at`='2025-10-08 11:49:05.995',`create_at`='2025-10-15 11:49:05',`update_at`='2025-10-15 13:49:27.202' WHERE `id` = 1

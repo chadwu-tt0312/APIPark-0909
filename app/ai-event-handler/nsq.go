@@ -50,6 +50,56 @@ type AIInfo struct {
 	ProviderStats []AIProviderStatus `json:"ai_provider_statuses"`
 }
 
+// UnmarshalJSON 自定義 JSON 反序列化，處理 ai_provider_statuses 為空字串的情況
+func (ai *AIInfo) UnmarshalJSON(data []byte) error {
+	// 定義臨時結構體，使用 interface{} 來接收原始資料
+	type TempAIInfo struct {
+		Model         string      `json:"ai_model"`
+		Cost          interface{} `json:"ai_model_cost"`
+		InputToken    interface{} `json:"ai_model_input_token"`
+		OutputToken   interface{} `json:"ai_model_output_token"`
+		TotalToken    interface{} `json:"ai_model_total_token"`
+		Provider      string      `json:"ai_provider"`
+		ProviderStats interface{} `json:"ai_provider_statuses"`
+	}
+	
+	var temp TempAIInfo
+	if err := json.Unmarshal(data, &temp); err != nil {
+		return err
+	}
+	
+	// 複製基本欄位
+	ai.Model = temp.Model
+	ai.Cost = temp.Cost
+	ai.InputToken = temp.InputToken
+	ai.OutputToken = temp.OutputToken
+	ai.TotalToken = temp.TotalToken
+	ai.Provider = temp.Provider
+	
+	// 處理 ProviderStats 欄位
+	switch v := temp.ProviderStats.(type) {
+	case string:
+		// 如果是空字串，設為空陣列
+		if v == "" {
+			ai.ProviderStats = []AIProviderStatus{}
+		} else {
+			// 如果是非空字串，嘗試解析為 JSON 陣列
+			if err := json.Unmarshal([]byte(v), &ai.ProviderStats); err != nil {
+				ai.ProviderStats = []AIProviderStatus{}
+			}
+		}
+	case []interface{}:
+		// 如果是陣列，正常解析
+		providerStatsBytes, _ := json.Marshal(v)
+		json.Unmarshal(providerStatsBytes, &ai.ProviderStats)
+	default:
+		// 其他情況設為空陣列
+		ai.ProviderStats = []AIProviderStatus{}
+	}
+	
+	return nil
+}
+
 type NSQMessage struct {
 	AI          AIInfo `json:"ai"`
 	API         string `json:"api"`
@@ -132,13 +182,16 @@ func (h *NSQHandler) HandleMessage(message *nsq.Message) error {
 			}
 			finalStatus = &s
 		}
-		if finalStatus != nil {
+		if finalStatus != nil && finalStatus.Key != "" && finalStatus.Provider != "" {
 			//keys := strings.Split(finalStatus.Key, "@")
 			key := genAIKey(finalStatus.Key, finalStatus.Provider)
-			err = h.aiKeyService.IncrUseToken(ctx, key, convertInt(data.AI.TotalToken))
-			if err != nil {
-				log.Printf("Failed to increment AI key token: %v", err)
-				return nil
+			totalToken := convertInt(data.AI.TotalToken)
+			if totalToken > 0 {
+				err = h.aiKeyService.IncrUseToken(ctx, key, totalToken)
+				if err != nil {
+					log.Printf("Failed to increment AI key token: %v", err)
+					return nil
+				}
 			}
 		}
 

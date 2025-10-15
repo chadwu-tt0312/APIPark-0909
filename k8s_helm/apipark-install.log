@@ -1,5 +1,5 @@
 NAME: apipark
-LAST DEPLOYED: Tue Oct 14 16:42:46 2025
+LAST DEPLOYED: Wed Oct 15 18:16:06 2025
 NAMESPACE: default
 STATUS: pending-install
 REVISION: 1
@@ -31,7 +31,7 @@ apinto:
         port: 9400
         targetPort: 9400
       http:
-        nodePort: 31899
+        nodePort: 31289
         port: 8099
         targetPort: 8099
       metrics:
@@ -59,7 +59,7 @@ apipark:
   image:
     pullPolicy: IfNotPresent
     repository: chadwu/apipark
-    tag: v1.9.5-beta-0911
+    tag: v1.9.5-beta-1015
   replicaCount: 1
   resources:
     limits:
@@ -284,21 +284,90 @@ data:
   # APIPark admin password
   apipark-admin-password: "YVRvaDBlYWc="
 ---
-# Source: apipark/templates/configmap.yaml
-# 共享配置 ConfigMap - 包含跨組件共享的配置
+# Source: apipark/templates/apinto-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: apipark-config
+  name: apipark-apinto-config
   labels:
     helm.sh/chart: apipark-1.9.5-beta
     app.kubernetes.io/name: apipark
     app.kubernetes.io/instance: apipark
     app.kubernetes.io/version: "1.9.5-beta"
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: config
+    app.kubernetes.io/component: apinto
+data: 
+  config.yml: |
+    version: 2
+    client:
+      listen_urls: # open api 服務的監聽位址
+        - http://0.0.0.0:9400
+    gateway:
+      # advertise_urls: # 轉送服務的廣播位址
+      #   - http://127.0.0.1:9400
+      listen_urls: # 轉送服務的監聽位址
+        - https://0.0.0.0:8099
+        - http://0.0.0.0:8099
+    peer: # 集群間節點通訊設定資訊
+      listen_urls: # 節點監聽位址
+        - http://0.0.0.0:9401
+
+  apinto.yml: |
+    # 資料檔案放置目錄
+    data_dir: /var/lib/apinto
+    # pid檔案放置位址
+    pid_dir: /var/run/apinto/
+    # 日誌放置目錄
+    log_dir: /var/log/apinto
+    # socket放置目錄
+    socket_dir: /tmp/apinto
+    # apinto運行設定位址
+    config: /etc/apinto/config.yml
+    # 擴充倉庫目錄
+    extends_dir: /var/lib/apinto/extenders/
+    # 錯誤日誌檔名
+    error_log_name: error.log
+    # 錯誤日誌等級，日誌等級可以劃分為：debug，info，warn，error，panic五個等級，預設等級為error
+    error_log_level: debug
+    # 錯誤日誌過期時間，預設單位為天，d|天，h|小時
+    error_log_expire: 7d
+    # 錯誤日誌切割週期，僅支援day、hour
+    error_log_period: day
+---
+# Source: apipark/templates/grafana-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apipark-grafana-config
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: grafana
 data:
-  # Loki Configuration
+  grafana-datasource.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://apipark-loki:3100
+---
+# Source: apipark/templates/loki-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apipark-loki-config
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: loki
+data:
   loki-config.yaml: |
     auth_enabled: false
 
@@ -327,7 +396,7 @@ data:
 
     schema_config:
       configs:
-        - from: 2020-10-24
+        - from: 2025-10-14
           store: tsdb
           object_store: filesystem
           schema: v13
@@ -343,84 +412,6 @@ data:
 
     table_manager:
       retention_period: 90d
-
-  # Grafana Datasource Configuration
-  grafana-datasource.yaml: |
-    apiVersion: 1
-    datasources:
-      - name: Loki
-        type: loki
-        access: proxy
-        url: http://apipark-loki:3100
-
-  # Apinto Gateway Configuration
-  config.yml: |
-    version: 2
-    client:
-      listen_urls: # open api 服務的監聽位址
-        - http://0.0.0.0:9400
-    gateway:
-      # advertise_urls: # 轉送服務的廣播位址
-      #   - http://10.11.109.93:31899
-      listen_urls: # 轉送服務的監聽位址
-        - http://0.0.0.0:8099
-    peer: # 集群間節點通訊設定資訊
-      listen_urls: # 節點監聽位址
-        - http://0.0.0.0:9401
-
-  apinto.yml: |
-    # 資料檔案放置目錄
-    data_dir: /var/lib/apinto
-    # 日誌放置目錄
-    log_dir: /var/log/apinto
-    # 錯誤日誌檔名
-    error_log_name: error.log
-    # 錯誤日誌等級，日誌等級可以劃分為：debug，info，warn，error，panic五個等級，預設等級為error
-    error_log_level: error
-    # 錯誤日誌過期時間，預設單位為天，d|天，h|小時
-    error_log_expire: 7d
-    # 錯誤日誌切割週期，僅支援day、hour
-    error_log_period: day
----
-# Source: apipark/templates/apinto-pvc.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: apipark-apinto-data-pvc
-  labels:
-    helm.sh/chart: apipark-1.9.5-beta
-    app.kubernetes.io/name: apipark
-    app.kubernetes.io/instance: apipark
-    app.kubernetes.io/version: "1.9.5-beta"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: apinto
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: standard
----
-# Source: apipark/templates/apinto-pvc.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: apipark-apinto-log-pvc
-  labels:
-    helm.sh/chart: apipark-1.9.5-beta
-    app.kubernetes.io/name: apipark
-    app.kubernetes.io/instance: apipark
-    app.kubernetes.io/version: "1.9.5-beta"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: apinto
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: standard
 ---
 # Source: apipark/templates/grafana-pvc.yaml
 apiVersion: v1
@@ -474,6 +465,7 @@ metadata:
     app.kubernetes.io/version: "1.9.5-beta"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: apinto
+    app.kubernetes.io/group: apipark-ingress-backend
 spec:
   type: NodePort
   ports:
@@ -481,7 +473,7 @@ spec:
       port: 8099
       targetPort: 8099
       protocol: TCP
-      nodePort: 31899
+      nodePort: 31289
     - name: admin
       port: 9400
       targetPort: 9400
@@ -509,6 +501,7 @@ metadata:
     app.kubernetes.io/version: "1.9.5-beta"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: apipark
+    app.kubernetes.io/group: apipark-ingress-backend
 spec:
   type: NodePort
   ports:
@@ -667,71 +660,6 @@ spec:
     app.kubernetes.io/instance: apipark
     app.kubernetes.io/component: redis
 ---
-# Source: apipark/templates/apinto-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: apipark-apinto
-  labels:
-    helm.sh/chart: apipark-1.9.5-beta
-    app.kubernetes.io/name: apipark
-    app.kubernetes.io/instance: apipark
-    app.kubernetes.io/version: "1.9.5-beta"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: apinto
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: apipark
-      app.kubernetes.io/instance: apipark
-      app.kubernetes.io/component: apinto
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: apipark
-        app.kubernetes.io/instance: apipark
-        app.kubernetes.io/component: apinto
-    spec:
-      containers:
-        - name: apinto
-          image: "eolinker/apinto-gateway:0.22.11"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort:  8099
-              protocol: TCP
-            - name: admin
-              containerPort: 9400
-              protocol: TCP
-            - name: metrics
-              containerPort: 9401
-              protocol: TCP
-          volumeMounts:
-            - name: apinto-data
-              mountPath: /var/lib/apinto
-            - name: apinto-log
-              mountPath: /var/log/apinto
-            - name: apinto-config
-              mountPath: /etc/apinto
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 250m
-              memory: 512Mi
-      volumes:
-        - name: apinto-data
-          persistentVolumeClaim:
-            claimName: apipark-apinto-data-pvc
-        - name: apinto-log
-          persistentVolumeClaim:
-            claimName: apipark-apinto-log-pvc
-        - name: apinto-config
-          configMap:
-            name: apipark-config
----
 # Source: apipark/templates/apipark-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -781,7 +709,7 @@ spec:
       # serviceAccountName: apipark
       containers:
         - name: apipark
-          image: "chadwu/apipark:v1.9.5-beta-0911"
+          image: "chadwu/apipark:v1.9.5-beta-1015"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -892,7 +820,7 @@ spec:
             claimName: apipark-grafana-pvc
         - name: grafana-config
           configMap:
-            name: apipark-config
+            name: apipark-grafana-config
 ---
 # Source: apipark/templates/nsq-deployment.yaml
 apiVersion: apps/v1
@@ -1002,6 +930,81 @@ spec:
           persistentVolumeClaim:
             claimName: apipark-redis-pvc
 ---
+# Source: apipark/templates/apinto-statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: apipark-apinto
+  labels:
+    helm.sh/chart: apipark-1.9.5-beta
+    app.kubernetes.io/name: apipark
+    app.kubernetes.io/instance: apipark
+    app.kubernetes.io/version: "1.9.5-beta"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: apinto
+    app.kubernetes.io/group: apipark-ingress-backend
+spec:
+  serviceName: apipark-apinto
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apipark
+      app.kubernetes.io/instance: apipark
+      app.kubernetes.io/component: apinto
+      app.kubernetes.io/group: apipark-ingress-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apipark
+        app.kubernetes.io/instance: apipark
+        app.kubernetes.io/component: apinto
+        app.kubernetes.io/group: apipark-ingress-backend
+    spec:
+      containers:
+        - name: apinto
+          image: "eolinker/apinto-gateway:0.22.11"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort:  8099
+              protocol: TCP
+            - name: admin
+              containerPort: 9400
+              protocol: TCP
+            - name: metrics
+              containerPort: 9401
+              protocol: TCP
+          volumeMounts:
+            - name: apinto-data
+              mountPath: /var/lib/apinto
+              subPath: data/
+            - name: apinto-data
+              mountPath: /var/log/apinto
+              subPath: log/
+            - name: apinto-config
+              mountPath: /etc/apinto
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+      volumes:
+        - name: apinto-config
+          configMap:
+            name: apipark-apinto-config
+  volumeClaimTemplates:
+    - metadata:
+        name: apinto-data
+      spec:
+        accessModes: 
+        - ReadWriteOnce
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 20Gi
+---
 # Source: apipark/templates/influxdb-statefulset.yaml
 apiVersion: apps/v1
 kind: StatefulSet
@@ -1063,17 +1066,17 @@ spec:
               value: "dQ9>fK6&gJ"
             - name: DOCKER_INFLUXDB_INIT_MODE
               value: "setup"
-            - name: INFLUXD_BIND_ADDRESS
-              value: ":8086"
+            # - name: INFLUXD_BIND_ADDRESS
+            #   value: ":8086"
           volumeMounts:
             - name: influxdb-data
               mountPath: /var/lib/influxdb2
             - name: influxdb-config
               mountPath: /etc/influxdb2
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            allowPrivilegeEscalation: false
+          # securityContext:
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
+          #   allowPrivilegeEscalation: false
           resources:
             limits:
               cpu: 500m
@@ -1157,7 +1160,7 @@ spec:
       volumes:
         - name: loki-config
           configMap:
-            name: apipark-config
+            name: apipark-loki-config
   volumeClaimTemplates:
     - metadata:
         name: loki-data

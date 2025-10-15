@@ -47,6 +47,7 @@ if [[ ${Init} == "true" ]];then
   r=$(is_init)
   if [[ $r == "true" ]];then
     echo "Already initialized, skipping initialization."
+    source ./update-loki-output.sh
   else
     wait_for_influxdb
 
@@ -58,7 +59,7 @@ if [[ ${Init} == "true" ]];then
 
       set_loki
       set_nsq
-      set_openapi_config
+      # set_openapi_config
       # 重启apipark
       kill -9 $(pgrep apipark)
       nohup ./apipark >> run.log 2>&1 &

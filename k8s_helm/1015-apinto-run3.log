@@ -1,0 +1,298 @@
+2025-10-15T07:32:59.604616545Z [2025-10-15 15:32:59] [DEBU] run process: ./apinto 0
+2025-10-15T07:33:04.634415935Z [2025-10-15 15:33:04] [DEBU] run process: ./apinto 0
+2025-10-15T07:33:09.639686957Z Starting Apinto...
+2025-10-15T07:33:09.705699743Z [2025-10-15 15:33:09] [DEBU] run process: ./apinto 0
+2025-10-15T07:33:09.800406945Z Waiting for Apinto to start...
+2025-10-15T07:33:09.894791993Z Attempt 1: Apinto is not ready yet, retrying in 5 seconds...
+2025-10-15T07:33:14.914824389Z Attempt 2: Apinto is not ready yet, retrying in 5 seconds...
+2025-10-15T07:33:19.114607718Z {"status":404,"header":null,"data":null}Apinto started successfully.
+2025-10-15T07:33:19.114630421Z Redirecting Apinto logs to Docker output...
+2025-10-15T07:33:19.116588439Z [2025-10-15 15:33:15] [DEBU] [admin-96]injection: github.com/eolinker/eosc.eosc.IWorkers point: 0xc0008c7160
+2025-10-15T07:33:19.116607746Z [2025-10-15 15:33:15] [DEBU] [admin-96]init grpc router manager
+2025-10-15T07:33:19.116610546Z [2025-10-15 15:33:15] [DEBU] [admin-96]create chain len: 0
+2025-10-15T07:33:19.116612411Z [2025-10-15 15:33:15] [DEBU] [admin-96]init router manager
+2025-10-15T07:33:19.116614112Z [2025-10-15 15:33:15] [DEBU] [admin-96]init router manager
+2025-10-15T07:33:19.116616381Z [2025-10-15 15:33:15] [INFO] [admin-96]start admin unix server: /tmp/apinto/apinto.admin-96.sock
+2025-10-15T07:33:19.116618124Z [2025-10-15 15:33:15] [INFO] [admin-96]time spend:port-reqiure unix:/tmp/apinto/apinto.admin-96.sock:178.115µs
+2025-10-15T07:33:19.116620287Z [2025-10-15 15:33:15] [DEBU] [master-52]unix client update: admin /apinto/apinto
+2025-10-15T07:33:19.116622133Z [2025-10-15 15:33:15] [DEBU] [master-52]admin controller ping done
+2025-10-15T07:33:19.116623898Z [2025-10-15 15:33:15] [INFO] [master-52]time spend:wait [admin] process start::1.360899105s
+2025-10-15T07:33:28.120650392Z [2025-10-15 15:33:26] [DEBU] [master-52]copy to client:read unix @->/tmp/apinto/apinto.admin-96.sock: use of closed network connection
+2025-10-15T07:33:28.120674736Z [2025-10-15 15:33:26] [WARN] [admin-96]unknown conn: @
+2025-10-15T07:33:34.122623365Z [2025-10-15 15:33:33] [DEBU] [admin-96]get profession:router:true->name:"router"  label:"路由"  desc:"路由"  dependencies:"service"  dependencies:"template"  dependencies:"transcode"  appendLabels:"host"  appendLabels:"service"  appendLabels:"listen"  appendLabels:"disable"  drivers:{id:"eolinker.com:apinto:http_router"  name:"http"  label:"http"  desc:"http路由"}  drivers:{id:"eolinker.com:apinto:grpc_router"  name:"grpc"  label:"grpc"  desc:"grpc路由"}  drivers:{id:"eolinker.com:apinto:dubbo2_router"  name:"dubbo2"  label:"dubbo2"  desc:"dubbo2路由"}
+2025-10-15T07:33:34.122666501Z [2025-10-15 15:33:33] [DEBU] [admin-96]getEmployeesByProfession:[]
+2025-10-15T07:33:34.122674336Z [2025-10-15 15:33:33] [DEBU] [admin-96]handler write []byte:[]
+2025-10-15T07:33:34.122680088Z [2025-10-15 15:33:33] [DEBU] [admin-96]setting SetProvider:plugin org:{"plugins":[{"config":null,"id":"eolinker.com:apinto:access_log","name":"access_log","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:monitor","name":"monitor","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:proxy_rewrite_v2","name":"proxy_rewrite","status":"enable","rely":""},{"config":{"force_auth":true},"id":"eolinker.com:apinto:plugin_app","name":"app","status":"global","rely":""},{"config":{"response":{"body":"Forbidden","charset":"utf-8","content_type":"text/plan","status_code":403},"rules":[{"a":"service_of_api:#{api}","b":"subscription_service:#{application}"}]},"id":"eolinker.com:apinto:access_relational","name":"access_relational","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:extra_params","name":"extra_params","status":"enable","rely":""},{"config":null,"id":"eolinker.com:apinto:strategy-plugin-visit","name":"strategy_visit","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:strategy-plugin-grey","name":"strategy_grey","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-limiting","name":"strategy_limiting","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-fuse","name":"strategy_fuse","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-cache","name":"strategy_cache","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-data_mask","name":"strategy_data_mask","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:ai_prompt","name":"ai_prompt","status":"enable","rely":""},{"config":null,"id":"eolinker.com:apinto:ai_formatter","name":"ai_formatter","status":"enable","rely":""}]}
+2025-10-15T07:33:34.122705282Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*plugin_manager.PluginWorkerConfig Value> kind: ptr
+2025-10-15T07:33:34.122707651Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <[]*plugin_manager.PluginConfig Value> kind: slice
+2025-10-15T07:33:34.122711150Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.122714746Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired: github.com/eolinker/eosc.eosc.IWorkers point: 0x430fef0
+2025-10-15T07:33:34.122716528Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired set:github.com/eolinker/eosc.eosc.IWorkers,0xc00072b030
+2025-10-15T07:33:34.122718187Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122720041Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122721741Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122723549Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <access_log.Config Value> kind: struct
+2025-10-15T07:33:34.122725310Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.122727045Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.122728725Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.122776601Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.122786209Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired: github.com/eolinker/eosc.eosc.IWorkers point: 0x430ff30
+2025-10-15T07:33:34.122792564Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired set:github.com/eolinker/eosc.eosc.IWorkers,0xc00072b030
+2025-10-15T07:33:34.122797947Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired: github.com/eolinker/apinto/monitor-manager.monitor_manager.IManager point: 0x430ff40
+2025-10-15T07:33:34.122803461Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired set:github.com/eolinker/apinto/monitor-manager.monitor_manager.IManager,0xc0006e7bf0
+2025-10-15T07:33:34.122809265Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122814805Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122820185Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122826150Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <monitor.Config Value> kind: struct
+2025-10-15T07:33:34.122847479Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.122854041Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.122859745Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.122865111Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.122870632Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122876062Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122882059Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122887580Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <proxy_rewrite_v2.Config Value> kind: struct
+2025-10-15T07:33:34.122893058Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.122898268Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.122903744Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.122909153Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.122914473Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired: github.com/eolinker/apinto/drivers/app/manager.manager.IManager point: 0x430fea0
+2025-10-15T07:33:34.122919742Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired set:github.com/eolinker/apinto/drivers/app/manager.manager.IManager,0xc000800af0
+2025-10-15T07:33:34.122925350Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122930890Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122936467Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122945357Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <app.Config Value> kind: struct
+2025-10-15T07:33:34.122950994Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T07:33:34.122956210Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.122961753Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.122966943Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.122972340Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122977743Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122983267Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.122988354Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <access_relational.Config Value> kind: struct
+2025-10-15T07:33:34.123086677Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <[]*access_relational.Rule Value> kind: slice
+2025-10-15T07:33:34.123096018Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*access_relational.Rule Value> kind: ptr
+2025-10-15T07:33:34.123108224Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123114858Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123121038Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*response.Response Value> kind: ptr
+2025-10-15T07:33:34.123127587Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T07:33:34.123133224Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123138634Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123143907Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <[]response.Header Value> kind: slice
+2025-10-15T07:33:34.123149562Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123154874Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123161276Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123167180Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123174126Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123180324Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123185751Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123190860Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123196471Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <extra_params.Config Value> kind: struct
+2025-10-15T07:33:34.123202018Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.123207641Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123213011Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123219059Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123224599Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123229725Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123234942Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123240201Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <visit.Config Value> kind: struct
+2025-10-15T07:33:34.123255860Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.123262135Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123267914Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123273750Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123279387Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123284543Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123289659Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123294906Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <grey.Config Value> kind: struct
+2025-10-15T07:33:34.123300396Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.123306140Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123395722Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123405189Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123412127Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123418962Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123425390Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123431309Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <limiting.Config Value> kind: struct
+2025-10-15T07:33:34.123437080Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123442889Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123450037Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123455833Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123461681Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123466887Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123472262Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123477536Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <fuse.Config Value> kind: struct
+2025-10-15T07:33:34.123482840Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123488268Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123494234Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123500062Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123515584Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123521221Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123526805Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123532231Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <cache.Config Value> kind: struct
+2025-10-15T07:33:34.123537511Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123543028Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123549019Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123554332Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123559639Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123564780Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123570018Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123575481Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <data_mask.Config Value> kind: struct
+2025-10-15T07:33:34.123581085Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123587156Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123593484Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123599923Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123605109Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123841134Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123857053Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <ai_prompt.Config Value> kind: struct
+2025-10-15T07:33:34.123864615Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.123871675Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123878979Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123886349Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.123892615Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired: github.com/eolinker/eosc.eosc.IWorkers point: 0x430fe80
+2025-10-15T07:33:34.123898535Z [2025-10-15 15:33:33] [DEBU] [admin-96]autowired set:github.com/eolinker/eosc.eosc.IWorkers,0xc00072b030
+2025-10-15T07:33:34.123904917Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123921437Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123929472Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.123935441Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <interface {} Value> targetVal: <ai_formatter.Config Value> kind: struct
+2025-10-15T07:33:34.123942453Z [2025-10-15 15:33:33] [DEBU] [admin-96]interfaceSet invalid
+2025-10-15T07:33:34.123947949Z [2025-10-15 15:33:33] [DEBU] [admin-96]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.123953954Z [2025-10-15 15:33:33] [DEBU] [admin-96]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.123959501Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:0=>&{access_log eolinker.com:apinto:access_log global {[]} map[]}
+2025-10-15T07:33:34.123965111Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{access_log eolinker.com:apinto:access_log global {[]} map[]})
+2025-10-15T07:33:34.123970692Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:1=>&{monitor eolinker.com:apinto:monitor global {[]} map[]}
+2025-10-15T07:33:34.123976065Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{monitor eolinker.com:apinto:monitor global {[]} map[]})
+2025-10-15T07:33:34.123981874Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:2=>&{proxy_rewrite eolinker.com:apinto:proxy_rewrite_v2 enable {  [] [] false false  map[]} map[]}
+2025-10-15T07:33:34.123991400Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{proxy_rewrite eolinker.com:apinto:proxy_rewrite_v2 enable {  [] [] false false  map[]} map[]})
+2025-10-15T07:33:34.123997205Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:3=>&{app eolinker.com:apinto:plugin_app global {true} map[]}
+2025-10-15T07:33:34.124002644Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{app eolinker.com:apinto:plugin_app global {true} map[]})
+2025-10-15T07:33:34.124007922Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:4=>&{access_relational eolinker.com:apinto:access_relational global {[0xc0005376c0] 0xc000776140} map[]}
+2025-10-15T07:33:34.124013544Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{access_relational eolinker.com:apinto:access_relational global {[0xc0005376c0] 0xc000776140} map[]})
+2025-10-15T07:33:34.124018894Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:5=>&{extra_params eolinker.com:apinto:extra_params enable {[] } map[]}
+2025-10-15T07:33:34.124024150Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{extra_params eolinker.com:apinto:extra_params enable {[] } map[]})
+2025-10-15T07:33:34.124030121Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:6=>&{strategy_visit eolinker.com:apinto:strategy-plugin-visit global {} map[]}
+2025-10-15T07:33:34.124036703Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{strategy_visit eolinker.com:apinto:strategy-plugin-visit global {} map[]})
+2025-10-15T07:33:34.124042130Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:7=>&{strategy_grey eolinker.com:apinto:strategy-plugin-grey global {} map[]}
+2025-10-15T07:33:34.124047530Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{strategy_grey eolinker.com:apinto:strategy-plugin-grey global {} map[]})
+2025-10-15T07:33:34.124052950Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:8=>&{strategy_limiting eolinker.com:apinto:strategy-plugin-limiting global {redis@output} map[]}
+2025-10-15T07:33:34.124143745Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{strategy_limiting eolinker.com:apinto:strategy-plugin-limiting global {redis@output} map[]})
+2025-10-15T07:33:34.124163565Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:9=>&{strategy_fuse eolinker.com:apinto:strategy-plugin-fuse global {redis@output} map[]}
+2025-10-15T07:33:34.124170431Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{strategy_fuse eolinker.com:apinto:strategy-plugin-fuse global {redis@output} map[]})
+2025-10-15T07:33:34.124181229Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:10=>&{strategy_cache eolinker.com:apinto:strategy-plugin-cache global {redis@output} map[]}
+2025-10-15T07:33:34.124187679Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{strategy_cache eolinker.com:apinto:strategy-plugin-cache global {redis@output} map[]})
+2025-10-15T07:33:34.124193851Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:11=>&{strategy_data_mask eolinker.com:apinto:strategy-plugin-data_mask global {} map[]}
+2025-10-15T07:33:34.124199564Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{strategy_data_mask eolinker.com:apinto:strategy-plugin-data_mask global {} map[]})
+2025-10-15T07:33:34.124205526Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:12=>&{ai_prompt eolinker.com:apinto:ai_prompt enable { []} map[]}
+2025-10-15T07:33:34.124211029Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{ai_prompt eolinker.com:apinto:ai_prompt enable { []} map[]})
+2025-10-15T07:33:34.124216987Z [2025-10-15 15:33:33] [DEBU] [admin-96]new plugin:13=>&{ai_formatter eolinker.com:apinto:ai_formatter enable {  } map[]}
+2025-10-15T07:33:34.124222410Z [2025-10-15 15:33:33] [DEBU] [admin-96]getExtenderDriver:0xc0005233b0.get(&{ai_formatter eolinker.com:apinto:ai_formatter enable {  } map[]})
+2025-10-15T07:33:34.124229236Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker access_log@plugin start
+2025-10-15T07:33:34.124235027Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker access_log@plugin done
+2025-10-15T07:33:34.124306726Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker monitor@plugin start
+2025-10-15T07:33:34.124317746Z [2025-10-15 15:33:33] [INFO] [admin-96]create monitor worker...
+2025-10-15T07:33:34.124324130Z [2025-10-15 15:33:33] [INFO] [admin-96]finish monitor worker...
+2025-10-15T07:33:34.124331305Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker monitor@plugin done
+2025-10-15T07:33:34.124338091Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker app@plugin start
+2025-10-15T07:33:34.124343755Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker app@plugin done
+2025-10-15T07:33:34.124353997Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker access_relational@plugin start
+2025-10-15T07:33:34.124359340Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker  done
+2025-10-15T07:33:34.124365062Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_visit@plugin start
+2025-10-15T07:33:34.124370150Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_visit@plugin done
+2025-10-15T07:33:34.124375480Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_grey@plugin start
+2025-10-15T07:33:34.124380846Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_grey@plugin done
+2025-10-15T07:33:34.124386817Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_limiting@plugin start
+2025-10-15T07:33:34.124392179Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_limiting@plugin done
+2025-10-15T07:33:34.124398389Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_fuse@plugin start
+2025-10-15T07:33:34.124403612Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_fuse@plugin done
+2025-10-15T07:33:34.124409170Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_cache@plugin start
+2025-10-15T07:33:34.124414375Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_cache@plugin done
+2025-10-15T07:33:34.124430158Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_data_mask@plugin start
+2025-10-15T07:33:34.124435427Z [2025-10-15 15:33:33] [DEBU] [admin-96]create worker strategy_data_mask@plugin done
+2025-10-15T07:33:34.124440745Z [2025-10-15 15:33:33] [DEBU] [admin-96]UnixConnect:/tmp/apinto/apinto.master-52.sock
+2025-10-15T07:33:34.124445917Z [2025-10-15 15:33:33] [DEBU] [master-52]etcd send event:set namespace:worker key:plugin@setting
+2025-10-15T07:33:34.124452018Z [2025-10-15 15:33:33] [DEBU] [master-52]1.7605136136663783e+09	debug	Applying entries	{"num-entries": 1}
+2025-10-15T07:33:34.124457882Z [2025-10-15 15:33:33] [DEBU] [master-52]1.7605136136664233e+09	debug	Applying entry	{"index": 7, "term": 2, "type": "EntryNormal"}
+2025-10-15T07:33:34.124463897Z [2025-10-15 15:33:33] [DEBU] [master-52]1.7605136136664336e+09	debug	apply entry normal	{"consistent-index": 6, "entry-index": 7, "should-applyV3": true}
+2025-10-15T07:33:34.124558845Z [2025-10-15 15:33:33] [DEBU] [master-52]1.7605136136664438e+09	debug	applyEntryNormal	{"raftReq": "header:<ID:3852717222741105417 > put:<key:\"/worker/plugin@setting\" value:\"{\\\"id\\\":\\\"plugin@setting\\\",\\\"profession\\\":\\\"setting\\\",\\\"name\\\":\\\"plugin\\\",\\\"driver\\\":\\\"plugin\\\",\\\"create\\\":\\\"2025-10-15 15:33:33\\\",\\\"update\\\":\\\"2025-10-15 15:33:33\\\",\\\"body\\\":\\\"eyJwbHVnaW5zIjpbeyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzphY2Nlc3NfbG9nIiwibmFtZSI6ImFjY2Vzc19sb2ciLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzptb25pdG9yIiwibmFtZSI6Im1vbml0b3IiLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpwcm94eV9yZXdyaXRlX3YyIiwibmFtZSI6InByb3h5X3Jld3JpdGUiLCJzdGF0dXMiOiJlbmFibGUiLCJyZWx5IjoiIn0seyJjb25maWciOnsiZm9yY2VfYXV0aCI6dHJ1ZX0sImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpwbHVnaW5fYXBwIiwibmFtZSI6ImFwcCIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJyZXNwb25zZSI6eyJib2R5IjoiRm9yYmlkZGVuIiwiY2hhcnNldCI6InV0Zi04IiwiY29udGVudF90eXBlIjoidGV4dC9wbGFuIiwic3RhdHVzX2NvZGUiOjQwM30sInJ1bGVzIjpbeyJhIjoic2VydmljZV9vZl9hcGk6I3thcGl9IiwiYiI6InN1YnNjcmlwdGlvbl9zZXJ2aWNlOiN7YXBwbGljYXRpb259In1dfSwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOmFjY2Vzc19yZWxhdGlvbmFsIiwibmFtZSI6ImFjY2Vzc19yZWxhdGlvbmFsIiwic3RhdHVzIjoiZ2xvYmFsIiwicmVseSI6IiJ9LHsiY29uZmlnIjpudWxsLCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86ZXh0cmFfcGFyYW1zIiwibmFtZSI6ImV4dHJhX3BhcmFtcyIsInN0YXR1cyI6ImVuYWJsZSIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi12aXNpdCIsIm5hbWUiOiJzdHJhdGVneV92aXNpdCIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi1ncmV5IiwibmFtZSI6InN0cmF0ZWd5X2dyZXkiLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOnsiY2FjaGUiOiJyZWRpc0BvdXRwdXQifSwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi1saW1pdGluZyIsIm5hbWUiOiJzdHJhdGVneV9saW1pdGluZyIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJjYWNoZSI6InJlZGlzQG91dHB1dCJ9LCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86c3RyYXRlZ3ktcGx1Z2luLWZ1c2UiLCJuYW1lIjoic3RyYXRlZ3lfZnVzZSIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJjYWNoZSI6InJlZGlzQG91dHB1dCJ9LCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86c3RyYXRlZ3ktcGx1Z2luLWNhY2hlIiwibmFtZSI6InN0cmF0ZWd5X2NhY2hlIiwic3RhdHVzIjoiZ2xvYmFsIiwicmVseSI6IiJ9LHsiY29uZmlnIjp7ImNhY2hlIjoicmVkaXNAb3V0cHV0In0sImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpzdHJhdGVneS1wbHVnaW4tZGF0YV9tYXNrIiwibmFtZSI6InN0cmF0ZWd5X2RhdGFfbWFzayIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOmFpX3Byb21wdCIsIm5hbWUiOiJhaV9wcm9tcHQiLCJzdGF0dXMiOiJlbmFibGUiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzphaV9mb3JtYXR0ZXIiLCJuYW1lIjoiYWlfZm9ybWF0dGVyIiwic3RhdHVzIjoiZW5hYmxlIiwicmVseSI6IiJ9XX0=\\\"}\" > "}
+2025-10-15T07:33:34.124581938Z [2025-10-15 15:33:33] [DEBU] [master-52]send listen to worker:namespace:"worker"  command:"set"  key:"plugin@setting"  data:"{\"id\":\"plugin@setting\",\"profession\":\"setting\",\"name\":\"plugin\",\"driver\":\"plugin\",\"create\":\"2025-10-15 15:33:33\",\"update\":\"2025-10-15 15:33:33\",\"body\":\"eyJwbHVnaW5zIjpbeyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzphY2Nlc3NfbG9nIiwibmFtZSI6ImFjY2Vzc19sb2ciLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzptb25pdG9yIiwibmFtZSI6Im1vbml0b3IiLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpwcm94eV9yZXdyaXRlX3YyIiwibmFtZSI6InByb3h5X3Jld3JpdGUiLCJzdGF0dXMiOiJlbmFibGUiLCJyZWx5IjoiIn0seyJjb25maWciOnsiZm9yY2VfYXV0aCI6dHJ1ZX0sImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpwbHVnaW5fYXBwIiwibmFtZSI6ImFwcCIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJyZXNwb25zZSI6eyJib2R5IjoiRm9yYmlkZGVuIiwiY2hhcnNldCI6InV0Zi04IiwiY29udGVudF90eXBlIjoidGV4dC9wbGFuIiwic3RhdHVzX2NvZGUiOjQwM30sInJ1bGVzIjpbeyJhIjoic2VydmljZV9vZl9hcGk6I3thcGl9IiwiYiI6InN1YnNjcmlwdGlvbl9zZXJ2aWNlOiN7YXBwbGljYXRpb259In1dfSwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOmFjY2Vzc19yZWxhdGlvbmFsIiwibmFtZSI6ImFjY2Vzc19yZWxhdGlvbmFsIiwic3RhdHVzIjoiZ2xvYmFsIiwicmVseSI6IiJ9LHsiY29uZmlnIjpudWxsLCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86ZXh0cmFfcGFyYW1zIiwibmFtZSI6ImV4dHJhX3BhcmFtcyIsInN0YXR1cyI6ImVuYWJsZSIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi12aXNpdCIsIm5hbWUiOiJzdHJhdGVneV92aXNpdCIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi1ncmV5IiwibmFtZSI6InN0cmF0ZWd5X2dyZXkiLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOnsiY2FjaGUiOiJyZWRpc0BvdXRwdXQifSwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi1saW1pdGluZyIsIm5hbWUiOiJzdHJhdGVneV9saW1pdGluZyIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJjYWNoZSI6InJlZGlzQG91dHB1dCJ9LCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86c3RyYXRlZ3ktcGx1Z2luLWZ1c2UiLCJuYW1lIjoic3RyYXRlZ3lfZnVzZSIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJjYWNoZSI6InJlZGlzQG91dHB1dCJ9LCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86c3RyYXRlZ3ktcGx1Z2luLWNhY2hlIiwibmFtZSI6InN0cmF0ZWd5X2NhY2hlIiwic3RhdHVzIjoiZ2xvYmFsIiwicmVseSI6IiJ9LHsiY29uZmlnIjp7ImNhY2hlIjoicmVkaXNAb3V0cHV0In0sImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpzdHJhdGVneS1wbHVnaW4tZGF0YV9tYXNrIiwibmFtZSI6InN0cmF0ZWd5X2RhdGFfbWFzayIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOmFpX3Byb21wdCIsIm5hbWUiOiJhaV9wcm9tcHQiLCJzdGF0dXMiOiJlbmFibGUiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzphaV9mb3JtYXR0ZXIiLCJuYW1lIjoiYWlfZm9ybWF0dGVyIiwic3RhdHVzIjoiZW5hYmxlIiwicmVseSI6IiJ9XX0=\"}"
+2025-10-15T07:33:34.124739130Z [2025-10-15 15:33:33] [DEBU] [worker-68]recv:namespace:"worker"  command:"set"  key:"plugin@setting"  data:"{\"id\":\"plugin@setting\",\"profession\":\"setting\",\"name\":\"plugin\",\"driver\":\"plugin\",\"create\":\"2025-10-15 15:33:33\",\"update\":\"2025-10-15 15:33:33\",\"body\":\"eyJwbHVnaW5zIjpbeyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzphY2Nlc3NfbG9nIiwibmFtZSI6ImFjY2Vzc19sb2ciLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzptb25pdG9yIiwibmFtZSI6Im1vbml0b3IiLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpwcm94eV9yZXdyaXRlX3YyIiwibmFtZSI6InByb3h5X3Jld3JpdGUiLCJzdGF0dXMiOiJlbmFibGUiLCJyZWx5IjoiIn0seyJjb25maWciOnsiZm9yY2VfYXV0aCI6dHJ1ZX0sImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpwbHVnaW5fYXBwIiwibmFtZSI6ImFwcCIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJyZXNwb25zZSI6eyJib2R5IjoiRm9yYmlkZGVuIiwiY2hhcnNldCI6InV0Zi04IiwiY29udGVudF90eXBlIjoidGV4dC9wbGFuIiwic3RhdHVzX2NvZGUiOjQwM30sInJ1bGVzIjpbeyJhIjoic2VydmljZV9vZl9hcGk6I3thcGl9IiwiYiI6InN1YnNjcmlwdGlvbl9zZXJ2aWNlOiN7YXBwbGljYXRpb259In1dfSwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOmFjY2Vzc19yZWxhdGlvbmFsIiwibmFtZSI6ImFjY2Vzc19yZWxhdGlvbmFsIiwic3RhdHVzIjoiZ2xvYmFsIiwicmVseSI6IiJ9LHsiY29uZmlnIjpudWxsLCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86ZXh0cmFfcGFyYW1zIiwibmFtZSI6ImV4dHJhX3BhcmFtcyIsInN0YXR1cyI6ImVuYWJsZSIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi12aXNpdCIsIm5hbWUiOiJzdHJhdGVneV92aXNpdCIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi1ncmV5IiwibmFtZSI6InN0cmF0ZWd5X2dyZXkiLCJzdGF0dXMiOiJnbG9iYWwiLCJyZWx5IjoiIn0seyJjb25maWciOnsiY2FjaGUiOiJyZWRpc0BvdXRwdXQifSwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOnN0cmF0ZWd5LXBsdWdpbi1saW1pdGluZyIsIm5hbWUiOiJzdHJhdGVneV9saW1pdGluZyIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJjYWNoZSI6InJlZGlzQG91dHB1dCJ9LCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86c3RyYXRlZ3ktcGx1Z2luLWZ1c2UiLCJuYW1lIjoic3RyYXRlZ3lfZnVzZSIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6eyJjYWNoZSI6InJlZGlzQG91dHB1dCJ9LCJpZCI6ImVvbGlua2VyLmNvbTphcGludG86c3RyYXRlZ3ktcGx1Z2luLWNhY2hlIiwibmFtZSI6InN0cmF0ZWd5X2NhY2hlIiwic3RhdHVzIjoiZ2xvYmFsIiwicmVseSI6IiJ9LHsiY29uZmlnIjp7ImNhY2hlIjoicmVkaXNAb3V0cHV0In0sImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzpzdHJhdGVneS1wbHVnaW4tZGF0YV9tYXNrIiwibmFtZSI6InN0cmF0ZWd5X2RhdGFfbWFzayIsInN0YXR1cyI6Imdsb2JhbCIsInJlbHkiOiIifSx7ImNvbmZpZyI6bnVsbCwiaWQiOiJlb2xpbmtlci5jb206YXBpbnRvOmFpX3Byb21wdCIsIm5hbWUiOiJhaV9wcm9tcHQiLCJzdGF0dXMiOiJlbmFibGUiLCJyZWx5IjoiIn0seyJjb25maWciOm51bGwsImlkIjoiZW9saW5rZXIuY29tOmFwaW50bzphaV9mb3JtYXR0ZXIiLCJuYW1lIjoiYWlfZm9ybWF0dGVyIiwic3RhdHVzIjoiZW5hYmxlIiwicmVseSI6IiJ9XX0=\"}"
+2025-10-15T07:33:34.124843283Z [2025-10-15 15:33:33] [DEBU] [worker-68]setEvent NamespaceWorker:
+2025-10-15T07:33:34.124851832Z [2025-10-15 15:33:33] [DEBU] [worker-68]NamespaceWorker:settingplugin
+2025-10-15T07:33:34.125062528Z [2025-10-15 15:33:33] [DEBU] [worker-68]setting SetProvider:plugin org:{"plugins":[{"config":null,"id":"eolinker.com:apinto:access_log","name":"access_log","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:monitor","name":"monitor","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:proxy_rewrite_v2","name":"proxy_rewrite","status":"enable","rely":""},{"config":{"force_auth":true},"id":"eolinker.com:apinto:plugin_app","name":"app","status":"global","rely":""},{"config":{"response":{"body":"Forbidden","charset":"utf-8","content_type":"text/plan","status_code":403},"rules":[{"a":"service_of_api:#{api}","b":"subscription_service:#{application}"}]},"id":"eolinker.com:apinto:access_relational","name":"access_relational","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:extra_params","name":"extra_params","status":"enable","rely":""},{"config":null,"id":"eolinker.com:apinto:strategy-plugin-visit","name":"strategy_visit","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:strategy-plugin-grey","name":"strategy_grey","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-limiting","name":"strategy_limiting","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-fuse","name":"strategy_fuse","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-cache","name":"strategy_cache","status":"global","rely":""},{"config":{"cache":"redis@output"},"id":"eolinker.com:apinto:strategy-plugin-data_mask","name":"strategy_data_mask","status":"global","rely":""},{"config":null,"id":"eolinker.com:apinto:ai_prompt","name":"ai_prompt","status":"enable","rely":""},{"config":null,"id":"eolinker.com:apinto:ai_formatter","name":"ai_formatter","status":"enable","rely":""}]}
+2025-10-15T07:33:34.125076988Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <map[string]interface {} Value> targetVal: <*plugin_manager.PluginWorkerConfig Value> kind: ptr
+2025-10-15T07:33:34.125084796Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]*plugin_manager.PluginConfig Value> kind: slice
+2025-10-15T07:33:34.125092724Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125118441Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired: github.com/eolinker/eosc.eosc.IWorkers point: 0x430fef0
+2025-10-15T07:33:34.125123975Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired set:github.com/eolinker/eosc.eosc.IWorkers,0xc000764840
+2025-10-15T07:33:34.125129343Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125134648Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125139824Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125145655Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <access_log.Config Value> kind: struct
+2025-10-15T07:33:34.125152127Z [2025-10-15 15:33:33] [DEBU] [worker-68]interfaceSet invalid
+2025-10-15T07:33:34.125158011Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125164283Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125169723Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125175081Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired: github.com/eolinker/eosc.eosc.IWorkers point: 0x430ff30
+2025-10-15T07:33:34.125180432Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired set:github.com/eolinker/eosc.eosc.IWorkers,0xc000764840
+2025-10-15T07:33:34.125185726Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired: github.com/eolinker/apinto/monitor-manager.monitor_manager.IManager point: 0x430ff40
+2025-10-15T07:33:34.125191166Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired set:github.com/eolinker/apinto/monitor-manager.monitor_manager.IManager,0xc000980f00
+2025-10-15T07:33:34.125196482Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125214622Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125220140Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125225920Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <monitor.Config Value> kind: struct
+2025-10-15T07:33:34.125231414Z [2025-10-15 15:33:33] [DEBU] [worker-68]interfaceSet invalid
+2025-10-15T07:33:34.125237039Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125242537Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125247699Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125253060Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125258908Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125264151Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125269499Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <proxy_rewrite_v2.Config Value> kind: struct
+2025-10-15T07:33:34.125275896Z [2025-10-15 15:33:33] [DEBU] [worker-68]interfaceSet invalid
+2025-10-15T07:33:34.125292872Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125298457Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125303747Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125309124Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired: github.com/eolinker/apinto/drivers/app/manager.manager.IManager point: 0x430fea0
+2025-10-15T07:33:34.125314938Z [2025-10-15 15:33:33] [DEBU] [worker-68]autowired set:github.com/eolinker/apinto/drivers/app/manager.manager.IManager,0xc0006adb90
+2025-10-15T07:33:34.125320432Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125325811Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125332116Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125337476Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <app.Config Value> kind: struct
+2025-10-15T07:33:34.125343270Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <bool Value> kind: bool
+2025-10-15T07:33:34.125348670Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125354104Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125359716Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125364940Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125370507Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125375931Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125386216Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <access_relational.Config Value> kind: struct
+2025-10-15T07:33:34.125391817Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <[]*access_relational.Rule Value> kind: slice
+2025-10-15T07:33:34.125397137Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*access_relational.Rule Value> kind: ptr
+2025-10-15T07:33:34.125402610Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125408391Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125413701Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*response.Response Value> kind: ptr
+2025-10-15T07:33:34.125513144Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <int Value> kind: int
+2025-10-15T07:33:34.125522966Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125529217Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125535198Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <[]response.Header Value> kind: slice
+2025-10-15T07:33:34.125551585Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125558562Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125564002Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125569475Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125574738Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125580112Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125585438Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125590798Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125595937Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <extra_params.Config Value> kind: struct
+2025-10-15T07:33:34.125602423Z [2025-10-15 15:33:33] [DEBU] [worker-68]interfaceSet invalid
+2025-10-15T07:33:34.125607675Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125613320Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125619658Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125625075Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125630478Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125635654Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125641007Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <visit.Config Value> kind: struct
+2025-10-15T07:33:34.125647259Z [2025-10-15 15:33:33] [DEBU] [worker-68]interfaceSet invalid
+2025-10-15T07:33:34.125652542Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <invalid Value> targetVal: <map[string]interface {} Value> kind: map
+2025-10-15T07:33:34.125658016Z [2025-10-15 15:33:33] [DEBU] [worker-68]now kind is invalid<invalid Value>
+2025-10-15T07:33:34.125663552Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal: <*plugin_manager.PluginConfig Value> kind: ptr
+2025-10-15T07:33:34.125668862Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string
+2025-10-15T07:33:34.125674232Z [2025-10-15 15:33:33] [DEBU] [worker-68]recurseReflect originVal: <interface {} Value> targetVal:  kind: string

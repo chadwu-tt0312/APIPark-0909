@@ -56,7 +56,7 @@ spec:
       volumes:
         - name: apinto-config
           configMap:
-            name: {{ include "apipark.fullname" . }}-config
+            name: {{ include "apipark.apinto.fullname" . }}-config
   volumeClaimTemplates:
     - metadata:
         name: apinto-data
