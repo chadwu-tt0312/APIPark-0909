@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # 設定 Apinto 的 Loki 日誌輸出
-curl -X PUT http://apipark-apinto:9400/api/output/loki@output \
+# 並等待 port-forward 啟動
+# lsof -i :9400 # 查看 9400 端口被哪個進程佔用
+# pkill -f "kubectl port-forward svc/apipark-apinto 9400" # 停止 port-forward
+
+kubectl port-forward svc/apipark-apinto 9400:9400 &
+sleep 5 && 
+curl -X PUT http://localhost:9400/api/output/loki@output \
   -H "Content-Type: application/json" \
   -d '{
     "name": "loki",
@@ -58,7 +64,6 @@ curl -X PUT http://apipark-apinto:9400/api/output/loki@output \
         "$ai_model_total_token"
       ]
     }
-  }'
-
-echo ""
+  }' | jq . &&
+pkill -f "kubectl port-forward svc/apipark-apinto 9400"
 echo "Loki output configured successfully."

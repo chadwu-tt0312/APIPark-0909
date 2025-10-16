@@ -47,6 +47,7 @@ if [[ ${Init} == "true" ]];then
   r=$(is_init)
   if [[ $r == "true" ]];then
     echo "Already initialized, skipping initialization."
+    set_cluster
     source ./update-loki-output.sh
   else
     wait_for_influxdb

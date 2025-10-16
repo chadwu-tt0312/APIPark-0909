@@ -76,49 +76,20 @@ curl http://172.21.122.231:8099/36ffbb2d/Pei_Knnowledge_Rag
 -X GET 
 -H "Authorization: {{USER_KEY}}"
 
-### API gateway
-curl http://192.168.31.180:31288/api/v1/cluster/check 
--X POST 
--d '{"address":"apipark-apinto:9400"}'
-
-# response (peer_address 與其他不同) addr 改 "10.244.0.188:9400" 就可以相同
-{
-    "data": {
-        "nodes": [
-            {
-                "id": "eda67d7af66b3577",
-                "name": "72bb83a3ed054541856a44b269690f93",
-                "manager_address": [
-                    "http://10.244.0.188:9400"
-                ],
-                "peer_address": [
-                    "http://10.244.0.168:9401"
-                ],
-                "service_address": [
-                    "http://10.244.0.188:8099",
-                    "https://10.244.0.188:8099"
-                ],
-                "status": 1
-            }
-        ]
-    },
-    "code": 0,
-    "success": "success"
-}
 
 ### ================= Health2 Restful Service =================
-@USER_KEY_180 = 6474379f-bbdb-481b-8e56-5eea4c59b964
+@USER_KEY_180 = 7ae87bc4-d140-47ce-a64c-e026261fdba3
 
-curl -X GET "http://192.168.31.180:31289/b1a25ccc/health2"
+curl -X GET "http://192.168.31.180:31289/707fc562/health2"
 -H "Authorization: {{USER_KEY_180}}"
 
 ###
-curl -X GET "http://192.168.31.180:30080/apinto/b1a25ccc/health2"
+curl -X GET "http://192.168.31.180:30080/apinto/707fc562/health2"
 -H "Host: apipark.local"
 -H "Authorization: {{USER_KEY_180}}"
 
 ###
-curl http://192.168.31.180:31288/api/v1/service/apidoc/9e583d5c-fbfa-4655-bbb8-4f51372ecb56
+curl http://192.168.31.180:31288/api/v1/service/apidoc/763ab945-3c5f-41f6-bf95-50605f2e5157
 -H "Host: apipark.local"
 
 ###
@@ -126,12 +97,83 @@ curl http://192.168.31.180:31288/api/v1/account/login/username
 -d '{"name":"admin","password":"aToh0eag"}'
 
 # response:
-Set-Cookie: session=20b55de-fdec-4c98-a559-942b584af610;
+Set-Cookie: session=0f712446-39b1-4cb1-904b-e1482df70168;
 
 ###
-@COOKIE_KEY = 20b55de-fdec-4c98-a559-942b584af610
+@COOKIE_KEY = 0f712446-39b1-4cb1-904b-e1482df70168
 curl http://192.168.31.180:31288/api/v1/system/general
 -H "Cookie: session={{COOKIE_KEY}}"
+
+### API gateway-01
+curl http://192.168.31.180:31288/api/v1/cluster/check 
+-X POST 
+-d '{"address":"apipark-apinto:9400"}'
+
+# response (peer_address 與其他不同)
+{
+  "data": {
+    "nodes": [
+      {
+        "id": "dfe82c72e657e766",
+        "name": "72aaac5ed9ea45949a3425593da16a90",
+        "manager_address": [
+          "http://10.244.0.85:9400"
+        ],
+        "peer_address": [
+          "http://10.244.0.75:9401"
+        ],
+        "service_address": [
+          "https://10.244.0.85:8099",
+          "http://10.244.0.85:8099"
+        ],
+        "status": 1
+      }
+    ]
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### API gateway-02
+curl http://192.168.31.180:31288/api/v1/cluster/reset 
+-X PUT 
+-d '{"manager_address":"apipark-apinto:9400"}'
+
+# response (peer_address 與其他不同) addr 改 "10.244.0.188:9400" 就可以相同
+{
+  "data": {
+    "nodes": [
+      {
+        "id": "dfe82c72e657e766",
+        "name": "72aaac5ed9ea45949a3425593da16a90",
+        "manager_address": [
+          "http://10.244.0.85:9400"
+        ],
+        "peer_address": [
+          "http://10.244.0.75:9401"
+        ],
+        "service_address": [
+          "http://10.244.0.85:8099",
+          "https://10.244.0.85:8099"
+        ],
+        "status": 1
+      }
+    ]
+  },
+  "code": 0,
+  "success": "success"
+}
+
+### get loki
+curl -X GET "http://192.168.31.180:31288/api/v1/log/loki"
+  -H "Cookie: session={{COOKIE_KEY}}"
+
+### Set loki
+curl -X POST "http://192.168.31.180:31288/api/v1/log/loki"
+  -H "Content-Type: application/json"
+  -H "Cookie: session={{COOKIE_KEY}}"
+  -d '{"config":{"url":"http://apipark-loki:3100"}}'
+
 
 ### logs
 curl http://192.168.31.180:31288/api/v1/service/logs/rest?service=a00ca1fc-c8a5-49a7-968c-3f7be172a519&team=c65bd5a2-40de-42e5-94ce-87e8e4300720&start=1760198400&end=1760427836&page=1&page_size=20
