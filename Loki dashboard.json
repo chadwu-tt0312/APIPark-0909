@@ -83,8 +83,8 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "editorMode": "code",
-          "expr": "{cluster=\"cca8dac0-b1d3-419a-9bad-451f5b19b17c\"}",
+          "editorMode": "builder",
+          "expr": "{cluster=\"be2721c2-a569-4e08-bc31-ed6dad59b1c0\"}",
           "queryType": "range",
           "refId": "A"
         }

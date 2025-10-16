@@ -77,18 +77,21 @@ curl http://172.21.122.231:8099/36ffbb2d/Pei_Knnowledge_Rag
 -H "Authorization: {{USER_KEY}}"
 
 
-### ================= Health2 Restful Service =================
-@USER_KEY_180 = 7ae87bc4-d140-47ce-a64c-e026261fdba3
+# ================= Health2 Restful Service =================
+# MCP
+# http://192.168.31.180:31288/openapi/v1/mcp/service/d662b899-174e-4f90-89e2-14ac810c50ff/sse?apikey=cf21b8c8-d9df-47da-8dc1-05016f0d2ce9
+@USER_KEY_180 = cf21b8c8-d9df-47da-8dc1-05016f0d2ce9
 
-curl -X GET "http://192.168.31.180:31289/707fc562/health2"
+###
+curl -X GET "http://172.21.122.231:31289/ae183bc7/health2"
 -H "Authorization: {{USER_KEY_180}}"
 
 ###
-curl -X GET "http://192.168.31.180:30080/apinto/707fc562/health2"
+curl -X GET "http://192.168.31.180:30080/apinto/ae183bc7/health2"
 -H "Host: apipark.local"
 -H "Authorization: {{USER_KEY_180}}"
 
-###
+### ApiPark (Open API 文件)
 curl http://192.168.31.180:31288/api/v1/service/apidoc/763ab945-3c5f-41f6-bf95-50605f2e5157
 -H "Host: apipark.local"
 

@@ -232,7 +232,7 @@ apipark:
     repository: chadwu/apipark
     # tag: "v1.9.3-beta"
     # tag: "v1.9.5-beta-0911"
-    tag: "v1.9.5-beta-1015"
+    tag: "v1.9.5-beta-1016"
     pullPolicy: IfNotPresent
   service:
     # type: ClusterIP
