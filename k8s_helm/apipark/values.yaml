@@ -22,8 +22,6 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-  nodePorts:
-    http: 31288
   hosts:
     - host: apipark.local
       paths:
@@ -38,6 +36,8 @@ ingress:
             name: apipark
             port: 8288
   tls: []
+  nodePorts:
+    http: 31288
 
 # MySQL Configuration
 mysql:

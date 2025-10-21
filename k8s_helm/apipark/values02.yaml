@@ -18,22 +18,23 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-  nodePorts:
-    http: 31288
   hosts:
-    - host: apipark.local
-      paths:
+    # - host: apipark.local
+    # - host: "10.11.109.93"
+    - paths:
         - path: /apinto/(.+)
           pathType: ImplementationSpecific
           service:
             name: apipark-apinto
             port: 8099
-        - path: /(.+)
+        - path: /(.*)
           pathType: Prefix
           service:
             name: apipark
             port: 8288
   tls: []
+  # nodePorts:
+  #   http: 31288
 
 # MySQL Configuration
 mysql:
@@ -143,7 +144,10 @@ grafana:
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
+    # type: NodePort
     port: 3000
+    targetPort: 3000
+    # nodePort: 31300
   auth:
     anonymousEnabled: true
     anonymousOrgRole: "Admin"
@@ -194,7 +198,7 @@ apinto:
       http:
         port: 8099 # 主要 HTTP 端口
         targetPort: 8099
-        # nodePort: 31899
+        # nodePort: 31289
       admin:
         port: 9400
         targetPort: 9400

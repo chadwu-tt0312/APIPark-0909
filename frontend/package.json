@@ -94,5 +94,10 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-jest": "^0.1.4"
+  },
+  "resolutions": {
+    "antd": "5.19.4",
+    "rollup": "4.44.0",
+    "vite": "5.4.20"
   }
 }

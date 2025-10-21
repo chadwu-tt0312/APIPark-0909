@@ -95,7 +95,15 @@ func generateInvokeTool(path string, method string, contentType string, params m
 		if err != nil {
 			return nil, err
 		}
-		u.Path = path
+		// u.Path = path
+		// -------- 這裡是關鍵變動 --------
+		// 拼接 API path 到 base path 後 (避免覆蓋 base path)
+		if !strings.HasSuffix(u.Path, "/") {
+			u.Path += "/"
+		}
+		relPath := strings.TrimPrefix(path, "/")
+		u.Path = strings.TrimSuffix(u.Path, "/") + "/" + relPath
+		// --------------------------------
 		u.RawQuery = queries.Encode()
 
 		req, err := http.NewRequest(method, u.String(), strings.NewReader(bodyData))
